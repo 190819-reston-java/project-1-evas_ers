@@ -1,6 +1,2 @@
-this is a conflict file to be resolves soon.
-
-
-line 3 ... we are in dispute
-
-line 5 ... resolve quickly
+im changing this
+adam was here
