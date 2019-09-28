@@ -5,10 +5,10 @@ const ACCOUNT_URL = `${BASE_URL}/accounts`;
 
 let singleAccountGet = document.getElementById("BasicLogin");
 
-singleAccountGet.addEventListener("click", (event) => {
-    fetch(BASE_URL, {method: "GET"})
-    .then((response) => {
-        return response.json;
-    })
-    .then(())
-})
+//singleAccountGet.addEventListener("click", (event) => {
+//    fetch(BASE_URL, {method: "GET"})
+//    .then((response) => {
+//        return response.json;
+//    })
+//    .then(())
+//})

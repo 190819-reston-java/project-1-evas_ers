@@ -4,7 +4,7 @@ import com.revature.repository.EvasDAO;
 import com.revature.repository.EvasJDBC;
 import com.revature.util.ConnectionUtil;
 
-public class Driver {
+public class EvasOnlineDriver {
 /**
  * EVAS Online Driver
  * @param args
@@ -14,8 +14,10 @@ public class Driver {
 		System.out.println("hi");
 		ConnectionUtil.getConnection();
 
-//		EvasDAO test1 = new EvasJDBC();
-//		System.out.println(test1.getEmailandPass("fursa@evas.com", "FU9630"));
+		
+		
+		EvasDAO evasDao = new EvasJDBC();
+		System.out.println(evasDao.getEmailandPass("fursa@evas.com", "FU9630"));
 
 
 		System.out.println("hi");

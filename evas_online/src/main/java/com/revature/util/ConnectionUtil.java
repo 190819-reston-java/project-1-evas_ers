@@ -12,6 +12,12 @@ private static Connection conn = null;
 	
 	public static Connection getConnection() { // Encapsulation of the logic to connect 
 		try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        }
+
+		try {
 			Properties props = new Properties();
 			
 			//The following lines just ensure we find connection.properties regardless of how our project is built:
@@ -25,6 +31,7 @@ private static Connection conn = null;
 			
 			// How to actually make connection with jdbc
 			conn = DriverManager.getConnection(url, username, password);
+			System.out.println("--online--");
 									
 		}catch (IOException e) {
 			e.printStackTrace();

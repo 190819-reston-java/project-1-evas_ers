@@ -19,7 +19,7 @@ public class EvasJDBC implements EvasDAO {
 	public Employee getEmailandPass(String employeeemail, String employeepassword) {
 		Employee remoteEmployee = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM employee WHERE employeeemail = ? and employeepassword = ?;";
+			String query = "SELECT * FROM Employee WHERE employeeemail = ? and employeepassword = ?;";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setString(1, employeeemail);
 				stmt.setString(2, employeepassword);

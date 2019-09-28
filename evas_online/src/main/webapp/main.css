@@ -1,14 +1,21 @@
-*{
-    background-color: #ffffff;
+* {
+	background-color: #ffffff;
 }
 
 /* .banner{
 } */
+#login-table {
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
-#recent-activity, #new-report{
-    /* margin: 10px; */
-    background-color: #dadada;
-    border-radius: 8px;
+#recent-activity, #new-report {
+	/* margin: 10px; */
+	background-color: #dadada;
+	border-radius: 8px;
 }
 /* .col{
     border:2px  red dotted;
@@ -16,21 +23,20 @@
 
 /* When I need a heading or some element to inherit the
 color of the parent, I place them in this class: */
-.inherit{
-    background-color: inherit;
+.inherit {
+	background-color: inherit;
 }
 
 /* table {
     border-spacing: 5px;
   } */
-table, th, td{
+/*table, th, td{
     border: 1px black solid;
     padding-right: 10px;
     padding-left: 10px;
-}
-
-#account-button{
-    margin: auto;
+}*/
+#account-button {
+	margin: auto;
 }
 
 /* div div div{
