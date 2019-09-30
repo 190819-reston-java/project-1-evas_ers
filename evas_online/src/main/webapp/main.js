@@ -3,7 +3,13 @@
 const BASE_URL = "/evas/api";
 const ACCOUNT_URL = `${BASE_URL}/accounts`;
 
-let singleAccountGet = document.getElementById("BasicLogin");
+
+//let logoutButton = document.getElementByID("logoutButton");
+//logoutButton.addEventListener("click", (event)=>{
+//	
+//})
+
+//let singleAccountGet = document.getElementById("BasicLogin");
 
 //singleAccountGet.addEventListener("click", (event) => {
 //    fetch(BASE_URL, {method: "GET"})

@@ -8,20 +8,43 @@
 		<servlet-name>Evas</servlet-name>
 		<servlet-class>com.revature.frontend.EvasServlet</servlet-class>
 	</servlet>
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.revature.frontend.BasicLogin</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>HomePageServlet</servlet-name>
+		<display-name>HomePageServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.HomePageServlet</servlet-class>
+	</servlet>
 	
 	<servlet>
-	<servlet-name>Login</servlet-name>
-	<servlet-class>com.revature.frontend.BasicLogin</servlet-class>
+		<servlet-name>Logout</servlet-name>
+		<display-name>Logout</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.LogoutServlet</servlet-class>
 	</servlet>
+	
+
 
 	<servlet-mapping>
 		<servlet-name>Evas</servlet-name>
 		<url-pattern>/evas</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet-mapping>
-	<servlet-name>Login</servlet-name>
-	<url-pattern>/BasicLogin</url-pattern>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/BasicLogin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>HomePageServlet</servlet-name>
+		<url-pattern>/index.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
 
 </web-app>

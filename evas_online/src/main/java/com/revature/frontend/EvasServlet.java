@@ -15,17 +15,10 @@ public class EvasServlet extends HttpServlet {
 
 		PrintWriter pw = resp.getWriter();
 		pw.println("hi there");
-		resp.setContentType("text/html");
+//		resp.setContentType("text/html");
 		
-		String user=req.getParameter("enterUserName");
-		String password=req.getParameter("enterPassword");
-		
-		if (user.equals("hi")) {
-			pw.println("NICE!");
-		} else {
-			pw.println("NOT NICE!!!!");
-		}
-		
+
+
 	}
 
 }
