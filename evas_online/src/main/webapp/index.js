@@ -3,6 +3,9 @@
 // let logoutPanel = document.getElementById("logout-panel");
 // logoutPanel.style.display = "none";
 
+let accountMenu = document.getElementById("account-button");
+accountMenu.innerHTML = "BLAHBLAH"
+
 let logoutPanel = document.getElementById("logout-panel");
 // let logoutYes = document.getElementById("logout-panel-yes");
 let logoutNo = document.getElementById("logout-panel-no");

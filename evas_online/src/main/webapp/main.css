@@ -80,6 +80,7 @@ color of the parent, I place them in this class: */
 }*/
 #account-button {
 	margin: auto;
+	min-width: 180px;
 }
 
 /* div div div{
