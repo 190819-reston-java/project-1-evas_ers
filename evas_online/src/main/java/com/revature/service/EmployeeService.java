@@ -7,7 +7,7 @@ public class EmployeeService {
 	
 	public EmployeeService(EvasDAO evasDao) {
 		this.evasDao = evasDao;
-		this.selectedEmployee = new Employee(0, "last_name", "first_name", "position", "email", "12345");
+		this.selectedEmployee = new Employee();
 	}
 	
 	private Employee selectedEmployee;

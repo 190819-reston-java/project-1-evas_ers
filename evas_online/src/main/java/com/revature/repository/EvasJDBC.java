@@ -26,7 +26,7 @@ public class EvasJDBC implements EvasDAO {
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						if (resultSet.next()) {
-							remoteEmployee = createEmployeeFomRS(resultSet);
+							remoteEmployee = createEmployeeFormRS(resultSet);
 						}
 					}
 				}
@@ -45,7 +45,7 @@ public class EvasJDBC implements EvasDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String query = "INSERT INTO request VALUES (DEFAULT, ?,?,?,?,?);";
+		String query = "INSERT INTO request VALUES (DEFAULT, ?,?,?,?,?,?);";
 
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -53,8 +53,11 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setInt(1, r.getRequestid());
 			stmt.setInt(2, r.getRequestvalue());
 			stmt.setString(3, r.getRequeststatus());
-			stmt.setDate(4, r.getRequestdate());
-			stmt.setDate(5, r.getEventdate());
+			stmt.setString(4, r.getRequestcatagory());
+			stmt.setString(5, r.getRequestdescription());
+			stmt.setDate(6, r.getRequestdate());
+			stmt.setDate(7, r.getEventdate());
+			stmt.setString(8, r.getRequestinformation());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -99,7 +102,7 @@ public class EvasJDBC implements EvasDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String query = "INSERT INTO  VALUES (DEFAULT, ?,?);";
+		String query = "INSERT INTO image VALUES (DEFAULT, ?,?);";
 
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -123,14 +126,18 @@ public class EvasJDBC implements EvasDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		final String query = "UPDATE request SET requestvalue=?, requeststatus=?, requestdate=?, eventdate=? WHERE requestid = ?;";
+		final String query = "UPDATE request SET requestvalue=?, requeststatus=?, requestcatagory=?, requestdescription=?, requestdate=?, eventdate=? requestinformation=? WHERE requestid = ?;";
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, ru.getRequestvalue());
-			stmt.setString(2, ru.getRequeststatus());
-			stmt.setDate(3, ru.getRequestdate());
-			stmt.setDate(4, ru.getEventdate());
+			stmt.setInt(1, ru.getRequestid());
+			stmt.setInt(2, ru.getRequestvalue());
+			stmt.setString(3, ru.getRequeststatus());
+			stmt.setString(4, ru.getRequestcatagory());
+			stmt.setString(5, ru.getRequestdescription());
+			stmt.setDate(6, ru.getRequestdate());
+			stmt.setDate(7, ru.getEventdate());
+			stmt.setString(8, ru.getRequestinformation());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +175,7 @@ public class EvasJDBC implements EvasDAO {
 	}
 
 	// resultSet methods
-	private Employee createEmployeeFomRS(ResultSet resultSet) throws SQLException {
+	private Employee createEmployeeFormRS(ResultSet resultSet) throws SQLException {
 		return new Employee(
 				resultSet.getInt("employeeid"),
 				resultSet.getString("employeelastname"),
@@ -182,7 +189,8 @@ public class EvasJDBC implements EvasDAO {
 		return new Reimbursement(
 				resultSet.getInt("reimbursementid"),
 				resultSet.getDouble("reimbursementamount"),
-				resultSet.getDate("reimbursementdate"));
+				resultSet.getDate("reimbursementdate"),
+				resultSet.getString("reimbursementstatus"));
 	}
 	
 	private Image createImageFromRS(ResultSet resultSet) throws SQLException {
@@ -197,8 +205,11 @@ public class EvasJDBC implements EvasDAO {
 				resultSet.getInt("requestid"),
 				resultSet.getInt("requestvalue"),
 				resultSet.getString("requeststatus"),
+				resultSet.getString("requestcatagory"),
+				resultSet.getString("requestdescription"),
 				resultSet.getDate("requestdate"),
-				resultSet.getDate("eventdate"));
+				resultSet.getDate("eventdate"),
+				resultSet.getString("requestinformation"));
 	}
 	
 //class closed
