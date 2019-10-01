@@ -48,9 +48,16 @@
 				onclick="declineLogout()">No</button>
 		</form>
 	</div>
+
 	<div id="overlay"></div>
 
 	<div id="blurMe" class="container-fluid">
+		<form action="LiveUser" method="GET">
+			<input type="submit" value="GET">
+		</form>
+		<form action="LiveUser" method="POST">
+			<input type="submit" value="POST">
+		</form>
 		<div class="row">
 
 			<!-- logo/title: self explanatory -->
@@ -73,7 +80,7 @@
 						id="dropdownMenuButton" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						<!-- <%=session.getAttribute("activeAccount")%> -->
-						</button>
+					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item" href="#">Account settings</a> <a
 							class="dropdown-item" href="#">Account activity</a> <a
