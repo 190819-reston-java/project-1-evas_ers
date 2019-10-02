@@ -169,7 +169,7 @@ public class EvasJDBC implements EvasDAO {
 	}
 
 	
-	@Override
+	@Override//pulls employees
 	public List<Employee> getEmployee(Employee ea) {
 		Statement stmt = null;
 		ResultSet resultSet = null;

@@ -49,6 +49,14 @@ public class EvasOnlineDriver {
 			Request rc = new Request(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
 				System.out.println(evasDao.createRequest(rc));
 		
+		logger.info("getEmployeee List"); // works
+			Employee ea = new Employee ();
+			System.out.println(evasDao.getEmployee(ea));
+		
+		logger.info("getRequest List"); // works
+			Request ra = new Request ();
+			System.out.println(evasDao.getRequest(ra));
+			
 	
 		
 		logger.info("insertImage"); // not working
