@@ -32,10 +32,14 @@ public class EvasOnlineDriver {
 		
 		
 		logger.info("getEmailandPass"); // works
-			System.out.println(evasDao.getEmailandPass("ev", "4321"));
+			//System.out.println(evasDao.getEmailandPass("ev", "4321"));
 		
+		logger.info("getReportTo"); // wip
+			//Employee em = new Employee();
+			//System.out.println(evasDao.getReportTo(em));	
+			
 		logger.info("getReimbursement"); // works
-			System.out.println(evasDao.getReimbursement(8));
+			//System.out.println(evasDao.getReimbursement(8));
 		
 		logger.info("updateEmployee"); // works
 			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
@@ -43,28 +47,28 @@ public class EvasOnlineDriver {
 		
 		
 		logger.info("updateRequest");// works
-			//Request ru = new Request(8, 25.58, "pending", "Fuel", "Home", java.sql.Date.valueOf("2019-09-28"), java.sql.Date.valueOf("2019-10-01"), "Short trip");
+			//Request ru = new Request(8, 15.28, "pending", "Fuel", "Work-related", java.sql.Date.valueOf("2019-09-28"), java.sql.Date.valueOf("2019-10-01"), "Short trip");
 				//System.out.println(evasDao.updateRequest(ru));
 		
-		logger.info("createRequest"); //wip - not updating in db 
-			Request rc = new Request(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
-				System.out.println(evasDao.createRequest(rc));
+		logger.info("createRequest"); //works !
+			//Request rc = new Request(11, 5.25, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
+				//System.out.println(evasDao.createRequest(rc));
 		
 		logger.info("getEmployeee List"); // works
-			Employee ea = new Employee ();
-			System.out.println(evasDao.getEmployee(ea));
+			//Employee ea = new Employee ();
+			//System.out.println(evasDao.getEmployee(ea));
 		
 		logger.info("getRequest List"); // works
-			Request ra = new Request ();
-			System.out.println(evasDao.getRequest(ra));
+			//Request ra = new Request ();
+			//System.out.println(evasDao.getRequest(ra));
 			
 		logger.info("getReimbursement List"); // works
-			Reimbursement ar = new Reimbursement ();
-			System.out.println(evasDao.getReimbursement(ar));	
+			//Reimbursement ar = new Reimbursement ();
+			//System.out.println(evasDao.getReimbursement(ar));	
 			
-		logger.info("getImage List"); // wip
-			Image ia = new Image();
-			System.out.println(evasDao.getImage(ia));	
+		logger.info("getImage List"); // wip array works .. need images
+			//Image ia = new Image();
+			//System.out.println(evasDao.getImage(ia));	
 		
 		logger.info("insertImage"); // not working
 			//System.out.println(evasDao.insertImage(smilyface, image));
