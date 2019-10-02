@@ -351,7 +351,6 @@ public class EvasJDBC implements EvasDAO {
 			PreparedStatement ps = conn.prepareStatement("INSERT INTO image VALUES (?, ?, ?)");
 			ps.setInt(1, id);
 			ps.setBytes(2, image);
-			ps.setString(3, "test");
 			ps.executeUpdate();
 			ps.close();
 		} catch (Exception e) {

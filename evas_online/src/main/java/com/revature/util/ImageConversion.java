@@ -8,6 +8,8 @@ import java.io.IOException;
 
 public class ImageConversion {
 
+	//double check stuff
+	
 	public static byte [] ImageToByte(File file) throws FileNotFoundException{
 		FileInputStream fis = new FileInputStream(file);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -23,4 +25,6 @@ public class ImageConversion {
 		byte[] bytes = bos.toByteArray();
 		return bytes; 	
 	}
+
+	
 }
