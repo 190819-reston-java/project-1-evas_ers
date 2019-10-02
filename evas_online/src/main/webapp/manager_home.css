@@ -42,7 +42,7 @@
 	transform: translate(-50%, -50%);
 }
 
-#recent-activity, #new-report {
+#recent-activity, #new-report, #logout-panel {
 	/* margin: 10px; */
     background-color: #dddddd;
     border: 2px solid #ff0000;

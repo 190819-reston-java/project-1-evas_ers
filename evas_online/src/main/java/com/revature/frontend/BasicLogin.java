@@ -22,10 +22,8 @@ import com.revature.service.EmployeeService;
 import com.revature.util.ConnectionUtil;
 
 public class BasicLogin extends HttpServlet {
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		doPost(req, resp);
-//	}
+	
+//	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,15 +38,12 @@ public class BasicLogin extends HttpServlet {
 		String email = req.getParameter("enterEmail");
 		String password = req.getParameter("enterPassword");
 
-//		RequestDispatcher homePage = req.getRequestDispatcher("index.html");
-//		homePage.forward(req, resp);
 
 		System.out.println("testing DB connection:");
 		ConnectionUtil.getConnection();
 
 		System.out.println(evasDao.getEmailandPass(email, password));
 
-//		String test = evasDao.getEmailandPass(username, password);
 
 		if (evasDao.getEmailandPass(email, password) == (null)) {
 			// if the login fails:
@@ -56,7 +51,9 @@ public class BasicLogin extends HttpServlet {
 			System.out.println("uh oh");
 			resp.sendRedirect("login.html");
 		} else { // if the login succeeds
-//			pw.println(evasDao.getEmailandPass(email, password));
+
+//			needs an else-if to direct managers to their homepage
+			
 			HttpSession session = req.getSession();
 			session.setAttribute("activeAccount", email);
 			System.out.println(session);

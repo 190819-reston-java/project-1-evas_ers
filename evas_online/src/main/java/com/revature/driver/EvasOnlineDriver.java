@@ -17,7 +17,7 @@ public class EvasOnlineDriver {
 		
 		
 		EvasDAO evasDao = new EvasJDBC();
-		System.out.println(evasDao.getEmailandPass("fursa@evas.com", "FU9630"));
+		System.out.println(evasDao.getEmailandPass("fursa@evas.com", "asdf"));
 
 
 		System.out.println("hi");

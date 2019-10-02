@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.model.Employee;
 
 /**
  * Servlet implementation class LiveUserServlet
  */
 public class LiveUserServlet extends HttpServlet {
+	
+	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
+
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,9 +27,17 @@ public class LiveUserServlet extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		HttpSession hs = req.getSession();
 //		String message = om.writeValueAsString("helloooooo!");
+//		String[] myString = {"hi", "hello!!"};
+//		System.out.println(hs.getAttribute("activeAccount"));
 		
 		
-		pw.write("{ \"hi\" : \"helllllloooooo!\"}");
+//		pw.write("{ \"hi\" : \"helllllloooooo!\"}");
+		
+//		om.writeValue(, selectedEmployee);
+		String employeeInfo=om.writeValueAsString(selectedEmployee);
+		System.out.println(employeeInfo);
+		pw.write(employeeInfo);
+		
 //		pw.write((String)hs.getAttribute("activeAccount"));
 //		String jsonAccount = om.writeValueAsString(hs.getAttribute("activeAccount"));
 //		pw.write(jsonAccount);
@@ -38,34 +50,9 @@ public class LiveUserServlet extends HttpServlet {
 		HttpSession hs = req.getSession();
 		
 		pw.write("helllllloooooo!");
-//		pw.write((String)hs.getAttribute("activeAccount"));
 
 	}
 	
-//	private static final long serialVersionUID = 1L;
-//       
-//    /**
-//     * @see HttpServlet#HttpServlet()
-//     */
-//    public LiveUserServlet() {
-//        super();
-//        // TODO Auto-generated constructor stub
-//    }
-//
-//	/**
-//	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-//	}
-//
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		doGet(request, response);
-//	}
+
 
 }

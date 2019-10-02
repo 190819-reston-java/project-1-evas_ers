@@ -1,5 +1,5 @@
-* {
-	background-color: #ffffff;
+body {
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a4beb0)) fixed;
 }
 
 /* #overlay {
@@ -33,7 +33,7 @@
 	text-align: center;
 	left: 50%;
 	top: 50%;
-	background-color: #00ff00;
+	/* background-color: #00ff00; */
 	width: 340px;
 	height: 100px;
 	z-index: 99999;
@@ -55,9 +55,10 @@
 	transform: translate(-50%, -50%);
 }
 
-#recent-activity, #new-report {
+#recent-activity, #new-report, #logout-panel {
 	/* margin: 10px; */
 	background-color: #dddddd;
+    border: 2px solid #c2c2c2;
 	border-radius: 8px;
 }
 /* .col{
@@ -83,6 +84,17 @@ color of the parent, I place them in this class: */
 	min-width: 180px;
 }
 
-/* div div div{
-    color: white;
+/* #settingsTable {
+	padding: 5px;
+	border-collapse: separate;
+	border-spacing: 14px;
+} */
+
+td{
+	min-width: 120px;
+	padding: 6px;
+/* }
+form, table, td{
+	
+	background-color: red;
 } */
