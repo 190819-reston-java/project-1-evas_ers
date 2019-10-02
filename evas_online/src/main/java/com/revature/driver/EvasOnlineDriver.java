@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
+import com.revature.model.Request;
 import com.revature.repository.EvasDAO;
 import com.revature.repository.EvasJDBC;
 import com.revature.util.ConnectionUtil;
@@ -29,24 +30,27 @@ public class EvasOnlineDriver {
 		
 		
 		logger.info("getEmailandPass"); // works
-		System.out.println(evasDao.getEmailandPass("ev", "4321"));
+			System.out.println(evasDao.getEmailandPass("ev", "4321"));
 		
 		logger.info("getReimbursement"); // works
-		System.out.println(evasDao.getReimbursement(8));
+			System.out.println(evasDao.getReimbursement(8));
 		
-		logger.info("updateEmployee"); // wip
-		//System.out.println(evasDao.updateEmployee("Spring", "Java", "Coder", "jspring@evas.com", "js456"));
-		//System.out.println(evasDao.updateEmployee(null));
+		logger.info("updateEmployee"); // works
+			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
+				//System.out.println(evasDao.updateEmployee(ru));
+		
 		
 		logger.info("updateRequest");// works
-		//System.out.println(evasDao.updateRequest(8, 25.58, "pending", "Fuel", "Home", java.sql.Date.valueOf("2019-09-28"), java.sql.Date.valueOf("2019-10-01"), "Short trip"));
+			//Request ru = new Request(8, 25.58, "pending", "Fuel", "Home", java.sql.Date.valueOf("2019-09-28"), java.sql.Date.valueOf("2019-10-01"), "Short trip");
+				//System.out.println(evasDao.updateRequest(ru));
 		
-		logger.info("createRequest");//wip
-		//System.out.println(evasDao.createRequest(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit"));
+		logger.info("createRequest"); //wip - not updating in db 
+			//Request rc = new Request(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
+				//System.out.println(evasDao.createRequest(rc));
 	
 		
 		logger.info("insertImage"); // not working
-		//System.out.println(evasDao.insertImage(imagename, image));
+			//System.out.println(evasDao.insertImage(imagename, image));
 
 		System.out.println("result end");
 	}

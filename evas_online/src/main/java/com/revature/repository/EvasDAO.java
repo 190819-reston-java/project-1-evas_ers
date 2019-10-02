@@ -13,16 +13,17 @@ public interface EvasDAO {
 	
 	Employee getEmailandPass(String employeeemail, String employeepassword);
 	
-	boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-			String requestdescription, Date requestdate, Date eventdate, String requestinformation);
-	//Request r
+	//boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
+	boolean createRequest(Request rc);
+	
 	boolean updateEmployee(Employee ru);
 	
 	Image insertImage(String imagename, byte[] image);
 	
-	boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-			String requestdescription, Date requestdate, Date eventdate, String requestinformation);
-	//Request ru
+	//boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
+	boolean updateRequest(Request ru);
 	
 	Reimbursement getReimbursement(int reimbursementid);
 	

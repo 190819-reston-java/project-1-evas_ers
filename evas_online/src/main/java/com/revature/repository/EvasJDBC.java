@@ -46,8 +46,9 @@ public class EvasJDBC implements EvasDAO {
 
 	// creating a request
 	@Override
-	public boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-			String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
+	public boolean createRequest(Request rc) {
+	//public boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -57,14 +58,14 @@ public class EvasJDBC implements EvasDAO {
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-			stmt.setInt(1, requestid);
-			stmt.setDouble(2, requestvalue);
-			stmt.setString(3, requeststatus);
-			stmt.setString(4, requestcatagory);
-			stmt.setString(5, requestdescription);
-			stmt.setDate(6, requestdate);
-			stmt.setDate(7, eventdate);
-			stmt.setString(8, requestinformation);
+			//stmt.setInt(1, rc.getRequestid());
+			stmt.setDouble(1, rc.getRequestvalue());
+			stmt.setString(2, rc.getRequeststatus());
+			stmt.setString(3, rc.getRequestcatagory());
+			stmt.setString(4, rc.getRequestdescription());
+			stmt.setDate(5, rc.getRequestdate());
+			stmt.setDate(6, rc.getEventdate());
+			stmt.setString(7, rc.getRequestinformation());
 			
 			
 		} catch (SQLException e) {
@@ -84,7 +85,7 @@ public class EvasJDBC implements EvasDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		final String query = "UPDATE employee SET employelastname=?, employeefirstname=?, employeeposition=?, employeeemail=?, employeepassword=? WHERE employeeid = ?;";
+		final String query = "UPDATE employee SET employeelastname=?, employeefirstname=?, employeeposition=?, employeeemail=?, employeepassword=? WHERE employeeid = ?;";
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
@@ -93,6 +94,7 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setString(3, em.getEmployeeposition());
 			stmt.setString(4, em.getEmployeeemail());
 			stmt.setString(5, em.getEmployeepassword());
+			stmt.setInt(6, em.getEmployeeid());
 			
 			stmt.execute();
 		} catch (SQLException e) {
@@ -131,8 +133,10 @@ public class EvasJDBC implements EvasDAO {
 	}
 
 	@Override//works
-	public boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-			String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
+	public boolean updateRequest(Request ru) {
+	
+	//public boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		//Request ru = null;
@@ -142,14 +146,14 @@ public class EvasJDBC implements EvasDAO {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
 				
-			stmt.setDouble(1, requestvalue);
-			stmt.setString(2, requeststatus);
-			stmt.setString(3, requestcatagory);
-			stmt.setString(4, requestdescription);
-			stmt.setDate(5, requestdate);
-			stmt.setDate(6, eventdate);
-			stmt.setString(7, requestinformation);
-			stmt.setInt(8, requestid);
+			stmt.setDouble(1, ru.getRequestvalue());
+			stmt.setString(2, ru.getRequeststatus());
+			stmt.setString(3, ru.getRequestcatagory());
+			stmt.setString(4, ru.getRequestdescription());
+			stmt.setDate(5, ru.getRequestdate());
+			stmt.setDate(6, ru.getEventdate());
+			stmt.setString(7, ru.getRequestinformation());
+			stmt.setInt(8, ru.getRequestid());
 			
 			stmt.execute();
 		} catch (SQLException e) {

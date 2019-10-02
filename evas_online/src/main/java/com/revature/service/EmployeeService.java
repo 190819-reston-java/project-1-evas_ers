@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.model.Employee;
+
 import com.revature.repository.EvasDAO;
 
 public class EmployeeService {
@@ -21,6 +22,11 @@ public class EmployeeService {
 		this.selectedEmployee = selectedEmployee;
 	}
 	
-//	public void newReimbursement()
+		
+	public void updateSelectedEmployee() {
+		evasDao.updateEmployee(selectedEmployee);
+	}
+	
+	
 
 }
