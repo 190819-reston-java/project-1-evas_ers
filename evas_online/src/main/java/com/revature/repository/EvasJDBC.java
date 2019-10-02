@@ -53,7 +53,7 @@ public class EvasJDBC implements EvasDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String query = "INSERT INTO request VALUES (DEFAULT, ?,?,?,?,?,?,?,? );";
+		String query = "INSERT INTO request VALUES (DEFAULT, ?,?,?,?,?,?,? );";
 
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -107,30 +107,7 @@ public class EvasJDBC implements EvasDAO {
 		return true;
 	}
 
-	@Override
-	public Image insertImage(String imagename, byte[] image) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-
-		String query = "INSERT INTO image VALUES (DEFAULT, ?,?);";
-
-		try {
-			conn = ConnectionUtil.getConnection();
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, imagename);
-			stmt.setBytes(2, image);
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		} finally {
-			StreamCloser.close(rs);
-			StreamCloser.close(stmt);
-			StreamCloser.close(conn);
-		}
-
-		return null;
-	}
+	
 
 	@Override//works
 	public boolean updateRequest(Request ru) {
@@ -221,6 +198,7 @@ public class EvasJDBC implements EvasDAO {
 		return employees;
 	}
 	
+	
 	@Override
 	public List<Request> getRequest(Request ra) {
 		Statement stmt = null;
@@ -245,6 +223,75 @@ public class EvasJDBC implements EvasDAO {
 				StreamCloser.close(conn);
 			}
 		return requests;
+	}
+	
+	@Override
+	public Image insertImage(String imagename, byte[] image) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		String query = "INSERT INTO image VALUES (DEFAULT, ?,?);";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, imagename);
+			stmt.setBytes(2, image);
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			StreamCloser.close(rs);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+
+		return null;
+	}
+	
+	@Override
+	public byte[] getImage(int id) {
+		byte[] byteImg = null;
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT image FROM image WHERE id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				 byteImg = rs.getBytes(1);
+			}
+			rs.close();
+			ps.close();
+			return byteImg;
+		}catch (Exception e) {
+			return null;
+		}
+		
+	
+	}
+
+	@Override
+	public void addImage(int id, byte[] image) {
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			Statement statement = conn.createStatement();
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO image VALUES (?, ?, ?)");
+			ps.setInt(1, id);
+			ps.setBytes(2, image);
+			ps.setString(3, "test");
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 	
 	// resultSet methods
@@ -291,6 +338,10 @@ public class EvasJDBC implements EvasDAO {
 	    java.util.Date today = new java.util.Date();
 	    return new java.sql.Date(today.getTime());
 	}
+
+	
+
+	
 
 //	@Override
 //	public List<Request> updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,

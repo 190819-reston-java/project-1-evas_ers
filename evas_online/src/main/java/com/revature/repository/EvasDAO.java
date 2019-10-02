@@ -19,7 +19,7 @@ public interface EvasDAO {
 	
 	boolean updateEmployee(Employee ru);
 	
-	Image insertImage(String imagename, byte[] image);
+	
 	
 	//boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
 	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
@@ -33,5 +33,9 @@ public interface EvasDAO {
 
 	//List<Request> updateRequest();
 
+	Image insertImage(String imagename, byte[] image);
 	
+	byte[] getImage(int id);
+	
+	void addImage(int id, byte[] image );
 }

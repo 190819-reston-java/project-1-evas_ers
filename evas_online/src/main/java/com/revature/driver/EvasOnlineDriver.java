@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
+import com.revature.model.Reimbursement;
 import com.revature.model.Request;
 import com.revature.repository.EvasDAO;
 import com.revature.repository.EvasJDBC;
@@ -45,12 +46,13 @@ public class EvasOnlineDriver {
 				//System.out.println(evasDao.updateRequest(ru));
 		
 		logger.info("createRequest"); //wip - not updating in db 
-			//Request rc = new Request(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
-				//System.out.println(evasDao.createRequest(rc));
+			Request rc = new Request(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit");
+				System.out.println(evasDao.createRequest(rc));
+		
 	
 		
 		logger.info("insertImage"); // not working
-			//System.out.println(evasDao.insertImage(imagename, image));
+			//System.out.println(evasDao.insertImage(smilyface, image));
 
 		System.out.println("result end");
 	}
