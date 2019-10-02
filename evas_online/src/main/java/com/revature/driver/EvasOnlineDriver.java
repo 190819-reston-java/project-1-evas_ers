@@ -5,6 +5,7 @@ import java.sql.Date;
 import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
+import com.revature.model.Image;
 import com.revature.model.Reimbursement;
 import com.revature.model.Request;
 import com.revature.repository.EvasDAO;
@@ -57,7 +58,13 @@ public class EvasOnlineDriver {
 			Request ra = new Request ();
 			System.out.println(evasDao.getRequest(ra));
 			
-	
+		logger.info("getReimbursement List"); // works
+			Reimbursement ar = new Reimbursement ();
+			System.out.println(evasDao.getReimbursement(ar));	
+			
+		logger.info("getImage List"); // wip
+			Image ia = new Image();
+			System.out.println(evasDao.getImage(ia));	
 		
 		logger.info("insertImage"); // not working
 			//System.out.println(evasDao.insertImage(smilyface, image));

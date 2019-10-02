@@ -226,6 +226,60 @@ public class EvasJDBC implements EvasDAO {
 	}
 	
 	@Override
+	public List<Reimbursement> getReimbursement(Reimbursement ar) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM reimbursement;");
+			while (resultSet.next()) {
+				reimbursements.add(createReimbursementFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return reimbursements;
+	
+	}
+	
+	@Override
+	public List<Image> getImage(Image ia) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Image> images = new ArrayList<Image>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM image;");
+			while (resultSet.next()) {
+				images.add(createImageFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return images;
+	
+	}
+
+	@Override
 	public Image insertImage(String imagename, byte[] image) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -338,6 +392,9 @@ public class EvasJDBC implements EvasDAO {
 	    java.util.Date today = new java.util.Date();
 	    return new java.sql.Date(today.getTime());
 	}
+
+	
+	
 
 	
 

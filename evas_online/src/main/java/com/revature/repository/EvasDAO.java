@@ -31,8 +31,10 @@ public interface EvasDAO {
 
 	List<Request> getRequest(Request ra);
 
-	//List<Request> updateRequest();
+	List<Reimbursement> getReimbursement(Reimbursement ar);
 
+	List<Image> getImage(Image ia);
+	
 	Image insertImage(String imagename, byte[] image);
 	
 	byte[] getImage(int id);
