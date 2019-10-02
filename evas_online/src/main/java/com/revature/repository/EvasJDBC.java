@@ -43,22 +43,72 @@ public class EvasJDBC implements EvasDAO {
 
 		return remoteEmployee;
 	}
+	
+	@Override // works
+	public Employee getEmployeeById(int id) {
+		Employee remoteEmployee = null;
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT * FROM Employee WHERE employeeid = ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, id);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						if (resultSet.next()) {
+							remoteEmployee = createEmployeeFromRS(resultSet);
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return remoteEmployee;
+	}
+
+	@Override
+	public Employee getReportTo(Employee em) {
+		Employee reportstomanager = null;
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT * FROM reportto";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(0, em.getEmployeeid());
+				stmt.setString(2, em.getEmployeelastname());
+				stmt.setString(3, em.getEmployeefirstname());
+				stmt.setString(4, em.getEmployeeposition());
+				stmt.setString(5, em.getEmployeeemail());
+				stmt.setString(6, em.getEmployeepassword());
+				
+				
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						if (resultSet.next()) {
+							reportstomanager = createEmployeeFromRS(resultSet);
+						}
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reportstomanager;
+	}
+
 
 	// creating a request
 	@Override
 	public boolean createRequest(Request rc) {
-	//public boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String query = "INSERT INTO request VALUES (DEFAULT, ?,?,?,?,?,?,?,? );";
+		String query = "INSERT INTO request VALUES (DEFAULT,?,?,?,?,?,?,?,Default);";
 
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-			//stmt.setInt(1, rc.getRequestid());
+			//stmt.setInt(8, rc.getRequestid());
 			stmt.setDouble(1, rc.getRequestvalue());
 			stmt.setString(2, rc.getRequeststatus());
 			stmt.setString(3, rc.getRequestcatagory());
@@ -66,8 +116,11 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setDate(5, rc.getRequestdate());
 			stmt.setDate(6, rc.getEventdate());
 			stmt.setString(7, rc.getRequestinformation());
+			//stmt.setInt(9, rc.getEmployeerequest());
 			
+			//System.out.println(stmt.toString());
 			
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -80,6 +133,8 @@ public class EvasJDBC implements EvasDAO {
 		return false;
 	}
 
+	
+	// updates employee
 	@Override
 	public boolean updateEmployee(Employee em) {
 		Connection conn = null;
@@ -107,31 +162,8 @@ public class EvasJDBC implements EvasDAO {
 		return true;
 	}
 
-	@Override
-	public Image insertImage(String imagename, byte[] image) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-
-		String query = "INSERT INTO image VALUES (DEFAULT, ?,?);";
-
-		try {
-			conn = ConnectionUtil.getConnection();
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, imagename);
-			stmt.setBytes(2, image);
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		} finally {
-			StreamCloser.close(rs);
-			StreamCloser.close(stmt);
-			StreamCloser.close(conn);
-		}
-
-		return null;
-	}
-
+	
+	// updates request
 	@Override//works
 	public boolean updateRequest(Request ru) {
 	
@@ -165,7 +197,8 @@ public class EvasJDBC implements EvasDAO {
 		}
 		return true;
 	}
-
+	
+	// gets reimbursement by id
 	@Override
 	public Reimbursement getReimbursement(int reimbursementid) {
 		Reimbursement remoteReimbursement = null;
@@ -190,9 +223,62 @@ public class EvasJDBC implements EvasDAO {
 
 		return remoteReimbursement;
 	}
-
+	
+//	@Override
+//	public Reimbursement getEmployeeReimbursements(int employeeid) {
+//		Reimbursement remoteReimbursement = null;
+//
+//		try (Connection conn = ConnectionUtil.getConnection()) {
+//			String query = "SELECT * FROM reimbursement WHERE employeereimbursement = ?;";
+//			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+//				stmt.setInt(1, employeeid);
+//				if (stmt.execute()) {
+//					try (ResultSet resultSet = stmt.getResultSet()) {
+//						if (resultSet.next()) {
+//							remoteReimbursement = createReimbursementFromRS(resultSet);
+//
+//						}
+//					}
+//
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return remoteReimbursement;
+//	}
 	
 	@Override
+	public List<Reimbursement> getEmployeeReimbursements(int employeeid) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM reimbursement WHERE employeereimbursement = 6;");
+//			stmt.setInt(1, employeeid);
+			while (resultSet.next()) {
+				reimbursements.add(createReimbursementFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return reimbursements;
+	
+	}
+
+	
+	@Override//pulls employees
 	public List<Employee> getEmployee(Employee ea) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
@@ -221,6 +307,7 @@ public class EvasJDBC implements EvasDAO {
 		return employees;
 	}
 	
+	// pulls Requests
 	@Override
 	public List<Request> getRequest(Request ra) {
 		Statement stmt = null;
@@ -246,6 +333,136 @@ public class EvasJDBC implements EvasDAO {
 			}
 		return requests;
 	}
+	
+	//pulls reimbursement
+	@Override
+	public List<Reimbursement> getReimbursement(Reimbursement ar) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM reimbursement;");
+			while (resultSet.next()) {
+				reimbursements.add(createReimbursementFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return reimbursements;
+	
+	}
+	
+	//pulls images
+	@Override
+	public List<Image> getImage(Image ia) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Image> images = new ArrayList<Image>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM image;");
+			while (resultSet.next()) {
+				images.add(createImageFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return images;
+	
+	}
+
+	// wip inserting image to db 1
+	@Override
+	public Image insertImage(String imagename, byte[] image) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		String query = "INSERT INTO image VALUES (DEFAULT, ?,?);";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, imagename);
+			stmt.setBytes(2, image);
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			StreamCloser.close(rs);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+
+		return null;
+	}
+	
+	// wip inserting image 2
+	@Override
+	public void addImage(int id, byte[] image) {
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			Statement statement = conn.createStatement();
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO image VALUES (?, ?, ?)");
+			ps.setInt(1, id);
+			ps.setBytes(2, image);
+			ps.setString(3, "test");
+			ps.executeUpdate();
+			ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+	
+	// wip getting image from db
+	@Override
+	public byte[] getImage(int id) {
+		byte[] byteImg = null;
+		Connection conn = null;
+		try {
+			conn = ConnectionUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT image FROM image WHERE id = ?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				 byteImg = rs.getBytes(1);
+			}
+			rs.close();
+			ps.close();
+			return byteImg;
+		}catch (Exception e) {
+			return null;
+		}
+		
+	
+	}
+	
+
 	
 	// resultSet methods
 	private Employee createEmployeeFromRS(ResultSet resultSet) throws SQLException {
@@ -283,6 +500,8 @@ public class EvasJDBC implements EvasDAO {
 				resultSet.getDate("requestdate"),
 				resultSet.getDate("eventdate"),
 				resultSet.getString("requestinformation"));
+				//resultSet.getInt("employeerequest"),
+				
 	}
 
 	
@@ -291,6 +510,15 @@ public class EvasJDBC implements EvasDAO {
 	    java.util.Date today = new java.util.Date();
 	    return new java.sql.Date(today.getTime());
 	}
+
+	
+
+	
+	
+
+	
+
+	
 
 //	@Override
 //	public List<Request> updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,

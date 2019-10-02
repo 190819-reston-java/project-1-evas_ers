@@ -69,15 +69,7 @@ public class EvasOnlineDriver {
 
 		System.out.println("result end");
 		
-		
-		
-//		new Employee
-		Employee editEmployee = evasDao.getEmailandPass("as", "1234");
-		System.out.println(editEmployee);
-		editEmployee.setEmployeelastname("Shipe");
-		System.out.println(editEmployee);
-		evasDao.updateEmployee(editEmployee);
-		
+		System.out.println(evasDao.getEmployeeReimbursements(6));
 		
 	}
 

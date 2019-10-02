@@ -26,7 +26,7 @@ public class Reimbursement {
 		this.reimbursementstatus = reimbursementstatus;
 	}
 
-	
+
 	public Reimbursement(int reimbursementid, double reimbursementamount, Date reimbursementdate) {
 		super();
 		this.reimbursementid = reimbursementid;
@@ -38,23 +38,18 @@ public class Reimbursement {
 	public int getReimbursementid() {
 		return reimbursementid;
 	}
-
 	public void setReimbursementid(int reimbursementid) {
 		this.reimbursementid = reimbursementid;
 	}
-
 	public double getReimbursementamount() {
 		return reimbursementamount;
 	}
-
 	public void setReimbursementamount(double reimbursementamount) {
 		this.reimbursementamount = reimbursementamount;
 	}
-
 	public Date getReimbursementdate() {
 		return reimbursementdate;
 	}
-
 	public void setReimbursementdate(Date reimbursementdate) {
 		this.reimbursementdate = reimbursementdate;
 	}

@@ -19,7 +19,7 @@ public class SettingsServlet extends HttpServlet {
 
 		EvasDAO evasDao = new EvasJDBC();
 //		new Employee
-		Employee editEmployee = evasDao.getEmailandPass(BasicLogin.aea, BasicLogin.apw);
+		Employee editEmployee = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
 		//checking if the fields have changed
 		if(req.getParameter("enterEmail").length()>0) {

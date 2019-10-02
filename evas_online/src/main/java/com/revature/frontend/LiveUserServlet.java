@@ -28,7 +28,7 @@ public class LiveUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		EvasDAO evasDao = new EvasJDBC();
-		Employee employeeService = evasDao.getEmailandPass(BasicLogin.aea, BasicLogin.apw);
+		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 //		System.out.println(BasicLogin.aea+BasicLogin.apw);
 		System.out.println("  *Selected Employee: " + employeeService);
 		ObjectMapper om = new ObjectMapper();

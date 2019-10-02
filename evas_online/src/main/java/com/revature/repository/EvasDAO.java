@@ -11,25 +11,47 @@ import com.revature.model.Request;
 
 public interface EvasDAO {
 	
+
+	// Employees and Manager (Managers are Employees)
 	Employee getEmailandPass(String employeeemail, String employeepassword);
-	
-	//boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
-	boolean createRequest(Request rc);
 	
 	boolean updateEmployee(Employee ru);
 	
-	Image insertImage(String imagename, byte[] image);
+	Employee getReportTo(Employee em);
 	
+	// Requests
+	boolean createRequest(Request rc);
+	//boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
+		
+	boolean updateRequest(Request ru);
 	//boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
 	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
-	boolean updateRequest(Request ru);
 	
+		
+	// Reimbursement
 	Reimbursement getReimbursement(int reimbursementid);
 	
+	
+	// Image
+	Image insertImage(String imagename, byte[] image);
+	
+	byte[] getImage(int id);
+	
+	void addImage(int id, byte[] image );
+	
+	
+	// Full list arrays
 	List<Employee> getEmployee(Employee ea);
 
 	List<Request> getRequest(Request ra);
+
+	List<Reimbursement> getReimbursement(Reimbursement ar);
+
+	List<Image> getImage(Image ia);
+	Employee getEmployeeById(int id);
+
+	List<Reimbursement> getEmployeeReimbursements(int employeeid);
 
 	//List<Request> updateRequest();
 

@@ -34,5 +34,32 @@ public class EmployeeService {
 		evasDao.updateEmployee(selectedEmployee);
 	}
 //	public void newReimbursement()
+	
+	/**
+	 * Alternate:
+	 */
+	
+//	public EmployeeService(EvasDAO evasDao) {
+//		this.evasDao = evasDao;
+//		this.selectedEmployee = new Employee();
+//	}
+//	
+//	private Employee selectedEmployee;
+//	private EvasDAO evasDao;
+//	
+//	public Employee getSelectedEmployee() {
+//		return selectedEmployee;
+//	}
+//	
+//	public void setSelectedEmployee(Employee selectedEmployee) {
+//		this.selectedEmployee = selectedEmployee;
+//	}
+//	
+//		
+//	public void updateSelectedEmployee() {
+//		evasDao.updateEmployee(selectedEmployee);
+//	}
+	
+	
 
 }

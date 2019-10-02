@@ -30,9 +30,10 @@ public class LogoutServlet extends HttpServlet {
 		System.out.println("Session ended at " + sdf.format(ts.getTime()));
 		
 
-		BasicLogin.aea = "null";
-		BasicLogin.apw = "null";
-		System.out.println(BasicLogin.aea+BasicLogin.apw);
+		BasicLogin.loggedAccount = 0;
+//		BasicLogin.aea = "null";
+//		BasicLogin.apw = "null";
+//		System.out.println(BasicLogin.aea+BasicLogin.apw);
 		resp.sendRedirect("login.html");
 	}
 

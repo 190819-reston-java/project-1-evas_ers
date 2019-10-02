@@ -24,15 +24,16 @@ import com.revature.util.ConnectionUtil;
 public class BasicLogin extends HttpServlet {
 	
 //	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
-	public static String aea = "null";
-	public static String apw = "null";
+//	public static String aea = "null";
+//	public static String apw = "null";
+	public static int loggedAccount = 0;
 	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //		private static EmployeeService employeeService = new EmployeeService();
-//			fursa@evas.com		asdf
+//			fursa@evas.com		FU9630
 		PrintWriter pw = resp.getWriter();
 		resp.setContentType("text/html");
 		ObjectMapper om = new ObjectMapper();
@@ -42,8 +43,8 @@ public class BasicLogin extends HttpServlet {
 		String email = req.getParameter("enterEmail");
 		String password = req.getParameter("enterPassword");
 
-		aea = email;
-		apw = password;
+//		aea = email;
+//		apw = password;
 //		System.out.println(aea+apw);
 
 		System.out.println("testing DB connection:");
@@ -60,11 +61,16 @@ public class BasicLogin extends HttpServlet {
 			resp.sendRedirect("login.html");
 //			System.out.println(aea+apw);
 		} else { // if the login succeeds
-//			System.out.println(aea+apw);
 //			needs an else-if to direct managers to their homepage
-			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password));
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
 			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
-			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+//			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("Logging in account #"+loggedAccount);
+			
+			
+			
 			HttpSession session = req.getSession();
 			session.setAttribute("activeAccount", email);
 			System.out.println("Initiating Session for: " + session);
