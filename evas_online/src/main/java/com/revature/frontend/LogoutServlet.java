@@ -25,8 +25,14 @@ public class LogoutServlet extends HttpServlet {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		
 //		System.out.println(req.getSession());
+		System.out.println("Ending Session for: " + req.getSession());
 		req.getSession().invalidate();
 		System.out.println("Session ended at " + sdf.format(ts.getTime()));
+		
+
+		BasicLogin.aea = "null";
+		BasicLogin.apw = "null";
+		System.out.println(BasicLogin.aea+BasicLogin.apw);
 		resp.sendRedirect("login.html");
 	}
 

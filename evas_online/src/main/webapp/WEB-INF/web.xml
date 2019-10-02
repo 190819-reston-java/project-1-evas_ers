@@ -31,6 +31,12 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.LiveUserServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SettingsServlet</servlet-name>
+		<display-name>SettingsServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.SettingsServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 	<servlet-name>Service</servlet-name>
@@ -50,11 +56,15 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>Logout</servlet-name>
-		<url-pattern>/LogoutServlet</url-pattern>
+		<url-pattern>/Logout</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LiveUserServlet</servlet-name>
 		<url-pattern>/LiveUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SettingsServlet</servlet-name>
+		<url-pattern>/UpdateSettings</url-pattern>
 	</servlet-mapping>
 
 </web-app>

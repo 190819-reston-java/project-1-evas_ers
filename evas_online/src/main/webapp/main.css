@@ -55,7 +55,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-#recent-activity, #new-report, #logout-panel {
+#recent-activity, #new-report, #logout-panel, #profileInfo {
 	/* margin: 10px; */
 	background-color: #dddddd;
     border: 2px solid #c2c2c2;
@@ -91,10 +91,9 @@ color of the parent, I place them in this class: */
 } */
 
 td{
-	min-width: 120px;
+	min-width: 125px;
 	padding: 6px;
-/* }
-form, table, td{
-	
-	background-color: red;
-} */
+}
+#profileInfo{
+	min-width:500px;
+}

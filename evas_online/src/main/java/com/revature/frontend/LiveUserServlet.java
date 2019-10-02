@@ -11,47 +11,45 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Employee;
+import com.revature.repository.EvasDAO;
+import com.revature.repository.EvasJDBC;
+import com.revature.service.EmployeeService;
 
 /**
  * Servlet implementation class LiveUserServlet
  */
 public class LiveUserServlet extends HttpServlet {
 	
-	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
+//	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
+
 
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
+		EvasDAO evasDao = new EvasJDBC();
+		Employee employeeService = evasDao.getEmailandPass(BasicLogin.aea, BasicLogin.apw);
+//		System.out.println(BasicLogin.aea+BasicLogin.apw);
+		System.out.println("  *Selected Employee: " + employeeService);
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 		HttpSession hs = req.getSession();
-//		String message = om.writeValueAsString("helloooooo!");
-//		String[] myString = {"hi", "hello!!"};
-//		System.out.println(hs.getAttribute("activeAccount"));
-		
-		
-//		pw.write("{ \"hi\" : \"helllllloooooo!\"}");
-		
-//		om.writeValue(, selectedEmployee);
-		String employeeInfo=om.writeValueAsString(selectedEmployee);
+		System.out.println("Initiating Session for: " + hs);
+
+		String employeeInfo=om.writeValueAsString(employeeService);
 		System.out.println(employeeInfo);
 		pw.write(employeeInfo);
-		
-//		pw.write((String)hs.getAttribute("activeAccount"));
-//		String jsonAccount = om.writeValueAsString(hs.getAttribute("activeAccount"));
-//		pw.write(jsonAccount);
 
 	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		PrintWriter pw = resp.getWriter();
-		HttpSession hs = req.getSession();
-		
-		pw.write("helllllloooooo!");
-
-	}
+//	@Override
+//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//		PrintWriter pw = resp.getWriter();
+//		HttpSession hs = req.getSession();
+//		
+//		pw.write("helllllloooooo!");
+//
+//	}
 	
 
 
