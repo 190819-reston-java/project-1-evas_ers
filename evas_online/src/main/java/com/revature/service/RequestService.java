@@ -22,12 +22,16 @@ public class RequestService {
 		this.openrequest = openrequest;
 	}
 	
-	public boolean createRequest(Request r) {
-		return EvasDAO.createRequest(r);
-	}
-	
-	public boolean updateRequest(Request ru) {
-		return EvasDAO.updateRequest(ru);
-	}
+//	public void updateRequest() {
+//		evasDao.updateRequest(openrequest);
+//	}
+//	
+//	public boolean createRequest(Request r) {
+//		return evasDao.createRequest(r);
+//	}
+//	
+//	public boolean updateRequest(Request ru) {
+//		return evasDao.updateRequest(ru);
+//	}
 	
 }

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Request {
 	
 	private int requestid;
-	private int requestvalue;
+	private double requestvalue;
 	private String requeststatus;
 	private String requestcatagory;
 	private String requestdescription;
@@ -20,7 +20,7 @@ public class Request {
 
 
 	//generate by Source Menu - Constructor
-	public Request(int requestid, int requestvalue, String requeststatus, String requestcatagory,
+	public Request(int requestid, double requestvalue, String requeststatus, String requestcatagory,
 			String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
 		super();
 		this.requestid = requestid;
@@ -34,7 +34,7 @@ public class Request {
 	}
 
 	
-	public Request(int requestid, int requestvalue, String requeststatus, Date requestdate,
+	public Request(int requestid, double requestvalue, String requeststatus, Date requestdate,
 			Date eventdate) {
 		super();
 		this.requestid = requestid;
@@ -44,6 +44,19 @@ public class Request {
 		this.eventdate = eventdate;
 	}
 	
+	public Request(double requestvalue, String requeststatus, String requestcatagory,
+			String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
+		super();
+		this.requestvalue = requestvalue;
+		this.requeststatus = requeststatus;
+		this.requestcatagory = requestcatagory;
+		this.requestdescription = requestdescription;
+		this.requestdate = requestdate;
+		this.eventdate = eventdate;
+		this.requestinformation = requestinformation;
+	}
+
+
 	//generate by Source Menu - Getter and Setter
 	public int getRequestid() {
 		return requestid;
@@ -51,10 +64,10 @@ public class Request {
 	public void setRequestid(int requestid) {
 		this.requestid = requestid;
 	}
-	public int getRequestvalue() {
+	public double getRequestvalue() {
 		return requestvalue;
 	}
-	public void setRequestvalue(int requestvalue) {
+	public void setRequestvalue(double requestvalue) {
 		this.requestvalue = requestvalue;
 	}
 	public String getRequeststatus() {

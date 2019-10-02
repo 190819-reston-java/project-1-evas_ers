@@ -31,7 +31,7 @@ private static Connection conn = null;
 			
 			// How to actually make connection with jdbc
 			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("--online--");
+			//System.out.println("--online--");
 									
 		}catch (IOException e) {
 			e.printStackTrace();

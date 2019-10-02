@@ -1,5 +1,9 @@
 package com.revature.repository;
 
+import java.sql.Array;
+import java.sql.Date;
+import java.util.List;
+
 import com.revature.model.Employee;
 import com.revature.model.Image;
 import com.revature.model.Reimbursement;
@@ -9,14 +13,24 @@ public interface EvasDAO {
 	
 	Employee getEmailandPass(String employeeemail, String employeepassword);
 	
-	boolean createRequest(Request r);
-	
-	boolean updateEmployee(Employee em);
+	boolean createRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+			String requestdescription, Date requestdate, Date eventdate, String requestinformation);
+	//Request r
+	boolean updateEmployee(Employee ru);
 	
 	Image insertImage(String imagename, byte[] image);
 	
-	boolean updateRequest(Request ru);
+	boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
+			String requestdescription, Date requestdate, Date eventdate, String requestinformation);
+	//Request ru
 	
 	Reimbursement getReimbursement(int reimbursementid);
+	
+	List<Employee> getEmployee(Employee ea);
+
+	List<Request> getRequest(Request ra);
+
+	//List<Request> updateRequest();
+
 	
 }
