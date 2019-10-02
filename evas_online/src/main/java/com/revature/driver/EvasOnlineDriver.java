@@ -34,18 +34,18 @@ public class EvasOnlineDriver {
 		logger.info("getReimbursement"); // works
 		System.out.println(evasDao.getReimbursement(8));
 		
-		logger.info("updateEmployee");
+		logger.info("updateEmployee"); // wip
 		//System.out.println(evasDao.updateEmployee("Spring", "Java", "Coder", "jspring@evas.com", "js456"));
 		//System.out.println(evasDao.updateEmployee(null));
 		
 		logger.info("updateRequest");// works
 		//System.out.println(evasDao.updateRequest(8, 25.58, "pending", "Fuel", "Home", java.sql.Date.valueOf("2019-09-28"), java.sql.Date.valueOf("2019-10-01"), "Short trip"));
 		
-		logger.info("createRequest");
-		System.out.println(evasDao.createRequest(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit"));
+		logger.info("createRequest");//wip
+		//System.out.println(evasDao.createRequest(0, 10.50, "pending", "Travel", "Work-Related", java.sql.Date.valueOf("2019-07-01"), java.sql.Date.valueOf("2019-10-29"), "public transit"));
 	
 		
-		logger.info("insertImage");
+		logger.info("insertImage"); // not working
 		//System.out.println(evasDao.insertImage(imagename, image));
 
 		System.out.println("result end");
