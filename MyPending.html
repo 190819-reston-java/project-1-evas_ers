@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <div>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+            </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+            </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+            </script>
+    </div>
+
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <!-- <script src='main.js'></script> -->
+</head>
+
+<body>
+    <div id="logout-panel">
+        <h5 class="inherit align-middle">Are you sure you wish to log
+            out?</h5>
+        <form action="Logout" class="inherit" method="POST">
+            <input type="submit" value="Yes" type="button" class="btn btn-warning">
+            <!-- <button id = "logout-panel-yes" type="button" class="btn btn-warning">Yes</button> -->
+            <button id="logout-panel-no" type="button" class="btn btn-secondary" onclick="declineLogout()">No</button>
+        </form>
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="blurMe" class="container-fluid">
+        <div class="row">
+
+            <!-- logo/title: self explanatory -->
+            <div id="logo" class="col-md-8">
+                <h2><span class="badge badge-secondary">EVAS</span> Expense Reimbursement</h2>
+            </div>
+
+            <!-- buffer div -->
+            <div id="top-filler" class="col"></div>
+
+            <!-- Here is the clickable that brings up account options such as logout -->
+            <div id="account-panel" class="col-md-3 align-self-center" align="center">
+                <div class="dropdown">
+                    <button id="account-button" class="btn btn-secondary dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        *your account name here
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="index.html">Account Home</a>
+                        <a class="dropdown-item" href="settings.html">Account settings</a>
+                        <a class="dropdown-item" href="#" onclick="confirmLogout()" >Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">All Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="background-color: #ddd" href="#">Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="background-color: #ddd" href="#">Resolved</a>
+                    </li>
+                </ul>
+                <table id="transaction-table" align="center" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Request</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td>9/12</td>
+                            <td>Transportation expense request</td>
+                            <td>$60</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>8/24</td>
+                            <td>Food expense request</td>
+                            <td>Resolved</td>
+                        </tr>
+                        <tr>
+                            <td>8/19</td>
+                            <td>Fuel Reimbursement</td>
+                            <td>Resolved</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="my-pending.js"></script>
+</body>
+
+</html>
