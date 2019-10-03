@@ -22,44 +22,82 @@ import com.revature.service.EmployeeService;
 import com.revature.util.ConnectionUtil;
 
 public class BasicLogin extends HttpServlet {
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		doPost(req, resp);
-//	}
-
+	
+//	Employee selectedEmployee = new Employee(112, "Bradley", "James", "Janitor", "jbrad@evas.com", "asdf");
+//	public static String aea = "null";
+//	public static String apw = "null";
+	public static int loggedAccount = 0;
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 //		private static EmployeeService employeeService = new EmployeeService();
-//			fursa@evas.com		asdf
+//			fursa@evas.com		FU9630
 		PrintWriter pw = resp.getWriter();
 		resp.setContentType("text/html");
 		ObjectMapper om = new ObjectMapper();
 		EvasDAO evasDao = new EvasJDBC();
+		EmployeeService employeeService = new EmployeeService();
 
 		String email = req.getParameter("enterEmail");
 		String password = req.getParameter("enterPassword");
 
-//		RequestDispatcher homePage = req.getRequestDispatcher("index.html");
-//		homePage.forward(req, resp);
+//		aea = email;
+//		apw = password;
+//		System.out.println(aea+apw);
 
 		System.out.println("testing DB connection:");
 		ConnectionUtil.getConnection();
 
-		System.out.println(evasDao.getEmailandPass(email, password));
+		System.out.println("  *Logging in: " + evasDao.getEmailandPass(email, password));
 
-//		String test = evasDao.getEmailandPass(username, password);
 
+		
 		if (evasDao.getEmailandPass(email, password) == (null)) {
 			// if the login fails:
 
 			System.out.println("uh oh");
 			resp.sendRedirect("login.html");
-		} else { // if the login succeeds
-//			pw.println(evasDao.getEmailandPass(email, password));
+//			System.out.println(aea+apw);
+		} else if(evasDao.getEmailandPass(email, password).getEmployeeposition().equals("Manager")) { // if the login succeeds
+			System.out.println("manager_home.html");
+			
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
+			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
+//			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+			
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("Logging in account #"+loggedAccount);
+			
+			
+			
 			HttpSession session = req.getSession();
 			session.setAttribute("activeAccount", email);
-			System.out.println(session);
+			System.out.println("Initiating Session for: " + session);
+			
+			resp.sendRedirect("manager_home.html");
+			}
+			else {
+				System.out.println("index.html");
+				
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
+			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
+//			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+			
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("Logging in account #"+loggedAccount);
+			
+			
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("activeAccount", email);
+			System.out.println("Initiating Session for: " + session);
+			System.out.println("  --redirecting to index.html--");
+//			System.out.println(aea+apw);
+			
 			resp.sendRedirect("index.html");
 		}
 	}

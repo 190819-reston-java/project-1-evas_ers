@@ -49,6 +49,8 @@ public interface EvasDAO {
 	List<Reimbursement> getReimbursement(Reimbursement ar);
 
 	List<Image> getImage(Image ia);
+
+	List<Reimbursement> getEmployeeReimbursements(int employeeid);
 	
-	
+	Reimbursement getEmployeeReimbursement(int employeeid);
 }

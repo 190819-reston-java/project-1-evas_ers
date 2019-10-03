@@ -22,7 +22,7 @@ public class EvasOnlineDriver {
 
 		
 		Logger logger = Logger.getLogger(EvasOnlineDriver.class);
-		logger.debug("Conenction test");
+		logger.debug("Connection test");
 		ConnectionUtil.getConnection();
 
 		
@@ -39,7 +39,7 @@ public class EvasOnlineDriver {
 			//System.out.println(evasDao.getReportTo(em));	
 			
 		logger.info("getReimbursement"); // works
-			//System.out.println(evasDao.getReimbursement(8));
+			System.out.println(evasDao.getReimbursement(8));
 		
 		logger.info("updateEmployee"); // works
 			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
@@ -72,6 +72,9 @@ public class EvasOnlineDriver {
 		
 		logger.info("insertImage"); // not working
 			//System.out.println(evasDao.insertImage(smilyface, image));
+		
+		logger.info("getEmployeeReimbursements");
+			System.out.println(evasDao.getEmployeeReimbursement(5));
 
 		System.out.println("result end");
 	}

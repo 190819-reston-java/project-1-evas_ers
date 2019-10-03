@@ -202,6 +202,59 @@ public class EvasJDBC implements EvasDAO {
 		return remoteReimbursement;
 	}
 
+	@Override
+	public Reimbursement getEmployeeReimbursement(int employeeid) {
+		Reimbursement remoteEReimbursement = null;
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+			String query = "SELECT * FROM reimbursement WHERE employeereimbursement= ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, employeeid);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						if (resultSet.next()) {
+							remoteEReimbursement = createReimbursementFromRS(resultSet);
+
+						}
+					}
+
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return remoteEReimbursement;
+	}
+	@Override
+	public List<Reimbursement> getEmployeeReimbursements(int employeeid) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM reimbursement WHERE employeereimbursement = ?;");
+			((PreparedStatement) stmt).setInt(1, employeeid);
+			
+			
+			while (resultSet.next()) {
+				reimbursements.add(createReimbursementFromRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return reimbursements;
+
+	}
 	
 	@Override//pulls employees
 	public List<Employee> getEmployee(Employee ea) {
