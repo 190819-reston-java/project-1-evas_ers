@@ -50,7 +50,7 @@
                     <span class="badge badge-secondary">EVAS</span> Expense
                     Reimbursement
                 </h2>
-                <h1 class="SettingsBanner">Account Settings</h1>
+                <h1 class="SettingsBanner">Reimbursement Request</h1>
             </div>
 
             <!-- buffer div -->
@@ -75,27 +75,23 @@
 
         <div class="row">
 
-            <!-- Settings Panel -->
+            <!-- Settings Panel-->
             <div id="new-report" class="col-sm-5 m-3 p-3 mx-auto" align="center">
                 <form id="account-settings" action="UpdateSettings" method="POST">
-                    <table id="settingsTable">
-                        <tr>
-                            <td>First Name:</td>
-                            <td><input type="field" name="enterFirstName"></td>
-                        </tr>
-                        <tr>
-                            <td>Last Name:</td>
-                            <td><input type="field" name="enterLastName"></td>
-                        </tr>
-                        <tr>
-                            <td>Email Address:</td>
-                            <td><input type="field" name="enterEmail"></td>
-                        </tr>
-                        <tr>
-                            <td>Password:</td>
-                            <td><input type="field" name="enterNewPassword"></td>
-                        </tr>
+                    <table id="settingsTable"  align="center" style="width: 100%">
+                        <thead></thead>
+                        
+                        <colgroup>
+                            <col span="4">
+                            <tr>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Position</th>
+                                <th>Email</th>
+                            </tr>
+                        
 
+                        
                         <tr>
                             <td colspan="2"><input type="submit" value="Update Settings" style="width: 100%"></td>
                         </tr>
