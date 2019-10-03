@@ -23,16 +23,28 @@ public class ViewRequests extends HttpServlet {
 
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
-		
+
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
-		
+
 		String transactionString = om.writeValueAsString(evasDao.getEmployeeReimbursements(3));
 		System.out.println("ArrayList: " + evasDao.getEmployeeReimbursements(3));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
-		
-		
 	}
+
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		EvasDAO evasDao = new EvasJDBC();
+//		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
+//
+//		ObjectMapper om = new ObjectMapper();
+//		PrintWriter pw = resp.getWriter();
+//
+//		String transactionString = om.writeValueAsString(evasDao.getEmployeeReimbursements(3));
+//		System.out.println("ArrayList: " + evasDao.getEmployeeReimbursements(3));
+//		System.out.println("String being sent to JS: " + transactionString);
+//		pw.write(transactionString);
+//	}
 
 }

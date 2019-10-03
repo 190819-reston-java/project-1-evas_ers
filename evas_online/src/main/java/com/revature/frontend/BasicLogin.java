@@ -60,12 +60,33 @@ public class BasicLogin extends HttpServlet {
 			System.out.println("uh oh");
 			resp.sendRedirect("login.html");
 //			System.out.println(aea+apw);
-		} else { // if the login succeeds
-//			needs an else-if to direct managers to their homepage
+		} else if(evasDao.getEmailandPass(email, password).getEmployeeposition().equals("Manager")) { // if the login succeeds
+			System.out.println("manager_home.html");
+			
 			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
 			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
 			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
 //			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+			
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("Logging in account #"+loggedAccount);
+			
+			
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("activeAccount", email);
+			System.out.println("Initiating Session for: " + session);
+			
+			resp.sendRedirect("manager_home.html");
+			}
+			else {
+				System.out.println("index.html");
+				
+			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
+			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
+			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
+//			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
+			
 			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
 			System.out.println("Logging in account #"+loggedAccount);
 			
@@ -76,6 +97,7 @@ public class BasicLogin extends HttpServlet {
 			System.out.println("Initiating Session for: " + session);
 			System.out.println("  --redirecting to index.html--");
 //			System.out.println(aea+apw);
+			
 			resp.sendRedirect("index.html");
 		}
 	}

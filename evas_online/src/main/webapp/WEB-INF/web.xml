@@ -8,10 +8,21 @@
 		<servlet-name>Evas</servlet-name>
 		<servlet-class>com.revature.frontend.EvasServlet</servlet-class>
 	</servlet>
-
+	<!-- Settings -->
+	<servlet>
+		<servlet-name>SettingsServlet</servlet-name>
+		<display-name>SettingsServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.SettingsServlet</servlet-class>
+	</servlet>
 	<servlet>
 		<servlet-name>Login</servlet-name>
 		<servlet-class>com.revature.frontend.BasicLogin</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>NewRequest</servlet-name>
+		<servlet-class>com.revature.frontend.RequestServlet</servlet-class>
 	</servlet>
 
 	<servlet>
@@ -31,12 +42,7 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.LiveUserServlet</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>SettingsServlet</servlet-name>
-		<display-name>SettingsServlet</display-name>
-		<description></description>
-		<servlet-class>com.revature.frontend.SettingsServlet</servlet-class>
-	</servlet>
+
 	<servlet>
 		<servlet-name>ViewReimbursements</servlet-name>
 		<display-name>ViewReimbursements</display-name>
@@ -49,12 +55,17 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.ViewRequests</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ViewAll</servlet-name>
+		<display-name>ViewAll</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewAll</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Service</servlet-name>
 		<url-pattern>/service/</url-pattern>
 	</servlet-mapping>
-
 
 
 	<servlet-mapping>
@@ -75,10 +86,20 @@
 		<servlet-name>LiveUserServlet</servlet-name>
 		<url-pattern>/LiveUser</url-pattern>
 	</servlet-mapping>
+
+
+
 	<servlet-mapping>
 		<servlet-name>SettingsServlet</servlet-name>
 		<url-pattern>/UpdateSettings</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewRequest</servlet-name>
+		<url-pattern>/NewRequest</url-pattern>
+	</servlet-mapping>
+
+
+
 	<servlet-mapping>
 		<servlet-name>ViewReimbursements</servlet-name>
 		<url-pattern>/ViewReimbursements</url-pattern>
@@ -86,6 +107,10 @@
 	<servlet-mapping>
 		<servlet-name>ViewRequests</servlet-name>
 		<url-pattern>/ViewRequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewAll</servlet-name>
+		<url-pattern>/ViewAll</url-pattern>
 	</servlet-mapping>
 
 </web-app>

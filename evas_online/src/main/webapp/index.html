@@ -70,9 +70,9 @@
 						<!-- <%=session.getAttribute("activeAccount")%> -->
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" href="settings.html">Account settings</a> <a class="dropdown-item"
-							href="#">Account activity</a> <a id="dropdown-logout" class="dropdown-item" href="#"
-							onclick="confirmLogout()">Log out</a>
+						<a class="dropdown-item" href="settings.html">Account settings</a>
+						<a class="dropdown-item" href="recent.html">Account activity</a>
+						<a id="dropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
 					</div>
 				</div>
 			</div>
@@ -106,19 +106,19 @@
 				<h4 class="inherit">Start here:</h4>
 				<!-- <h6 class="inherit">Start here:</h6> -->
 				<!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
-				<button type="btn" class="btn btn-warning btn-lg">File New
-					Report</button>
+				<a href = "request.html">File New
+					Request</a>
 
 			</div>
 
 			<div id="recent-activity" class="col-lg-6 m-3 p-3 mx-auto">
-				<form id="recentTransactionsLink" action="ViewReimbursements" method="POST">
+				<!-- <form id="recentTransactionsLink" action="ViewReimbursements" method="POST">
 					<input type="submit" value="Recent Activity">
-				</form>
+				</form> -->
 				<H4 class="inherit" align="center">
 					<a href="recent.html">Recent Activity</a>
 				</H4>
-				<table align="center" style="width: 100%">
+				<table id="transaction-table" align="center" style="width: 100%">
 					<tr>
 						<th>Date</th>
 						<th>Request</th>

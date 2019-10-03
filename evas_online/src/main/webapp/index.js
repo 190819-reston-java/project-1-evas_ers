@@ -2,7 +2,7 @@
 
 // let logoutPanel = document.getElementById("logout-panel");
 // logoutPanel.style.display = "none";
-console.log("OH HAI");
+console.log("Version 12.57");
 
 let id = null;
 let firstName = null;
@@ -12,11 +12,13 @@ let password = null;
 let position = null;
 
 let accountMenu = document.getElementById("account-button");
+let transactionTable = document.getElementById("transaction-table");
+
 fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     .then((response) => {
         return response.json();
     })
-    .then((json)=>{
+    .then((json) => {
         console.log(json);
         id = json.employeeid;
         firstName = json.employeefirstname;
@@ -27,8 +29,13 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
         accountMenu.innerHTML = firstName + " " + lastName;
     });
 
-
-
+  
+// fetch("http://localhost:8080/evas_online/ViewRequests", { method: "POST" })
+//     .then((response) => {
+//         return response.json();
+//     })
+transactionTable.insertRow("piggy");
+transactionTable.innerHTML = "piggy";
 
 
 let logoutPanel = document.getElementById("logout-panel");

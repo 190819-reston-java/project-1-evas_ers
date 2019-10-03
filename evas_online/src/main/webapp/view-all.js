@@ -1,27 +1,13 @@
 'use strict';
 
-// let logoutPanel = document.getElementById("logout-panel");
-// logoutPanel.style.display = "none";
-console.log("aaahhh!!");
+console.log("version 12.57");
 
 let id = null;
 let firstName = null;
 let lastName = null;
-let email = null;
-let password = null;
-let position = null;
-
 let accountMenu = document.getElementById("account-button");
-let currentFirstName = document.getElementById("currentFirstName");
-let currentLastName = document.getElementById("currentLastName");
-let currentEmail = document.getElementById("currentEmail");
-let currentPassword = document.getElementById("currentPassword");
-
-// currentFirstName.innerText = "NULL";
-// currentLastName.innerText = "NULL";
-// currentEmail.innerText = "NULL";
-// currentPassword.innerText = "****";
-
+let transactionTable = document.getElementById("transaction-table");
+// transactionTable.insertRow(3).
 
 fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     .then((response) => {
@@ -29,30 +15,33 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     })
     .then((json) => {
         console.log(json);
-        id = json.employeeid;
         firstName = json.employeefirstname;
         lastName = json.employeelastname;
-        email = json.employeeemail;
-        password = json.employeepassword;
-        position = json.employeeposition;
         accountMenu.innerHTML = firstName + " " + lastName;
-
-        currentFirstName.innerText = firstName;
-        currentLastName.innerText = lastName;
-        currentEmail.innerText = email;
-        currentPassword.innerText = censor(password);
+        // transactionTable.innerHTML = firstName + " " + lastName;
     });
 
 
-function censor(text) {
-    let output = "";
-    for (let i = 0; i < text.length; i++) {
-        output = output + '*';
-    }
-    return output;
-}
-
-console.log("testing: " + censor("sdf"));
+    
+    /* Edit this block of code: */
+fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
+    .then((response) => {
+        return response.json();
+    })
+    .then((json) => {
+        console.log(json);
+        for(var i=0;i<json.length;i++){
+            var a = transactionTable.insertRow(transactionTable.size);
+            var b = a.insertCell(0);
+            var c = a.insertCell(1);
+            var d = a.insertCell(2);
+            var e = a.insertCell(3);
+            b.innerHTML = json[i].reimbursementdate;
+            c.innerHTML = "Travel/Overnight";
+            d.innerHTML = '$' + json[i].reimbursementamount;
+            e.innerHTML = json[i].reimbursementstatus;
+        }
+    });
 
 
 let logoutPanel = document.getElementById("logout-panel");

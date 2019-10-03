@@ -33,7 +33,7 @@
     <div id="logout-panel">
         <h5 class="inherit align-middle">Are you sure you wish to log
             out?</h5>
-        <form class="inherit" action="login.html">
+        <form action="Logout" class="inherit" method="POST">
             <input type="submit" value="Yes" type="button" class="btn btn-warning">
             <!-- <button id = "logout-panel-yes" type="button" class="btn btn-warning">Yes</button> -->
             <button id="logout-panel-no" type="button" class="btn btn-secondary" onclick="declineLogout()">No</button>
@@ -64,67 +64,71 @@
                         <!-- <%=session.getAttribute("activeAccount")%> -->
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="settings.html">Account settings</a> <a class="dropdown-item" href="#">Account
-                            activity</a> <a id="dropdown-logout" class="dropdown-item" href="#"
-                            onclick="confirmLogout()">Log out</a>
+                        <a class="dropdown-item" href="settings.html">Account settings</a>
+                        <a clasropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
-            </div>
+            </div>s="dropdown-item" href="recent.html">Account activity</a>
+            <a id="d
         </div>
 
 
-        <div class="row">
+        <div class=" row">
 
-            <!-- Employee Management -->
-            <div id="new-report" class="col-md-5 m-3 p-3 mx-auto" align="center">
-                <H4 class="inherit">Employee Management:</H4>
-                <!-- <h6 class="inherit">Start here:</h6> -->
-                <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
-                <button type="btn" class="btn btn-danger" style="min-width: 200px">View Pending Requests</button>
-                <button type="btn" class="btn btn-danger" style="min-width: 200px">View Resolved Requests</button>
-                <button type="btn" class="btn btn-danger" style="min-width: 200px">View ALL Requests</button>
-                <button type="btn" class="btn btn-danger" style="min-width: 200px">View Employees</button>
+                <!-- Employee Management -->
+                <div id="new-report" class="col-md-5 m-3 p-3 mx-auto" align="center">
+                    <H4 class="inherit">Employee Management:</H4>
+                    <!-- <h6 class="inherit">Start here:</h6> -->
+                    <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
+                    <button type="btn" class="btn btn-danger" style="min-width: 200px">View Pending Requests</button>
+                    <button type="btn" class="btn btn-danger" style="min-width: 200px">View Resolved Requests</button>
+                    <!-- <button type="btn" class="btn btn-danger" style="min-width: 200px" href="view-all.html">View ALL
+                        Requests</button> -->
+                    <button type="btn" class="btn btn-danger" style="min-width: 200px">View Employees</button>
+                    <form action="view-all.html" class="inherit" method="POST">
+                        <input type="submit" value="View ALL Requests" type="button" class="btn btn-warning">
+                </form>
+                </div>
 
-            </div>
+                <!-- file new report button -->
+                <div id="new-report" class="col-md-4 m-3 p-3 mx-auto" align="center">
+                    <H4 class="inherit">Require Reimbursement?</H4>
+                    <h4 class="inherit">Start here:</h4>
+                    <!-- <h6 class="inherit">Start here:</h6> -->
+                    <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
+                    <!-- <button type="btn" class="btn btn-danger btn-lg">File New
+                        Report</button> -->
+                    <a href="request.html">File New Request</a>
 
-            <!-- file new report button -->
-            <div id="new-report" class="col-md-4 m-3 p-3 mx-auto" align="center">
-                <H4 class="inherit">Require Reimbursement?</H4>
-                <h4 class="inherit">Start here:</h4>
-                <!-- <h6 class="inherit">Start here:</h6> -->
-                <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
-                <button type="btn" class="btn btn-danger btn-lg">File New
-                    Report</button>
+                </div>
 
-            </div>
-
-            <div id="recent-activity" class="col-lg-6 m-3 p-3 mx-auto">
-                <H4 class="inherit" align="center">
-                    <a href="recent.html">Recent Activity</a>
-                </H4>
-                <table align="center" style="width: 100%">
-                    <tr>
-                        <th>Date</th>
-                        <th>Request</th>
-                        <th>Status</th>
-                    </tr>
-                    <tr>
-                        <td>9/12</td>
-                        <td>Transportation expense request</td>
-                        <td>Pending</td>
-                    </tr>
-                    <tr>
-                        <td>8/24</td>
-                        <td>Food expense request</td>
-                        <td>Resolved</td>
-                    </tr>
-                    <tr>
-                        <td>8/19</td>
-                        <td>Fuel Reimbursement</td>
-                        <td>Resolved</td>
-                    </tr>
-                </table>
-            </div>
+                <div id="recent-activity" class="col-lg-6 m-3 p-3 mx-auto">
+                    <H4 class="inherit" align="center">
+                        <a href="recent.html">Recent Activity</a>
+                    </H4>
+                    <table id="transaction-table" align="center" style="width: 100%">
+                        <tr>
+                            <th>Date</th>
+                            <th>Request</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>9/12</td>
+                            <td>Transportation expense request</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>8/24</td>
+                            <td>Food expense request</td>
+                            <td>Resolved</td>
+                        </tr>
+                        <tr>
+                            <td>8/19</td>
+                            <td>Fuel Reimbursement</td>
+                            <td>Resolved</td>
+                        </tr>
+                    </table>
+                </div>
 
 
         </div>

@@ -33,13 +33,12 @@
     <div id="logout-panel">
         <h5 class="inherit align-middle">Are you sure you wish to log
             out?</h5>
-        <form action="Logout" class="inherit" method="POST">
+        <form class="inherit" action="login.html">
             <input type="submit" value="Yes" type="button" class="btn btn-warning">
             <!-- <button id = "logout-panel-yes" type="button" class="btn btn-warning">Yes</button> -->
             <button id="logout-panel-no" type="button" class="btn btn-secondary" onclick="declineLogout()">No</button>
         </form>
     </div>
-
     <div id="overlay"></div>
 
     <div id="blurMe" class="container-fluid">
@@ -51,7 +50,7 @@
                     <span class="badge badge-secondary">EVAS</span> Expense
                     Reimbursement
                 </h2>
-                <h1 class="SettingsBanner">Account Settings</h1>
+                <h1 class="SettingsBanner">Reimbursement Request</h1>
             </div>
 
             <!-- buffer div -->
@@ -65,9 +64,9 @@
                         <!-- <%=session.getAttribute("activeAccount")%> -->
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="index.html">Account Home</a>
-                        <a class="dropdown-item" href="recent.html">Account Activity</a>
-                        <a id="dropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
+                        <a class="dropdown-item" href="#">Account settings</a> <a class="dropdown-item" href="#">Account
+                            activity</a> <a id="dropdown-logout" class="dropdown-item" href="#"
+                            onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
             </div>
@@ -77,33 +76,39 @@
         <div class="row">
 
             <!-- Settings Panel -->
-            <div id="profileInfo" class="col-md-6 m-3 p-4 mx-auto">
-                <form id="account-settings" action="UpdateSettings" method="POST">
-                    <table id="settingsTable" class="mx-auto">
-                        <tr>
-                            <td><b>First Name:</b></td>
-                            <td id="currentFirstName">/first_name</td>
-                            <td><input type="field" name="enterFirstName"></td>
+            <div id="new-report" class="col-sm-5 m-3 p-3 mx-auto" align="center">
+                <form id="new-request" action="NewRequest" method="POST">
+                    <table id="settingsTable">
+                        <td>
+                            <lable>Catagory:</lable>
+                            <td>
+                                <!-- <input type="field" name="enterRequestCatagory"></td> -->
+                            <select name="enterRequestCatagory">
+                                <option>Food</option>
+                                <option>Travel</option>
+                                <option>Fuel</option>
+                                <option>Other</option>
+                                <option>Supplies</option>
+                            </select></td>
                         </tr>
                         <tr>
-                            <td><b>Last Name:</b></td>
-                            <td id="currentLastName">/last_name</td>
-                            <td><input type="field" name="enterLastName"></td>
+                            <td>Event Date:</td>
+                            <td><input type="date" name="enterEventDate"></td>
                         </tr>
                         <tr>
-                            <td><b>Email Address:</b></td>
-                            <td id="currentEmail">/email_address</td>
-                            <td><input type="field" name="enterEmail"></td>
+                            <td>Amount:</td>
+                            <td><input type="number"  min="0.00" max="10000.00" step="0.01" name="enterRequestValue"></td>
                         </tr>
                         <tr>
-                            <td><b>Password:</b></td>
-                            <td id="currentPassword">/password</td>
-                            <td><input type="password" name="enterNewPassword"></td>
+                            <td>Description: (optional)</td>
+                            <td><input type="field" name="enterRequestDescription"></td>
                         </tr>
-
                         <tr>
-                            <td colspan="3"><input type="submit" class="btn btn-warning mx-auto" value="Update Settings"
-                                    style="width: 100%"></td>
+                            <td>Information: (optional)</td>
+                            <td><input type="textarea" name="enterRequestInformation"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="Submit Request" style="width: 100%"></td>
                         </tr>
                     </table>
                 </form>
