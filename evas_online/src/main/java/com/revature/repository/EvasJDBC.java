@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.revature.model.Employee;
 import com.revature.model.Image;
+import com.revature.model.MultiModelMode;
 import com.revature.model.Reimbursement;
 import com.revature.model.Request;
 import com.revature.util.ConnectionUtil;
@@ -481,6 +482,22 @@ public class EvasJDBC implements EvasDAO {
 				
 	}
 
+	private Request createRequestManagerFromRS(ResultSet resultSet) throws SQLException {
+		return new Request(
+				
+				resultSet.getInt("requestid"),
+				resultSet.getDouble("requestvalue"),
+				resultSet.getString("requeststatus"),
+				resultSet.getString("requestcatagory"),
+				resultSet.getString("requestdescription"),
+				resultSet.getDate("requestdate"),
+				resultSet.getDate("eventdate"),
+				resultSet.getString("requestinformation"),
+				resultSet.getInt("employeerequest"));
+				
+	}
+	
+	
 	
 
 	private static java.sql.Date getDate() {
@@ -488,7 +505,160 @@ public class EvasJDBC implements EvasDAO {
 	    return new java.sql.Date(today.getTime());
 	}
 
-	
+	@Override
+	public List<Request> viewRequestManager(Request rm) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<Request> requestmanager = new ArrayList<Request>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM request_with_manager;");
+			while (resultSet.next()) {
+				System.out.println(resultSet);
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		return requestmanager;
+	}
+
+	@Override
+	public List<MultiModelMode> getRequestViewManager(MultiModelMode rm) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<MultiModelMode> requestviewmanager = new ArrayList<MultiModelMode>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM request_with_manager;");
+			while (resultSet.next()) {
+				requestviewmanager .add(createMultiModelFormRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		
+		
+		
+		return requestviewmanager;
+	}
+
+	private MultiModelMode createMultiModelFormRS(ResultSet resultSet) throws SQLException {
+		return new MultiModelMode(
+				resultSet.getInt("Employee Id"),
+				resultSet.getString("Employee Name"),
+				resultSet.getDouble("Requested Amount"),
+				resultSet.getString("Catagory"),
+				resultSet.getString("Description"),
+				resultSet.getString("Information"),
+				resultSet.getString("Status"),
+				resultSet.getString("Manager"));
+				
+	}
+
+	@Override
+	public List<MultiModelMode> getViewPending(MultiModelMode vp) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<MultiModelMode> requestviewpending = new ArrayList<MultiModelMode>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM viewpending");
+			while (resultSet.next()) {
+				requestviewpending .add(createMultiModelFormRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		
+		
+		
+		return requestviewpending;
+	}
+
+	@Override
+	public List<MultiModelMode> getViewResolved(MultiModelMode vr) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<MultiModelMode> requestviewresolved = new ArrayList<MultiModelMode>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM viewresolved");
+			while (resultSet.next()) {
+				requestviewresolved .add(createMultiModelFormRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		
+		
+		
+		return requestviewresolved;
+	}
+
+	@Override
+	public List<MultiModelMode> getViewDenied(MultiModelMode vd) {
+		Statement stmt = null;
+		ResultSet resultSet = null;
+		Connection conn = null;
+		
+		List<MultiModelMode> requestviewdenied = new ArrayList<MultiModelMode>();
+		
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.createStatement();
+			resultSet = stmt.executeQuery("SELECT * FROM viewdenied");
+			while (resultSet.next()) {
+				requestviewdenied .add(createMultiModelFormRS(resultSet));
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				StreamCloser.close(resultSet);
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+		
+		
+		
+		return requestviewdenied;
+	}
 
 	
 	

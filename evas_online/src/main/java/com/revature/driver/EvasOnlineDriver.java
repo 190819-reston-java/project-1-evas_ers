@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.revature.model.Employee;
 import com.revature.model.Image;
+import com.revature.model.MultiModelMode;
 import com.revature.model.Reimbursement;
 import com.revature.model.Request;
 import com.revature.repository.EvasDAO;
@@ -39,7 +40,7 @@ public class EvasOnlineDriver {
 			//System.out.println(evasDao.getReportTo(em));	
 			
 		logger.info("getReimbursement"); // works
-			System.out.println(evasDao.getReimbursement(8));
+			//System.out.println(evasDao.getReimbursement(8));
 		
 		logger.info("updateEmployee"); // works
 			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
@@ -74,8 +75,29 @@ public class EvasOnlineDriver {
 			//System.out.println(evasDao.insertImage(smilyface, image));
 		
 		logger.info("getEmployeeReimbursements");
-			System.out.println(evasDao.getEmployeeReimbursement(5));
+			//System.out.println(evasDao.getEmployeeReimbursement(5));
 
+		logger.info("getRequest with manager List");// wip[]
+			//Request rm = new Request ();
+			//System.out.println(evasDao.viewRequestManager(rm));
+			
+			logger.info("getRequest with manager List");// works	
+			//MultiModelMode rm = new MultiModelMode();
+			//System.out.println(evasDao.getRequestViewManager(rm));
+			
+			logger.info("getViewPending");// wip[]	
+			//MultiModelMode vp = new MultiModelMode();
+			//System.out.println(evasDao.getViewPending(vp));
+			
+			logger.info("getViewResolved");// wip[]
+			MultiModelMode vr = new MultiModelMode();
+			System.out.println(evasDao.getViewResolved(vr));
+			
+			logger.info("getViewDenied");// wip[]
+			MultiModelMode vd = new MultiModelMode();
+			System.out.println(evasDao.getViewDenied(vd));
+			
+		
 		System.out.println("result end");
 	}
 

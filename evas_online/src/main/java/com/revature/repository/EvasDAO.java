@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.revature.model.Employee;
 import com.revature.model.Image;
+import com.revature.model.MultiModelMode;
 import com.revature.model.Reimbursement;
 import com.revature.model.Request;
 
@@ -53,4 +54,12 @@ public interface EvasDAO {
 	List<Reimbursement> getEmployeeReimbursements(int employeeid);
 	
 	Reimbursement getEmployeeReimbursement(int employeeid);
+	
+	List<Request> viewRequestManager(Request rm);
+	
+	List<MultiModelMode> getRequestViewManager (MultiModelMode rm);
+	List<MultiModelMode> getViewPending (MultiModelMode vp);
+	List<MultiModelMode> getViewResolved (MultiModelMode vr);
+	List<MultiModelMode> getViewDenied (MultiModelMode vd);
+	
 }
