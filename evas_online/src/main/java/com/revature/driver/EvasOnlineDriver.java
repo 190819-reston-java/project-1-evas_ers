@@ -39,8 +39,8 @@ public class EvasOnlineDriver {
 			//Employee em = new Employee();
 			//System.out.println(evasDao.getReportTo(em));	
 			
-		logger.info("getReimbursement"); // works
-			//System.out.println(evasDao.getReimbursement(8));
+		logger.info("getRequest"); // works
+			System.out.println(evasDao.getRequest(8));
 		
 		logger.info("updateEmployee"); // works
 			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
@@ -81,30 +81,30 @@ public class EvasOnlineDriver {
 			//Request rm = new Request ();
 			//System.out.println(evasDao.viewRequestManager(rm));
 			
-			logger.info("getRequest with manager List");// works	
-			MultiModelMode rm = new MultiModelMode();
-			System.out.println(evasDao.getRequestViewManager(rm));
-			
-			logger.info("getViewPending");// works
-			MultiModelMode vp = new MultiModelMode();
-			System.out.println(evasDao.getViewPending(vp));
-			
-			logger.info("getViewResolved");// works
-			MultiModelMode vr = new MultiModelMode();
-			System.out.println(evasDao.getViewResolved(vr));
-			
-			logger.info("getViewDenied");// works
-			MultiModelMode vd = new MultiModelMode();
-			System.out.println(evasDao.getViewDenied(vd));
-			
-			logger.info("getMyPending");// works
-			System.out.println(evasDao.getMyPending(9));
-			
-			logger.info("getMyResolved");// works
-			System.out.println(evasDao.getMyResolved(9));
-			
-			logger.info("getMyDenied");// works
-			System.out.println(evasDao.getMyDenied(5));
+//			logger.info("getRequest with manager List");// works	
+//			MultiModelMode rm = new MultiModelMode();
+//			System.out.println(evasDao.getRequestViewManager(rm));
+//			
+//			logger.info("getViewPending");// works
+//			MultiModelMode vp = new MultiModelMode();
+//			System.out.println(evasDao.getViewPending(vp));
+//			
+//			logger.info("getViewResolved");// works
+//			MultiModelMode vr = new MultiModelMode();
+//			System.out.println(evasDao.getViewResolved(vr));
+//			
+//			logger.info("getViewDenied");// works
+//			MultiModelMode vd = new MultiModelMode();
+//			System.out.println(evasDao.getViewDenied(vd));
+//			
+//			logger.info("getMyPending");// works
+//			System.out.println(evasDao.getMyPending(9));
+//			
+//			logger.info("getMyResolved");// works
+//			System.out.println(evasDao.getMyResolved(9));
+//			
+//			logger.info("getMyDenied");// works
+//			System.out.println(evasDao.getMyDenied(5));
 			
 			
 		

@@ -30,8 +30,8 @@ public interface EvasDAO {
 	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation);
 	
 		
-	// Reimbursement
-	Reimbursement getReimbursement(int reimbursementid);
+	// Request
+	MultiModelMode getRequest(int requestid);
 	
 	
 	// Image

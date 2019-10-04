@@ -177,19 +177,20 @@ public class EvasJDBC implements EvasDAO {
 		return true;
 	}
 	
-	// gets reimbursement by id
+	// gets request by id
 	@Override
-	public Reimbursement getReimbursement(int reimbursementid) {
-		Reimbursement remoteReimbursement = null;
+	public MultiModelMode getRequest(int requestid) {
+		MultiModelMode remoteRequest = null;
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT * FROM reimbursement WHERE reimbursementid = ?;";
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+					"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requestid = ?;";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
-				stmt.setInt(1, reimbursementid);
+				stmt.setInt(1, requestid);
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						if (resultSet.next()) {
-							remoteReimbursement = createReimbursementFromRS(resultSet);
+							remoteRequest = createMultiModelFormRS(resultSet);
 
 						}
 					}
@@ -200,7 +201,7 @@ public class EvasJDBC implements EvasDAO {
 			e.printStackTrace();
 		}
 
-		return remoteReimbursement;
+		return remoteRequest;
 	}
 
 	@Override
