@@ -20,7 +20,6 @@ import com.revature.util.StreamCloser;
 
 public class EvasJDBC implements EvasDAO {
 
-
 	// getting email and password for login
 	@Override // works
 	public Employee getEmailandPass(String employeeemail, String employeepassword) {
@@ -57,8 +56,7 @@ public class EvasJDBC implements EvasDAO {
 //				stmt.setString(4, em.getEmployeeposition());
 //				stmt.setString(5, em.getEmployeeemail());
 //				stmt.setString(6, em.getEmployeepassword());
-				
-				
+
 				if (stmt.execute()) {
 					try (ResultSet resultSet = stmt.getResultSet()) {
 						if (resultSet.next()) {
@@ -74,7 +72,6 @@ public class EvasJDBC implements EvasDAO {
 		return reportstomanager;
 	}
 
-
 	// creating a request
 	@Override
 	public boolean createRequest(Request rc) {
@@ -87,7 +84,7 @@ public class EvasJDBC implements EvasDAO {
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-			//stmt.setInt(8, rc.getRequestid());
+			// stmt.setInt(8, rc.getRequestid());
 			stmt.setDouble(1, rc.getRequestvalue());
 			stmt.setString(2, rc.getRequeststatus());
 			stmt.setString(3, rc.getRequestcatagory());
@@ -95,10 +92,10 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setDate(5, rc.getRequestdate());
 			stmt.setDate(6, rc.getEventdate());
 			stmt.setString(7, rc.getRequestinformation());
-			//stmt.setInt(9, rc.getEmployeerequest());
-			
-			//System.out.println(stmt.toString());
-			
+			// stmt.setInt(9, rc.getEmployeerequest());
+
+			// System.out.println(stmt.toString());
+
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -112,7 +109,6 @@ public class EvasJDBC implements EvasDAO {
 		return false;
 	}
 
-	
 	// updates employee
 	@Override
 	public boolean updateEmployee(Employee em) {
@@ -129,7 +125,7 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setString(4, em.getEmployeeemail());
 			stmt.setString(5, em.getEmployeepassword());
 			stmt.setInt(6, em.getEmployeeid());
-			
+
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,22 +137,23 @@ public class EvasJDBC implements EvasDAO {
 		return true;
 	}
 
-	
 	// updates request
-	@Override//works
+	@Override // works
 	public boolean updateRequest(Request ru) {
-	
-	//public boolean updateRequest(int requestid, double requestvalue, String requeststatus, String requestcatagory,
-	//		String requestdescription, Date requestdate, Date eventdate, String requestinformation) {
+
+		// public boolean updateRequest(int requestid, double requestvalue, String
+		// requeststatus, String requestcatagory,
+		// String requestdescription, Date requestdate, Date eventdate, String
+		// requestinformation) {
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		//Request ru = null;
-		
+		// Request ru = null;
+
 		final String query = "UPDATE request SET requestvalue=?, requeststatus=?, requestcatagory = ?, requestdescription = ?, requestdate=?, eventdate=?, requestinformation = ? WHERE requestid = ? ;";
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.prepareStatement(query);
-				
+
 			stmt.setDouble(1, ru.getRequestvalue());
 			stmt.setString(2, ru.getRequeststatus());
 			stmt.setString(3, ru.getRequestcatagory());
@@ -165,7 +162,7 @@ public class EvasJDBC implements EvasDAO {
 			stmt.setDate(6, ru.getEventdate());
 			stmt.setString(7, ru.getRequestinformation());
 			stmt.setInt(8, ru.getRequestid());
-			
+
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -176,15 +173,40 @@ public class EvasJDBC implements EvasDAO {
 		}
 		return true;
 	}
-	
+
+// updates requeststatus
+	@Override
+	public boolean updateRequestStatus(int requestid, String requeststatus) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		final String query = "UPDATE request SET requeststatus = ? WHERE requestid =?;";
+
+		try {
+			conn = ConnectionUtil.getConnection();
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, requeststatus);
+			stmt.setInt(2, requestid);
+
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
+		}
+		return true;
+	}
+
 	// gets request by id
 	@Override
 	public MultiModelMode getRequest(int requestid) {
 		MultiModelMode remoteRequest = null;
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
-					"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requestid = ?;";
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n"
+					+ "FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requestid = ?;";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
 				stmt.setInt(1, requestid);
 				if (stmt.execute()) {
@@ -229,7 +251,7 @@ public class EvasJDBC implements EvasDAO {
 //
 //		return remoteAllEmployeeRequest;
 //	}
-	
+
 	@Override
 	public Reimbursement getEmployeeReimbursement(int employeeid) {
 		Reimbursement remoteEReimbursement = null;
@@ -254,6 +276,7 @@ public class EvasJDBC implements EvasDAO {
 
 		return remoteEReimbursement;
 	}
+
 	@Override
 	public List<Reimbursement> getEmployeeReimbursements(int employeeid) {
 		Statement stmt = null;
@@ -267,31 +290,29 @@ public class EvasJDBC implements EvasDAO {
 			stmt = conn.createStatement();
 			resultSet = stmt.executeQuery("SELECT * FROM reimbursement WHERE employeereimbursement = ?;");
 			((PreparedStatement) stmt).setInt(1, employeeid);
-			
-			
+
 			while (resultSet.next()) {
 				reimbursements.add(createReimbursementFromRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
 		return reimbursements;
 
 	}
-	
-	@Override//pulls employees
+
+	@Override // pulls employees
 	public List<Employee> getEmployee(Employee ea) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<Employee> employees = new ArrayList<Employee>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
@@ -299,29 +320,26 @@ public class EvasJDBC implements EvasDAO {
 			while (resultSet.next()) {
 				employees.add(createEmployeeFormRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
-		
-		
-		
+
 		return employees;
 	}
-	
+
 	// pulls Requests
 	@Override
 	public List<Request> getRequest(Request ra) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<Request> requests = new ArrayList<Request>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
@@ -329,26 +347,25 @@ public class EvasJDBC implements EvasDAO {
 			while (resultSet.next()) {
 				requests.add(createRequestFromRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
 		return requests;
 	}
-	
-	//pulls reimbursement
+
+	// pulls reimbursement
 	@Override
 	public List<Reimbursement> getReimbursement(Reimbursement ar) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
@@ -356,27 +373,26 @@ public class EvasJDBC implements EvasDAO {
 			while (resultSet.next()) {
 				reimbursements.add(createReimbursementFromRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
 		return reimbursements;
-	
+
 	}
-	
-	//pulls images
+
+	// pulls images
 	@Override
 	public List<Image> getImage(Image ia) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<Image> images = new ArrayList<Image>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
@@ -384,16 +400,15 @@ public class EvasJDBC implements EvasDAO {
 			while (resultSet.next()) {
 				images.add(createImageFromRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
 		return images;
-	
+
 	}
 
 	// wip inserting image to db 1
@@ -421,7 +436,7 @@ public class EvasJDBC implements EvasDAO {
 
 		return null;
 	}
-	
+
 	// wip inserting image 2
 	@Override
 	public void addImage(int id, byte[] image) {
@@ -443,7 +458,7 @@ public class EvasJDBC implements EvasDAO {
 			}
 		}
 	}
-	
+
 	// wip getting image from db
 	@Override
 	public byte[] getImage(int id) {
@@ -455,58 +470,40 @@ public class EvasJDBC implements EvasDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				 byteImg = rs.getBytes(1);
+				byteImg = rs.getBytes(1);
 			}
 			rs.close();
 			ps.close();
 			return byteImg;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return null;
 		}
-		
-	
-	}
-	
 
-	
+	}
+
 	// resultSet methods
 	private Employee createEmployeeFormRS(ResultSet resultSet) throws SQLException {
-		return new Employee(
-				resultSet.getInt("employeeid"),
-				resultSet.getString("employeelastname"),
-				resultSet.getString("employeefirstname"),
-				resultSet.getString("employeeposition"),
-				resultSet.getString("employeeemail"),
-				resultSet.getString("employeepassword"));
+		return new Employee(resultSet.getInt("employeeid"), resultSet.getString("employeelastname"),
+				resultSet.getString("employeefirstname"), resultSet.getString("employeeposition"),
+				resultSet.getString("employeeemail"), resultSet.getString("employeepassword"));
 	}
 
 	private Reimbursement createReimbursementFromRS(ResultSet resultSet) throws SQLException {
-		return new Reimbursement(
-				resultSet.getInt("reimbursementid"),
-				resultSet.getDouble("reimbursementamount"),
-				resultSet.getDate("reimbursementdate"),
-				resultSet.getString("reimbursementstatus"));
+		return new Reimbursement(resultSet.getInt("reimbursementid"), resultSet.getDouble("reimbursementamount"),
+				resultSet.getDate("reimbursementdate"), resultSet.getString("reimbursementstatus"));
 	}
-	
+
 	private Image createImageFromRS(ResultSet resultSet) throws SQLException {
-		return new Image(
-				resultSet.getInt("imageid"),
-				resultSet.getString("imagename"),
-				resultSet.getBytes("image"));
+		return new Image(resultSet.getInt("imageid"), resultSet.getString("imagename"), resultSet.getBytes("image"));
 	}
-	
+
 	private Request createRequestFromRS(ResultSet resultSet) throws SQLException {
-		return new Request(
-				resultSet.getInt("requestid"),
-				resultSet.getDouble("requestvalue"),
-				resultSet.getString("requeststatus"),
-				resultSet.getString("requestcatagory"),
-				resultSet.getString("requestdescription"),
-				resultSet.getDate("requestdate"),
-				resultSet.getDate("eventdate"),
-				resultSet.getString("requestinformation"));
-				//resultSet.getInt("employeerequest"),
-				
+		return new Request(resultSet.getInt("requestid"), resultSet.getDouble("requestvalue"),
+				resultSet.getString("requeststatus"), resultSet.getString("requestcatagory"),
+				resultSet.getString("requestdescription"), resultSet.getDate("requestdate"),
+				resultSet.getDate("eventdate"), resultSet.getString("requestinformation"),
+		 resultSet.getInt("employeerequest"));
+
 	}
 
 //	private Request createRequestManagerFromRS(ResultSet resultSet) throws SQLException {
@@ -523,13 +520,10 @@ public class EvasJDBC implements EvasDAO {
 //				resultSet.getInt("employeerequest"));
 //				
 //	}
-	
-	
-	
 
 	private static java.sql.Date getDate() {
-	    java.util.Date today = new java.util.Date();
-	    return new java.sql.Date(today.getTime());
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
 	}
 
 	@Override
@@ -537,9 +531,9 @@ public class EvasJDBC implements EvasDAO {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<Request> requestmanager = new ArrayList<Request>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
@@ -547,14 +541,13 @@ public class EvasJDBC implements EvasDAO {
 			while (resultSet.next()) {
 				System.out.println(resultSet);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
 		return requestmanager;
 	}
 
@@ -563,44 +556,34 @@ public class EvasJDBC implements EvasDAO {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<MultiModelMode> requestviewmanager = new ArrayList<MultiModelMode>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
 			resultSet = stmt.executeQuery("SELECT * FROM request_with_manager;");
 			while (resultSet.next()) {
-				requestviewmanager .add(createMultiModelFormRS(resultSet));
+				requestviewmanager.add(createMultiModelFormRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
-		
-		
-		
+
 		return requestviewmanager;
 	}
 
-	
 // MultiModelMode resultset	
 	private MultiModelMode createMultiModelFormRS(ResultSet resultSet) throws SQLException {
-		return new MultiModelMode(
-				resultSet.getInt("Transaction"),
-				resultSet.getInt("Employee Id"),
-				resultSet.getString("Employee Name"),
-				resultSet.getDouble("Requested Amount"),
-				resultSet.getString("Catagory"),
-				resultSet.getString("Description"),
-				resultSet.getString("Information"),
-				resultSet.getString("Status"),
-				resultSet.getString("Manager"));
-				
+		return new MultiModelMode(resultSet.getInt("Transaction"), resultSet.getInt("Employee Id"),
+				resultSet.getString("Employee Name"), resultSet.getDouble("Requested Amount"),
+				resultSet.getString("Catagory"), resultSet.getString("Description"), resultSet.getString("Information"),
+				resultSet.getString("Status"), resultSet.getString("Manager"));
+
 	}
 
 	@Override
@@ -608,27 +591,24 @@ public class EvasJDBC implements EvasDAO {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<MultiModelMode> requestviewpending = new ArrayList<MultiModelMode>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
 			resultSet = stmt.executeQuery("SELECT * FROM viewpending");
 			while (resultSet.next()) {
-				requestviewpending .add(createMultiModelFormRS(resultSet));
+				requestviewpending.add(createMultiModelFormRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
-		
-		
-		
+
 		return requestviewpending;
 	}
 
@@ -637,27 +617,24 @@ public class EvasJDBC implements EvasDAO {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<MultiModelMode> requestviewresolved = new ArrayList<MultiModelMode>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
 			resultSet = stmt.executeQuery("SELECT * FROM viewresolved");
 			while (resultSet.next()) {
-				requestviewresolved .add(createMultiModelFormRS(resultSet));
+				requestviewresolved.add(createMultiModelFormRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
-		
-		
-		
+
 		return requestviewresolved;
 	}
 
@@ -666,142 +643,131 @@ public class EvasJDBC implements EvasDAO {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		Connection conn = null;
-		
+
 		List<MultiModelMode> requestviewdenied = new ArrayList<MultiModelMode>();
-		
+
 		try {
 			conn = ConnectionUtil.getConnection();
 			stmt = conn.createStatement();
 			resultSet = stmt.executeQuery("SELECT * FROM viewdenied");
 			while (resultSet.next()) {
-				requestviewdenied .add(createMultiModelFormRS(resultSet));
+				requestviewdenied.add(createMultiModelFormRS(resultSet));
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			StreamCloser.close(resultSet);
+			StreamCloser.close(stmt);
+			StreamCloser.close(conn);
 		}
-			catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				StreamCloser.close(resultSet);
-				StreamCloser.close(stmt);
-				StreamCloser.close(conn);
-			}
-		
-		
-		
+
 		return requestviewdenied;
 	}
+
 //---
 	@Override
-	public List<MultiModelMode> getAllEmployeeRequest(int employeeid){//MultiModelMode mp) {
-		//Statement stmt = null;
-		//ResultSet resultSet = null;
-		//Connection conn = null;
-		
+	public List<MultiModelMode> getAllEmployeeRequest(int employeeid) {// MultiModelMode mp) {
+		// Statement stmt = null;
+		// ResultSet resultSet = null;
+		// Connection conn = null;
+
 		List<MultiModelMode> remoteAllEmployeeRequest = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
-				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
-		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.setInt(1, employeeid);
-			if (stmt.execute()) {
-				try (ResultSet resultSet = stmt.getResultSet()) {
-					while (resultSet.next()) {
-						remoteAllEmployeeRequest.add(createMultiModelFormRS(resultSet));
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n"
+					+ "FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, employeeid);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						while (resultSet.next()) {
+							remoteAllEmployeeRequest.add(createMultiModelFormRS(resultSet));
+						}
 					}
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
+
+		return remoteAllEmployeeRequest;
 	}
-	
-	return remoteAllEmployeeRequest;
-}
-	
-	
+
 	@Override
-	public List<MultiModelMode> getMyPending(int employeerequest){//MultiModelMode mp) {
-		//Statement stmt = null;
-		//ResultSet resultSet = null;
-		//Connection conn = null;
-		
+	public List<MultiModelMode> getMyPending(int employeerequest) {// MultiModelMode mp) {
+		// Statement stmt = null;
+		// ResultSet resultSet = null;
+		// Connection conn = null;
+
 		List<MultiModelMode> requestmypending = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
-				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
-		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.setInt(1, employeerequest);
-			if (stmt.execute()) {
-				try (ResultSet resultSet = stmt.getResultSet()) {
-					while (resultSet.next()) {
-						requestmypending.add(createMultiModelFormRS(resultSet));
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n"
+					+ "FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, employeerequest);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						while (resultSet.next()) {
+							requestmypending.add(createMultiModelFormRS(resultSet));
+						}
 					}
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	
-	return requestmypending;
-}		
-		
-		
 
+		return requestmypending;
+	}
 
 	@Override
 	public List<MultiModelMode> getMyResolved(int employeerequest) {
 		List<MultiModelMode> requestmyresolved = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
-				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'resolved' AND e.employeeid = ?;";
-		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.setInt(1, employeerequest);
-			if (stmt.execute()) {
-				try (ResultSet resultSet = stmt.getResultSet()) {
-					while (resultSet.next()) {
-						requestmyresolved.add(createMultiModelFormRS(resultSet));
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n"
+					+ "FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'resolved' AND e.employeeid = ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, employeerequest);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						while (resultSet.next()) {
+							requestmyresolved.add(createMultiModelFormRS(resultSet));
+						}
 					}
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
+
+		return requestmyresolved;
 	}
-	
-	return requestmyresolved;
-}		
 
 	@Override
 	public List<MultiModelMode> getMyDenied(int employeerequest) {
 		List<MultiModelMode> requestmydenied = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
-				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'denied' AND e.employeeid = ?;";
-		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.setInt(1, employeerequest);
-			if (stmt.execute()) {
-				try (ResultSet resultSet = stmt.getResultSet()) {
-					while (resultSet.next()) {
-						requestmydenied.add(createMultiModelFormRS(resultSet));
+			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n"
+					+ "FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'denied' AND e.employeeid = ?;";
+			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+				stmt.setInt(1, employeerequest);
+				if (stmt.execute()) {
+					try (ResultSet resultSet = stmt.getResultSet()) {
+						while (resultSet.next()) {
+							requestmydenied.add(createMultiModelFormRS(resultSet));
+						}
 					}
 				}
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-	} catch (SQLException e) {
-		e.printStackTrace();
+
+		return requestmydenied;
 	}
-	
-	return requestmydenied;
-}		
-
-	
-	
-
-	
 
 	
 
@@ -834,9 +800,5 @@ public class EvasJDBC implements EvasDAO {
 //	}
 //		
 
-	
-
-	
-	
 //class closed
 }

@@ -25,13 +25,14 @@ public class ViewAll extends HttpServlet {
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
-		MultiModelMode rm = new MultiModelMode();
+		int requestid; // get request id
+		String requeststatus; // change to "Approved or Resolved or Denied"
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getRequestViewManager(rm));
-		System.out.println("ArrayList: " + evasDao.getRequestViewManager(rm));
+		String transactionString = om.writeValueAsString(evasDao.updateRequestStatus(requestid, requeststatus));
+		System.out.println("ArrayList: " + evasDao.updateRequestStatus(requestid, requeststatus));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
 		

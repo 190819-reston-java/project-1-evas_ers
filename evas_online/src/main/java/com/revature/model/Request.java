@@ -13,16 +13,16 @@ public class Request {
 	private Date eventdate;
 	private String requestinformation;
 	private int employeerequest;
-//	
-//	
-//	public int getEmployeerequest() {
-//		return employeerequest;
-//	}
-//
-//
-//	public void setEmployeerequest(int employeerequest) {
-//		this.employeerequest = employeerequest;
-//	}
+	
+	
+	public int getEmployeerequest() {
+		return employeerequest;
+	}
+
+
+	public void setEmployeerequest(int employeerequest) {
+		this.employeerequest = employeerequest;
+	}
 
 
 	

@@ -106,8 +106,8 @@ public class EvasOnlineDriver {
 //			logger.info("getMyDenied");// works
 //			System.out.println(evasDao.getMyDenied(5));
 			
-			logger.info("getAllEmployeeRequest");
-			System.out.println(evasDao.getAllEmployeeRequest(9));
+			logger.info("updateRequestStatus");
+			System.out.println(evasDao.updateRequestStatus(20, "Approved"));
 			
 			
 		
