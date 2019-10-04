@@ -18,7 +18,7 @@ import com.revature.repository.EvasJDBC;
 /**
  * Servlet implementation class ViewAll
  */
-public class MyResolved extends HttpServlet {
+public class MyDenied extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

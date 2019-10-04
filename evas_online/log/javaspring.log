@@ -1580,3 +1580,24 @@
 2019-10-03 20:12:55 INFO  EvasOnlineDriver:100 - getMyPending
 2019-10-03 20:12:56 INFO  EvasOnlineDriver:103 - getMyResolved
 2019-10-03 20:12:57 INFO  EvasOnlineDriver:106 - getMyDenied
+2019-10-04 00:41:25 DEBUG EvasOnlineDriver:26 - Connection test
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:35 - getEmailandPass
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:38 - getReportTo
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:42 - getReimbursement
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:45 - updateEmployee
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:50 - updateRequest
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:54 - createRequest
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:58 - getEmployeee List
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:62 - getRequest List
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:66 - getReimbursement List
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:70 - getImage List
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:74 - insertImage
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:77 - getEmployeeReimbursements
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:80 - getRequest with manager List
+2019-10-04 00:41:26 INFO  EvasOnlineDriver:84 - getRequest with manager List
+2019-10-04 00:41:27 INFO  EvasOnlineDriver:88 - getViewPending
+2019-10-04 00:41:28 INFO  EvasOnlineDriver:92 - getViewResolved
+2019-10-04 00:41:29 INFO  EvasOnlineDriver:96 - getViewDenied
+2019-10-04 00:41:31 INFO  EvasOnlineDriver:100 - getMyPending
+2019-10-04 00:41:31 INFO  EvasOnlineDriver:103 - getMyResolved
+2019-10-04 00:41:32 INFO  EvasOnlineDriver:106 - getMyDenied

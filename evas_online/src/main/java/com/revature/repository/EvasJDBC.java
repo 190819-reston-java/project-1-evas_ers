@@ -482,20 +482,20 @@ public class EvasJDBC implements EvasDAO {
 				
 	}
 
-	private Request createRequestManagerFromRS(ResultSet resultSet) throws SQLException {
-		return new Request(
-				
-				resultSet.getInt("requestid"),
-				resultSet.getDouble("requestvalue"),
-				resultSet.getString("requeststatus"),
-				resultSet.getString("requestcatagory"),
-				resultSet.getString("requestdescription"),
-				resultSet.getDate("requestdate"),
-				resultSet.getDate("eventdate"),
-				resultSet.getString("requestinformation"),
-				resultSet.getInt("employeerequest"));
-				
-	}
+//	private Request createRequestManagerFromRS(ResultSet resultSet) throws SQLException {
+//		return new Request(
+//				
+//				resultSet.getInt("requestid"),
+//				resultSet.getDouble("requestvalue"),
+//				resultSet.getString("requeststatus"),
+//				resultSet.getString("requestcatagory"),
+//				resultSet.getString("requestdescription"),
+//				resultSet.getDate("requestdate"),
+//				resultSet.getDate("eventdate"),
+//				resultSet.getString("requestinformation"),
+//				resultSet.getInt("employeerequest"));
+//				
+//	}
 	
 	
 	
@@ -560,8 +560,11 @@ public class EvasJDBC implements EvasDAO {
 		return requestviewmanager;
 	}
 
+	
+// MultiModelMode resultset	
 	private MultiModelMode createMultiModelFormRS(ResultSet resultSet) throws SQLException {
 		return new MultiModelMode(
+				resultSet.getInt("Transaction"),
 				resultSet.getInt("Employee Id"),
 				resultSet.getString("Employee Name"),
 				resultSet.getDouble("Requested Amount"),
@@ -669,7 +672,7 @@ public class EvasJDBC implements EvasDAO {
 		List<MultiModelMode> requestmypending = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
 				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
 			stmt.setInt(1, employeerequest);
@@ -696,7 +699,7 @@ public class EvasJDBC implements EvasDAO {
 		List<MultiModelMode> requestmyresolved = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
 				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'resolved' AND e.employeeid = ?;";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
 			stmt.setInt(1, employeerequest);
@@ -720,7 +723,7 @@ public class EvasJDBC implements EvasDAO {
 		List<MultiModelMode> requestmydenied = new ArrayList<MultiModelMode>();
 
 		try (Connection conn = ConnectionUtil.getConnection()) {
-		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
 				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'denied' AND e.employeeid = ?;";
 		try (PreparedStatement stmt = conn.prepareStatement(query)) {
 			stmt.setInt(1, employeerequest);
