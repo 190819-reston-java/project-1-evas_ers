@@ -30,7 +30,7 @@ public class LiveUserServlet extends HttpServlet {
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
-//		BasicLogin.employeeOfInterest = BasicLogin.loggedAccount;
+		BasicLogin.employeeOfInterest = BasicLogin.loggedAccount;
 		
 //		System.out.println(BasicLogin.aea+BasicLogin.apw);
 		System.out.println("  *Selected Employee: " + employeeService);
