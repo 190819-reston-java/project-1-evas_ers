@@ -82,7 +82,7 @@ public class EvasJDBC implements EvasDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String query = "INSERT INTO request VALUES (DEFAULT,?,?,?,?,?,?,?,Default);";
+		String query = "INSERT INTO request VALUES (DEFAULT,?,?,?,?,?,?,?,DEFAULT);";
 
 		try {
 			conn = ConnectionUtil.getConnection();
@@ -203,7 +203,33 @@ public class EvasJDBC implements EvasDAO {
 
 		return remoteRequest;
 	}
-
+//	// gets request by id
+//	@Override
+//	public MultiModelMode getAllEmployeeRequest(int employeeid) {
+//		MultiModelMode remoteAllEmployeeRequest = null;
+//
+//		try (Connection conn = ConnectionUtil.getConnection()) {
+//			String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+//					"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE e.employeeid = ?;";
+//			try (PreparedStatement stmt = conn.prepareStatement(query)) {
+//				stmt.setInt(1, employeeid);
+//				if (stmt.execute()) {
+//					try (ResultSet resultSet = stmt.getResultSet()) {
+//						if (resultSet.next()) {
+//							remoteAllEmployeeRequest = createMultiModelFormRS(resultSet);
+//
+//						}
+//					}
+//
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return remoteAllEmployeeRequest;
+//	}
+	
 	@Override
 	public Reimbursement getEmployeeReimbursement(int employeeid) {
 		Reimbursement remoteEReimbursement = null;
@@ -663,7 +689,36 @@ public class EvasJDBC implements EvasDAO {
 		
 		return requestviewdenied;
 	}
+//---
+	@Override
+	public List<MultiModelMode> getAllEmployeeRequest(int employeeid){//MultiModelMode mp) {
+		//Statement stmt = null;
+		//ResultSet resultSet = null;
+		//Connection conn = null;
+		
+		List<MultiModelMode> remoteAllEmployeeRequest = new ArrayList<MultiModelMode>();
 
+		try (Connection conn = ConnectionUtil.getConnection()) {
+		String query = "SELECT r.requestid \"Transaction\", r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
+		try (PreparedStatement stmt = conn.prepareStatement(query)) {
+			stmt.setInt(1, employeeid);
+			if (stmt.execute()) {
+				try (ResultSet resultSet = stmt.getResultSet()) {
+					while (resultSet.next()) {
+						remoteAllEmployeeRequest.add(createMultiModelFormRS(resultSet));
+					}
+				}
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return remoteAllEmployeeRequest;
+}
+	
+	
 	@Override
 	public List<MultiModelMode> getMyPending(int employeerequest){//MultiModelMode mp) {
 		//Statement stmt = null;

@@ -40,7 +40,7 @@ public class EvasOnlineDriver {
 			//System.out.println(evasDao.getReportTo(em));	
 			
 		logger.info("getRequest"); // works
-			System.out.println(evasDao.getRequest(8));
+			//System.out.println(evasDao.getRequest(8));
 		
 		logger.info("updateEmployee"); // works
 			//Employee ru = new Employee(10, "Spring", "Java", "Coder", "jspring@evas.com", "js9876");
@@ -81,7 +81,7 @@ public class EvasOnlineDriver {
 			//Request rm = new Request ();
 			//System.out.println(evasDao.viewRequestManager(rm));
 			
-//			logger.info("getRequest with manager List");// works	
+		logger.info("getRequest with manager List");// works	
 //			MultiModelMode rm = new MultiModelMode();
 //			System.out.println(evasDao.getRequestViewManager(rm));
 //			
@@ -89,7 +89,7 @@ public class EvasOnlineDriver {
 //			MultiModelMode vp = new MultiModelMode();
 //			System.out.println(evasDao.getViewPending(vp));
 //			
-//			logger.info("getViewResolved");// works
+			logger.info("getViewResolved");// works
 //			MultiModelMode vr = new MultiModelMode();
 //			System.out.println(evasDao.getViewResolved(vr));
 //			
@@ -106,9 +106,12 @@ public class EvasOnlineDriver {
 //			logger.info("getMyDenied");// works
 //			System.out.println(evasDao.getMyDenied(5));
 			
+			logger.info("getAllEmployeeRequest");
+			System.out.println(evasDao.getAllEmployeeRequest(9));
+			
 			
 		
-		System.out.println("result end");
+//		System.out.println("result end");
 	}
 
 }

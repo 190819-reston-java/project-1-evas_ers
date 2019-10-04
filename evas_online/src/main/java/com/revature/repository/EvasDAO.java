@@ -32,7 +32,7 @@ public interface EvasDAO {
 		
 	// Request
 	MultiModelMode getRequest(int requestid);
-	
+	List<MultiModelMode> getAllEmployeeRequest(int employeeid);
 	
 	// Image
 	Image insertImage(String imagename, byte[] image);
