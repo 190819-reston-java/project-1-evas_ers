@@ -100,6 +100,12 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.ViewResolved</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SelectRequest</servlet-name>
+		<display-name>SelectRequest</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.SelectRequest</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Service</servlet-name>
@@ -181,6 +187,10 @@
 	<servlet-mapping>
 		<servlet-name>ViewResolved</servlet-name>
 		<url-pattern>/ViewResolved</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SelectRequest</servlet-name>
+		<url-pattern>/SelectRequest</url-pattern>
 	</servlet-mapping>
 
 </web-app>

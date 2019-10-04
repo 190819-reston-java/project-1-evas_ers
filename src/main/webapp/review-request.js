@@ -1,13 +1,27 @@
 'use strict';
 
-console.log("version 5.31");
+// let logoutPanel = document.getElementById("logout-panel");
+// logoutPanel.style.display = "none";
+console.log("1.34");
 
 let id = null;
 let firstName = null;
 let lastName = null;
+let email = null;
+let password = null;
+let position = null;
+
 let accountMenu = document.getElementById("account-button");
-let transactionTable = document.getElementById("transaction-table");
-// transactionTable.insertRow(3).
+let currentFirstName = document.getElementById("currentFirstName");
+let currentLastName = document.getElementById("currentLastName");
+let currentEmail = document.getElementById("currentEmail");
+let currentPassword = document.getElementById("currentPassword");
+
+// currentFirstName.innerText = "NULL";
+// currentLastName.innerText = "NULL";
+// currentEmail.innerText = "NULL";
+// currentPassword.innerText = "****";
+
 
 fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     .then((response) => {
@@ -15,35 +29,30 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     })
     .then((json) => {
         console.log(json);
+        id = json.employeeid;
         firstName = json.employeefirstname;
         lastName = json.employeelastname;
+        email = json.employeeemail;
+        password = json.employeepassword;
+        position = json.employeeposition;
         accountMenu.innerHTML = firstName + " " + lastName;
-        // transactionTable.innerHTML = firstName + " " + lastName;
+
+        currentFirstName.innerText = firstName;
+        currentLastName.innerText = lastName;
+        currentEmail.innerText = email;
+        currentPassword.innerText = censor(password);
     });
 
 
-    
-    /* Edit this block of code: */
-fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
-    .then((response) => {
-        return response.json();
-    })
-    .then((json) => {
-        console.log(json);
-        let p = 0;
-        for(var i=0;i<json.length;i++){
-            var a = transactionTable.insertRow(transactionTable.size);
-            var b = a.insertCell(0);
-            var c = a.insertCell(1);
-            var d = a.insertCell(2);
-            var e = a.insertCell(3);
+function censor(text) {
+    let output = "";
+    for (let i = 0; i < text.length; i++) {
+        output = output + '*';
+    }
+    return output;
+}
 
-            b.innerHTML = json[i].employeename;
-            c.innerHTML = json[i].requestcatagory;
-            d.innerHTML = '$' + json[i].requestvalue;
-            e.innerHTML = json[i].requeststatus;
-        }
-    });
+console.log("testing: " + censor("sdf"));
 
 
 let logoutPanel = document.getElementById("logout-panel");

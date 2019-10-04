@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <div>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-            </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-            </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-            </script>
-    </div>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+<head>
+	<div>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+			</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+			</script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+			</script>
+	</div>
+	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
+
 <body>
+	<div id="logo" class="col-md-8">
+		<h1><a class="badge badge-secondary" href="#" style="margin: 20px">EVAS</a></h1>
+	</div>
 	<form action="BasicLogin" method="POST">
 		<table id="login-table">
+			<tr>
+				<td colspan="2"><h5>Enter your login information:</h5></td>
+			</tr>
 			<tr>
 				<td>Email:</td>
 				<td><input type="text" name="enterEmail"></td>
@@ -29,10 +37,10 @@
 				<td><input type="password" name="enterPassword">
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="login"
-					style="width: 100%"></td>
+				<td colspan="2"><input type="submit" value="login" style="width: 100%"></td>
 			</tr>
 		</table>
 	</form>
 </body>
+
 </html>

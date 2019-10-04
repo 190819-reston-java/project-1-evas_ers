@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>EVAS</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <div>
@@ -13,17 +13,20 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+
             </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+
             </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+
             </script>
     </div>
 
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <!-- <script src='main.js'></script> -->
+
 </head>
 
 <body>
@@ -44,7 +47,10 @@
 
             <!-- logo/title: self explanatory -->
             <div id="logo" class="col-md-8">
-                <h1><a class="badge badge-secondary" href="index.html">EVAS</a></h1>
+                <h2>
+                    <a class="badge badge-secondary" href="index.html">EVAS</a>
+                </h2>
+                <h3 class="SettingsBanner">Review Reimbursement Request</h3>
             </div>
 
             <!-- buffer div -->
@@ -55,72 +61,64 @@
                 <div class="dropdown">
                     <button id="account-button" class="btn btn-secondary dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        *your account name here
+                        <!-- <%=session.getAttribute("activeAccount")%> -->
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="index.html">Account Home</a>
-                        <a class="dropdown-item" href="settings.html">Account settings</a>
-                        <a class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
+                        <a class="dropdown-item" href="recent.html">Account Activity</a>
+                        <a id="dropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-md-11 mx-auto">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a id="NLactive" class="nav-link active" href="#">All Activity</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="background-color: #ddd" href="ViewPending.html">Pending</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="background-color: #ddd" href="ViewResolved.html">Resolved</a>
-                    </li>
-                </ul>
-                <table id="transaction-table" class="table table-striped" align="center" style="width: 100%">
-                    <thead class="thead-dark">
+
+            <!-- Settings Panel -->
+            <div id="profileInfo" class="col-md-4 m-3 p-4 mx-auto">
+                <form id="account-settings" action="UpdateSettings" method="POST">
+                    <table id="settingsTable" class="mx-auto">
                         <tr>
-                            <th>ID Number</th>
-                            <th>Employee</th>
-                            <th>Category</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <!-- <th style="max-width: 80px"></th> -->
-                            <!-- <th style="max-width: 80px"></th> -->
+                            <td><b>Employee:</b></td>
+                            <td id="name">/John Doe</td>
                         </tr>
-                    </thead>
-                    <tbody>
+                        <tr>
+                            <td><b>Position:</b></td>
+                            <td id="name">/Janitor</td>
+                        </tr>
+                        <tr>
+                            <td><b>Value:</b></td>
+                            <td id="value">/$100</td>
+                        </tr>
+                        <tr>
+                            <td><b>Category:</b></td>
+                            <td id="categoryanddesc">/Supplies</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" id="description" style="max-width: 350px"><b>Additional Info: </b>N/A</td>
+                        </tr>
                         <!-- <tr>
-                            <td>9/12</td>
-                            <td>Transportation expense request</td>
-                            <td>$60</td>
-                            <td>Pending</td>
-                        </tr>
-                        <tr>
-                            <td>8/24</td>
-                            <td>Food expense request</td>
-                            <td>Resolved</td>
-                        </tr>
-                        <tr>
-                            <td>8/19</td>
-                            <td>Fuel Reimbursement</td>
-                            <td>Resolved</td>
+                            <td colspan="2" id="description">/New Mop and Bucket</td>
                         </tr> -->
-                    </tbody>
-                </table>
-                <!-- </form> -->
-                <form action="SelectRequest" method="post">
-                    <input type="number" name="id" step="1" min = "1">
-                    <input type="submit" value="Select Request By ID">
+
+                        <tr>
+                            <td><input type="submit" class="btn btn-success mx-center" value="Approve"
+                                    style="width: 120px"></td>
+                            <td><input type="submit" class="btn btn-danger mx-center" value="Deny"
+                                    style="width: 120px"></td>
+                        </tr>
+                    </table>
                 </form>
+
             </div>
+
+
         </div>
+
     </div>
 
-
-    <script src="view-all.js"></script>
+    <script src="review-request.js"></script>
 </body>
 
 </html>
