@@ -2,7 +2,7 @@
 
 // let logoutPanel = document.getElementById("logout-panel");
 // logoutPanel.style.display = "none";
-console.log("Version 8.17");
+console.log("Version 11:18");
 
 let id = null;
 let firstName = null;

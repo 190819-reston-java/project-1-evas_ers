@@ -11,9 +11,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewEmployeeRequests extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+//		int id = Integer.parseInt(req.getParameter("id"));
 		
+		BasicLogin.employeeOfInterest = Integer.parseInt(req.getParameter("id"));
+		
+		System.out.println("helllooooo");
+//		resp.sendRedirect("ViewEmpReq.html");
 
 	}
 

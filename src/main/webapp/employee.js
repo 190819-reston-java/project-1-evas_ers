@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 7.52");
+console.log("version 11:35");
 
 let id = null;
 let firstName = null;
@@ -35,21 +35,27 @@ fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
             var b = a.insertCell(0);
 
             //creates a form for each row
-            var x = document.createElement("FORM");
+            var x = document.createElement("FORM");             //form
             x.setAttribute("id", "myForm");
+            x.setAttribute("action", "ViewEmployeeRequests");    //Connects to the servlet
             document.body.appendChild(x);
 
             //creates a button to select the employee
-            var y = document.createElement("INPUT");
+            var y = document.createElement("INPUT");            //input 1: button
             y.setAttribute("type", "submit");
-            y.setAttribute("value", json[i].employeelastname);
-            b.appendChild(y);
+            y.setAttribute("value", "Select");
 
             // creates a hidden field to store the employee data
-            var z = document.createElement("INPUT");
-            z.setAttribute("type", "hidden");
-            z.setAttribute("value", e.innerHTML);
-            console.log(z.getAttribute("value"));
+            var z = document.createElement("INPUT");            //input 2: hidden field
+            z.setAttribute("type", "hidden");                   
+            z.setAttribute("value", json[i].employeeid);        //stores employeeid
+            z.setAttribute("name", "id");                       //field is named "id"
+            b.appendChild(y);
+
+            // var z = document.createElement("INPUT");
+            // z.setAttribute("type", "hidden");
+            // z.setAttribute("value", e.innerHTML);
+            // console.log(z.getAttribute("value"));
 
             var c = a.insertCell(1);
             var d = a.insertCell(2);

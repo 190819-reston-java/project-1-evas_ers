@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 6.39");
+console.log("version 11:24");
 
 let id = null;
 let firstName = null;
@@ -24,7 +24,7 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
 
     
     /* Edit this block of code: */
-fetch("http://localhost:8080/evas_online/ViewResolved", { method: "POST" })
+    fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
     .then((response) => {
         return response.json();
     })
@@ -36,10 +36,12 @@ fetch("http://localhost:8080/evas_online/ViewResolved", { method: "POST" })
             var c = a.insertCell(1);
             var d = a.insertCell(2);
             var e = a.insertCell(3);
-            b.innerHTML = json[i].reimbursementdate;
-            c.innerHTML = "Travel/Overnight";
-            d.innerHTML = '$' + json[i].reimbursementamount;
-            e.innerHTML = json[i].reimbursementstatus;
+
+            b.innerHTML = json[i].employeename;
+            c.innerHTML = json[i].requestcatagory;
+            d.innerHTML = '$' + json[i].requestvalue;
+            e.innerHTML = json[i].requeststatus;
+            
         }
     });
 

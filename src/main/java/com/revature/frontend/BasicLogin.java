@@ -28,6 +28,8 @@ public class BasicLogin extends HttpServlet {
 //	public static String apw = "null";
 	public static int loggedAccount = 0;
 	
+	public static int employeeOfInterest = 0;
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -69,7 +71,8 @@ public class BasicLogin extends HttpServlet {
 //			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
 			
 			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
-			System.out.println("Logging in account #"+loggedAccount);
+			employeeOfInterest = loggedAccount;
+			System.out.println("Logging in account #"+loggedAccount + ", employee of interest is: " + employeeOfInterest);
 			
 			
 			
@@ -86,10 +89,10 @@ public class BasicLogin extends HttpServlet {
 			System.out.println("  *Setting selected employee: " + evasDao.getEmailandPass(email, password).getEmployeeid());
 			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
 //			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
-			
+
 			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
-			System.out.println("Logging in account #"+loggedAccount);
-			
+			employeeOfInterest = loggedAccount;
+			System.out.println("Logging in account #"+loggedAccount + ", employee of interest is: " + employeeOfInterest);
 			
 			
 			HttpSession session = req.getSession();

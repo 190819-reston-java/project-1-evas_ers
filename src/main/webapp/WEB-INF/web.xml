@@ -73,6 +73,24 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.ViewEmployeeRequests</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ApprovalServlet</servlet-name>
+		<display-name>ApprovalServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ApprovalServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewPending</servlet-name>
+		<display-name>ViewPending</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewPending</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewResolved</servlet-name>
+		<display-name>ViewResolved</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewResolved</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Service</servlet-name>
@@ -131,6 +149,18 @@
 	<servlet-mapping>
 		<servlet-name>ViewEmployeeRequests</servlet-name>
 		<url-pattern>/ViewEmployeeRequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ApprovalServlet</servlet-name>
+		<url-pattern>/ApprovalServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewPending</servlet-name>
+		<url-pattern>/ViewPending</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewResolved</servlet-name>
+		<url-pattern>/ViewResolved</url-pattern>
 	</servlet-mapping>
 
 </web-app>

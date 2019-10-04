@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 8.17");
+console.log("version 10:56");
 
 let id = null;
 let firstName = null;
@@ -37,30 +37,32 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
             var d = a.insertCell(2);
             var e = a.insertCell(3);
 
-            b.innerHTML = json[i].reimbursementdate;
-            c.innerHTML = "Travel/Overnight";
-            d.innerHTML = '$' + json[i].reimbursementamount;
-            e.innerHTML = json[i].reimbursementstatus;
+            b.innerHTML = json[i].employeename;
+            c.innerHTML = json[i].requestcatagory;
+            d.innerHTML = '$' + json[i].requestvalue;
+            e.innerHTML = json[i].requeststatus;
 
             var f = a.insertCell(4);
 
+            if(json[i].requeststatus === "pending"){
             //creates a form for each row
-            var x = document.createElement("FORM");
+            var x = document.createElement("FORM");             //form
             x.setAttribute("id", "myForm");
-            x.setAttribute("action", "ViewEmployeeRequests");
+            x.setAttribute("action", "ApprovalServlet");        //Connects to the servlet
             document.body.appendChild(x);
 
             //creates a button to select the employee
-            var y = document.createElement("INPUT");
+            var y = document.createElement("INPUT");            //input 1: button
             y.setAttribute("type", "submit");
-            y.setAttribute("value", json[i].employeelastname);
+            y.setAttribute("value", "Approve");
             f.appendChild(y);
 
             // creates a hidden field to store the employee data
-            var z = document.createElement("INPUT");
+            var z = document.createElement("INPUT");            //input 2: hidden field
             z.setAttribute("type", "hidden");
-            z.setAttribute("value", json[i].reimbursementstatus);
+            z.setAttribute("value", json[i].requestinformation);    //stores the requestinformation
             console.log(z.getAttribute("value"));
+            }
         }
     });
 

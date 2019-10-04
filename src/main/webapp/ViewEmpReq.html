@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>EVAS</title>
+    <title>Reimbursement History</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <div>
@@ -13,20 +13,17 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-
             </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-
             </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-
             </script>
     </div>
 
-    <link rel='stylesheet' type='text/css' media='screen' href='manager_home.css'>
-
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <!-- <script src='main.js'></script> -->
 </head>
 
 <body>
@@ -39,6 +36,7 @@
             <button id="logout-panel-no" type="button" class="btn btn-secondary" onclick="declineLogout()">No</button>
         </form>
     </div>
+
     <div id="overlay"></div>
 
     <div id="blurMe" class="container-fluid">
@@ -46,11 +44,7 @@
 
             <!-- logo/title: self explanatory -->
             <div id="logo" class="col-md-8">
-                <h2>
-                    <span class="badge badge-secondary">EVAS</span> Expense
-                    Reimbursement
-                </h2>
-                <h1 class="adminText">MANAGER HOMEPAGE</h1>
+                <h2><a class="badge badge-secondary" href="index.html">EVAS</a></h2>
             </div>
 
             <!-- buffer div -->
@@ -59,67 +53,46 @@
             <!-- Here is the clickable that brings up account options such as logout -->
             <div id="account-panel" class="col-md-3 align-self-center" align="center">
                 <div class="dropdown">
-                    <button id="account-button" class="btn btn-danger dropdown-toggle" type="button"
+                    <button id="account-button" class="btn btn-secondary dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!-- <%=session.getAttribute("activeAccount")%> -->
+                        *your account name here
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="index.html">Account Home</a>
                         <a class="dropdown-item" href="settings.html">Account settings</a>
-                        <a clasropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
+                        <a class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
-            </div>s="dropdown-item" href="recent.html">Account activity</a>
-            <a id="d
+            </div>
         </div>
 
-
-        <div class=" row">
-
-                <!-- Employee Management -->
-                <div id="new-report" class="col-md-9 m-3 p-3 mx-auto" align="center">
-                    <H4 class="inherit">Employee Management:</H4>
-                    <!-- <h6 class="inherit">Start here:</h6> -->
-                    <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
-
-                    <!-- <button type="btn" class="btn btn-danger" style="min-width: 200px">View Pending Requests</button>
-                    <button type="btn" class="btn btn-danger" style="min-width: 200px">View Resolved Requests</button> -->
-                    
-                    <!-- <button type="btn" class="btn btn-danger" style="min-width: 200px" href="view-all.html">View ALL
-                        Requests</button> -->
-                    <!-- <button type="btn" class="btn btn-danger" style="min-width: 200px">View Employees</button> -->
-                    <form action="view-all.html" class="inherit" method="POST">
-                        <input type="submit" value="View ALL Requests" type="button" class="btn btn-danger">
-                </form>
-                <form action="employee.html" class="inherit" method="POST">
-                        <input type="submit" value="View Employees" type="button" class="btn btn-danger">
-                </form>
-                </div>
-
-                <!-- file new report button -->
-                <div id="new-report" class="col-md-4 m-3 p-3 mx-auto" align="center">
-                    <H4 class="inherit">Require Reimbursement?</H4>
-                    <h4 class="inherit">Start here:</h4>
-                    <!-- <h6 class="inherit">Start here:</h6> -->
-                    <!-- <div class="mx-auto">Owed Reimbursement?   Look no further:</div> -->
-                    <!-- <button type="btn" class="btn btn-danger btn-lg">File New
-                        Report</button> -->
-                    <a href="request.html">File New Request</a>
-
-                </div>
-
-                <div id="recent-activity" class="col-lg-6 m-3 p-3 mx-auto">
-                    <H4 class="inherit" align="center">
-                        <a href="recent.html">Recent Activity</a>
-                    </H4>
-                    <table id="transaction-table" align="center" style="width: 100%">
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a id="NLactive"  class="nav-link active" href="#">All Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="background-color: #ddd" href="MyPending.html">Pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="background-color: #ddd" href="MyResolved.html">Resolved</a>
+                    </li>
+                </ul>
+                <table id="transaction-table" class="table table-striped" align="center" style="width: 100%">
+                        <thead class="thead-dark">
                         <tr>
                             <th>Date</th>
                             <th>Request</th>
+                            <th>Amount</th>
                             <th>Status</th>
                         </tr>
-                        <tr>
+                    </thead>
+                    <tbody id="transaction-table">
+                        <!-- <tr>
                             <td>9/12</td>
                             <td>Transportation expense request</td>
+                            <td>$60</td>
                             <td>Pending</td>
                         </tr>
                         <tr>
@@ -131,16 +104,15 @@
                             <td>8/19</td>
                             <td>Fuel Reimbursement</td>
                             <td>Resolved</td>
-                        </tr>
-                    </table>
-                </div>
-
-
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-
     </div>
 
-    <script src="index.js"></script>
+
+    <script src="ViewEmpReq.js"></script>
 </body>
 
 </html>
