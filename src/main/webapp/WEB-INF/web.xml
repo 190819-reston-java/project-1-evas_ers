@@ -1,0 +1,186 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>Evas</servlet-name>
+		<servlet-class>com.revature.frontend.EvasServlet</servlet-class>
+	</servlet>
+	<!-- Settings -->
+	<servlet>
+		<servlet-name>SettingsServlet</servlet-name>
+		<display-name>SettingsServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.SettingsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.revature.frontend.BasicLogin</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>NewRequest</servlet-name>
+		<servlet-class>com.revature.frontend.RequestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Logout</servlet-name>
+		<display-name>Logout</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.LogoutServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Service</servlet-name>
+		<servlet-class>com.revature.frontend.ServiceServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LiveUserServlet</servlet-name>
+		<display-name>LiveUserServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.LiveUserServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ViewReimbursements</servlet-name>
+		<display-name>ViewReimbursements</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewReimbursements</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewRequests</servlet-name>
+		<display-name>ViewRequests</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewRequests</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MyResolved</servlet-name>
+		<servlet-class>com.revature.frontend.MyResolved</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MyPending</servlet-name>
+		<servlet-class>com.revature.frontend.MyPending</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ViewAll</servlet-name>
+		<display-name>ViewAll</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewAll</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<display-name>EmployeeListServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.EmployeeListServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewEmployeeRequests</servlet-name>
+		<display-name>ViewEmployeeRequests</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewEmployeeRequests</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ApprovalServlet</servlet-name>
+		<display-name>ApprovalServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ApprovalServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewPending</servlet-name>
+		<display-name>ViewPending</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewPending</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewResolved</servlet-name>
+		<display-name>ViewResolved</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewResolved</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Service</servlet-name>
+		<url-pattern>/service/</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>Evas</servlet-name>
+		<url-pattern>/evas</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/BasicLogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LiveUserServlet</servlet-name>
+		<url-pattern>/LiveUser</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet-mapping>
+		<servlet-name>SettingsServlet</servlet-name>
+		<url-pattern>/UpdateSettings</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewRequest</servlet-name>
+		<url-pattern>/NewRequest</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet-mapping>
+		<servlet-name>ViewReimbursements</servlet-name>
+		<url-pattern>/ViewReimbursements</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewRequests</servlet-name>
+		<url-pattern>/ViewRequests</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>MyPending</servlet-name>
+		<url-pattern>/MyPending</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>MyResolved</servlet-name>
+		<url-pattern>/MyResolved</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet-mapping>
+		<servlet-name>ViewAll</servlet-name>
+		<url-pattern>/ViewAll</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<url-pattern>/EmployeeList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewEmployeeRequests</servlet-name>
+		<url-pattern>/ViewEmployeeRequests</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ApprovalServlet</servlet-name>
+		<url-pattern>/ApprovalServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewPending</servlet-name>
+		<url-pattern>/ViewPending</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewResolved</servlet-name>
+		<url-pattern>/ViewResolved</url-pattern>
+	</servlet-mapping>
+
+</web-app>
