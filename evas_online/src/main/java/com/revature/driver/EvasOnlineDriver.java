@@ -61,8 +61,7 @@ public class EvasOnlineDriver {
 		logger.info("getRequest List"); // works
 			Request ra = new Request ();
 			System.out.println("Get request list: " + evasDao.getRequest(ra));
-			
-	
+
 		
 		logger.info("insertImage"); // not working
 			//System.out.println(evasDao.insertImage(smilyface, image));
@@ -71,6 +70,7 @@ public class EvasOnlineDriver {
 		
 		System.out.println(evasDao.getEmployeeReimbursements(6));
 		
+//		System.out.println("****Lets try this: "+evasDao.getPendingReimbursements());
 //		System.out.println("creating request");
 //		
 //		evasDao.createRequest(rc);

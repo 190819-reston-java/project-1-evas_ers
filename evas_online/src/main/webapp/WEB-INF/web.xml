@@ -61,6 +61,18 @@
 		<description></description>
 		<servlet-class>com.revature.frontend.ViewAll</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<display-name>EmployeeListServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.EmployeeListServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ViewEmployeeRequests</servlet-name>
+		<display-name>ViewEmployeeRequests</display-name>
+		<description></description>
+		<servlet-class>com.revature.frontend.ViewEmployeeRequests</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Service</servlet-name>
@@ -111,6 +123,14 @@
 	<servlet-mapping>
 		<servlet-name>ViewAll</servlet-name>
 		<url-pattern>/ViewAll</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmployeeListServlet</servlet-name>
+		<url-pattern>/EmployeeList</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ViewEmployeeRequests</servlet-name>
+		<url-pattern>/ViewEmployeeRequests</url-pattern>
 	</servlet-mapping>
 
 </web-app>

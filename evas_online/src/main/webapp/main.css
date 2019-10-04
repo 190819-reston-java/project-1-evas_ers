@@ -97,3 +97,9 @@ td{
 #profileInfo{
 	min-width:500px;
 }
+
+#NLactive{
+	background-color: #343A40;
+	color: #ffffff;
+	border-bottom:1px solid #343a40;
+}

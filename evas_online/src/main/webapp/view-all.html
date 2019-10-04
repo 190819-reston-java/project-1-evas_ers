@@ -23,7 +23,7 @@
     </div>
 
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <!-- <script src='main.js'></script> -->
 </head>
 
 <body>
@@ -44,7 +44,7 @@
 
             <!-- logo/title: self explanatory -->
             <div id="logo" class="col-md-8">
-                <h2><span class="badge badge-secondary">EVAS</span> Expense Reimbursement</h2>
+                <h2><a class="badge badge-secondary" href="index.html">EVAS</a></h2>
             </div>
 
             <!-- buffer div -->
@@ -60,7 +60,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="index.html">Account Home</a>
                         <a class="dropdown-item" href="settings.html">Account settings</a>
-                        <a class="dropdown-item" href="#">Log out</a>
+                        <a class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
             </div>
@@ -70,22 +70,23 @@
             <div class="col-md-11 mx-auto">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">All Activity</a>
+                        <a id="NLactive" class="nav-link active" href="#">All Activity</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="background-color: #ddd" href="#">Pending</a>
+                        <a class="nav-link" style="background-color: #ddd" href="ViewPending.html">Pending</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="background-color: #ddd" href="#">Resolved</a>
+                        <a class="nav-link" style="background-color: #ddd" href="ViewResolved.html">Resolved</a>
                     </li>
                 </ul>
-                <table id="transaction-table" align="center" style="width: 100%">
-                    <thead>
+                <table id="transaction-table" class="table table-striped" align="center" style="width: 100%">
+                        <thead class="thead-dark">
                         <tr>
                             <th>Date</th>
                             <th>Request</th>
                             <th>Amount</th>
-                            <th>Status</th>
+                            <th style="max-width: 120px">Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

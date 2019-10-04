@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 8.17");
+console.log("version 12.57");
 
 let id = null;
 let firstName = null;
@@ -24,7 +24,7 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
 
     
     /* Edit this block of code: */
-fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
+fetch("http://localhost:8080/evas_online/MyPending", { method: "POST" })
     .then((response) => {
         return response.json();
     })
@@ -36,31 +36,10 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
             var c = a.insertCell(1);
             var d = a.insertCell(2);
             var e = a.insertCell(3);
-
             b.innerHTML = json[i].reimbursementdate;
             c.innerHTML = "Travel/Overnight";
             d.innerHTML = '$' + json[i].reimbursementamount;
             e.innerHTML = json[i].reimbursementstatus;
-
-            var f = a.insertCell(4);
-
-            //creates a form for each row
-            var x = document.createElement("FORM");
-            x.setAttribute("id", "myForm");
-            x.setAttribute("action", "ViewEmployeeRequests");
-            document.body.appendChild(x);
-
-            //creates a button to select the employee
-            var y = document.createElement("INPUT");
-            y.setAttribute("type", "submit");
-            y.setAttribute("value", json[i].employeelastname);
-            f.appendChild(y);
-
-            // creates a hidden field to store the employee data
-            var z = document.createElement("INPUT");
-            z.setAttribute("type", "hidden");
-            z.setAttribute("value", json[i].reimbursementstatus);
-            console.log(z.getAttribute("value"));
         }
     });
 

@@ -2,7 +2,7 @@
 
 // let logoutPanel = document.getElementById("logout-panel");
 // logoutPanel.style.display = "none";
-console.log("Version 12.57");
+console.log("Version 8.17");
 
 let id = null;
 let firstName = null;
@@ -26,16 +26,22 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
         email = json.employeeemail;
         password = json.employeepassword;
         position = json.employeeposition;
+        console.log(json.employeeposition);
+        console.log(window.location);
+        if(position === "Manager" && window.location.hostname==="http://localhost:8080/evas_online/index.html"){
+            window.location.replace("http://localhost:8080/evas_online/manager_home.html");
+        }
         accountMenu.innerHTML = firstName + " " + lastName;
     });
+    
 
   
 // fetch("http://localhost:8080/evas_online/ViewRequests", { method: "POST" })
 //     .then((response) => {
 //         return response.json();
 //     })
-transactionTable.insertRow("piggy");
-transactionTable.innerHTML = "piggy";
+// transactionTable.insertRow("piggy");
+// transactionTable.innerHTML = "piggy";
 
 
 let logoutPanel = document.getElementById("logout-panel");

@@ -47,8 +47,7 @@
             <!-- logo/title: self explanatory -->
             <div id="logo" class="col-md-8">
                 <h2>
-                    <span class="badge badge-secondary">EVAS</span> Expense
-                    Reimbursement
+                    <a class="badge badge-secondary" href="index.html">EVAS</a>
                 </h2>
                 <h1 class="SettingsBanner">Reimbursement Request</h1>
             </div>
@@ -64,9 +63,9 @@
                         <!-- <%=session.getAttribute("activeAccount")%> -->
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Account settings</a> <a class="dropdown-item" href="#">Account
-                            activity</a> <a id="dropdown-logout" class="dropdown-item" href="#"
-                            onclick="confirmLogout()">Log out</a>
+                        <a class="dropdown-item" href="settings.html">Account settings</a>
+                        <a class="dropdown-item" href="recent.html">Account activity</a>
+                        <a id="dropdown-logout" class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
             </div>
@@ -81,8 +80,8 @@
                     <table id="settingsTable">
                         <td>
                             <lable>Catagory:</lable>
-                            <td>
-                                <!-- <input type="field" name="enterRequestCatagory"></td> -->
+                        <td>
+                            <!-- <input type="field" name="enterRequestCatagory"></td> -->
                             <select name="enterRequestCatagory">
                                 <option>Food</option>
                                 <option>Travel</option>
@@ -97,7 +96,8 @@
                         </tr>
                         <tr>
                             <td>Amount:</td>
-                            <td><input type="number"  min="0.00" max="10000.00" step="0.01" name="enterRequestValue"></td>
+                            <td><input type="number" min="0.00" max="10000.00" step="0.01" name="enterRequestValue">
+                            </td>
                         </tr>
                         <tr>
                             <td>Description: (optional)</td>
