@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Employee;
+import com.revature.model.MultiModelMode;
 import com.revature.model.Reimbursement;
 import com.revature.repository.EvasDAO;
 import com.revature.repository.EvasJDBC;
@@ -24,13 +25,13 @@ public class MyPending extends HttpServlet {
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
-		Reimbursement ar = new Reimbursement();
+		int employeerequest; // employee id
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getReimbursement(ar));
-		System.out.println("ArrayList: " + evasDao.getReimbursement(ar));
+		String transactionString = om.writeValueAsString(evasDao.getMyPending(employeerequest));
+		System.out.println("ArrayList: " + evasDao.getMyPending(employeerequest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
 		

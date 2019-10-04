@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.revature.frontend;
 
 import java.io.IOException;

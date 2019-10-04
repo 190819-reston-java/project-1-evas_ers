@@ -51,12 +51,12 @@ public class EvasJDBC implements EvasDAO {
 		try (Connection conn = ConnectionUtil.getConnection()) {
 			String query = "SELECT * FROM reportto";
 			try (PreparedStatement stmt = conn.prepareStatement(query)) {
-				stmt.setInt(0, em.getEmployeeid());
-				stmt.setString(2, em.getEmployeelastname());
-				stmt.setString(3, em.getEmployeefirstname());
-				stmt.setString(4, em.getEmployeeposition());
-				stmt.setString(5, em.getEmployeeemail());
-				stmt.setString(6, em.getEmployeepassword());
+//				stmt.setInt(1, em.getEmployeeid());
+//				stmt.setString(2, em.getEmployeelastname());
+//				stmt.setString(3, em.getEmployeefirstname());
+//				stmt.setString(4, em.getEmployeeposition());
+//				stmt.setString(5, em.getEmployeeemail());
+//				stmt.setString(6, em.getEmployeepassword());
 				
 				
 				if (stmt.execute()) {
@@ -659,6 +659,85 @@ public class EvasJDBC implements EvasDAO {
 		
 		return requestviewdenied;
 	}
+
+	@Override
+	public List<MultiModelMode> getMyPending(int employeerequest){//MultiModelMode mp) {
+		//Statement stmt = null;
+		//ResultSet resultSet = null;
+		//Connection conn = null;
+		
+		List<MultiModelMode> requestmypending = new ArrayList<MultiModelMode>();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'pending' AND e.employeeid = ?;";
+		try (PreparedStatement stmt = conn.prepareStatement(query)) {
+			stmt.setInt(1, employeerequest);
+			if (stmt.execute()) {
+				try (ResultSet resultSet = stmt.getResultSet()) {
+					while (resultSet.next()) {
+						requestmypending.add(createMultiModelFormRS(resultSet));
+					}
+				}
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return requestmypending;
+}		
+		
+		
+
+
+	@Override
+	public List<MultiModelMode> getMyResolved(int employeerequest) {
+		List<MultiModelMode> requestmyresolved = new ArrayList<MultiModelMode>();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'resolved' AND e.employeeid = ?;";
+		try (PreparedStatement stmt = conn.prepareStatement(query)) {
+			stmt.setInt(1, employeerequest);
+			if (stmt.execute()) {
+				try (ResultSet resultSet = stmt.getResultSet()) {
+					while (resultSet.next()) {
+						requestmyresolved.add(createMultiModelFormRS(resultSet));
+					}
+				}
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return requestmyresolved;
+}		
+
+	@Override
+	public List<MultiModelMode> getMyDenied(int employeerequest) {
+		List<MultiModelMode> requestmydenied = new ArrayList<MultiModelMode>();
+
+		try (Connection conn = ConnectionUtil.getConnection()) {
+		String query = "SELECT r.employeerequest \"Employee Id\", concat(e.employeefirstname , ' ', e.employeelastname) \"Employee Name\", r.requestvalue \"Requested Amount\", r.requestcatagory \"Catagory\", r.requestdescription \"Description\", r.requestinformation \"Information\", r.requeststatus \"Status\", concat(m.employeefirstname , ' ', m.employeelastname) \"Manager\" \r\n" + 
+				"FROM request r INNER join employee e ON r.employeerequest = e.employeeid INNER JOIN employee m ON m.employeeid = e.reportsto WHERE r.requeststatus = 'denied' AND e.employeeid = ?;";
+		try (PreparedStatement stmt = conn.prepareStatement(query)) {
+			stmt.setInt(1, employeerequest);
+			if (stmt.execute()) {
+				try (ResultSet resultSet = stmt.getResultSet()) {
+					while (resultSet.next()) {
+						requestmydenied.add(createMultiModelFormRS(resultSet));
+					}
+				}
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return requestmydenied;
+}		
 
 	
 	

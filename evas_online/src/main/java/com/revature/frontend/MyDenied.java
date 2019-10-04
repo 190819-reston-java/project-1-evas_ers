@@ -30,8 +30,8 @@ public class MyResolved extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getMyResolved(employeerequest));
-		System.out.println("ArrayList: " + evasDao.getMyResolved(employeerequest));
+		String transactionString = om.writeValueAsString(evasDao.getMyDenied(employeerequest));
+		System.out.println("ArrayList: " + evasDao.getMyDenied(employeerequest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
 		

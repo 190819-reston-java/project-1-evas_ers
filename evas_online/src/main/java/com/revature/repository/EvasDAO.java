@@ -62,4 +62,8 @@ public interface EvasDAO {
 	List<MultiModelMode> getViewResolved (MultiModelMode vr);
 	List<MultiModelMode> getViewDenied (MultiModelMode vd);
 	
+	List<MultiModelMode> getMyPending (int employeerequest);//MultiModelMode mp);
+	List<MultiModelMode> getMyResolved (int employeerequest);
+	List<MultiModelMode> getMyDenied (int employeerequest);
+	
 }

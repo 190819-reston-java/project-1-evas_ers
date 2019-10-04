@@ -85,17 +85,27 @@ public class EvasOnlineDriver {
 			//MultiModelMode rm = new MultiModelMode();
 			//System.out.println(evasDao.getRequestViewManager(rm));
 			
-			logger.info("getViewPending");// wip[]	
+			logger.info("getViewPending");// works
 			//MultiModelMode vp = new MultiModelMode();
 			//System.out.println(evasDao.getViewPending(vp));
 			
-			logger.info("getViewResolved");// wip[]
-			MultiModelMode vr = new MultiModelMode();
-			System.out.println(evasDao.getViewResolved(vr));
+			logger.info("getViewResolved");// works
+			//MultiModelMode vr = new MultiModelMode();
+			//System.out.println(evasDao.getViewResolved(vr));
 			
-			logger.info("getViewDenied");// wip[]
-			MultiModelMode vd = new MultiModelMode();
-			System.out.println(evasDao.getViewDenied(vd));
+			logger.info("getViewDenied");// works
+			//MultiModelMode vd = new MultiModelMode();
+			//System.out.println(evasDao.getViewDenied(vd));
+			
+			logger.info("getMyPending");// works
+			System.out.println(evasDao.getMyPending(9));
+			
+			logger.info("getMyResolved");// works
+			System.out.println(evasDao.getMyResolved(9));
+			
+			logger.info("getMyDenied");// works
+			System.out.println(evasDao.getMyDenied(5));
+			
 			
 		
 		System.out.println("result end");
