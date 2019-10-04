@@ -77,5 +77,8 @@ public interface EvasDAO {
 	List<MultiModelMode> getMyDenied(int employeerequest);
 
 	List<MultiModelMode> viewEmpReq(int employeerequest);
+	
+	boolean updateRequestStatus(int requestid, String requeststatus);
+
 
 }

@@ -84,6 +84,8 @@ public class EvasOnlineDriver {
 //		
 //		evasDao.updateRequest(ru)
 		
+		System.out.println(evasDao.updateRequestStatus(14, "approved"));
+		
 		
 	}
 
