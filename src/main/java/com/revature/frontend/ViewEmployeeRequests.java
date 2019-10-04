@@ -14,6 +14,8 @@ public class ViewEmployeeRequests extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^");
+		
+		System.out.println("Employee of interest: " + BasicLogin.employeeOfInterest);
 
 //		int id = Integer.parseInt(req.getParameter("id"));
 		
@@ -22,10 +24,11 @@ public class ViewEmployeeRequests extends HttpServlet {
 		System.out.println(value);
 		
 		BasicLogin.employeeOfInterest = Integer.parseInt(req.getParameter("id"));
+		System.out.println("%%%%%%%%%%%%%%%%%%%Employee of interest: " + BasicLogin.employeeOfInterest);
 		
-		System.out.println("helllooooo");
+//		System.out.println("helllooooo");
 		resp.sendRedirect("recent.html");
-
+//
 	}
 
 }

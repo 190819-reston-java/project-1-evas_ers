@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 3.07");
+console.log("version 3.31");
 
 let id = null;
 let firstName = null;
@@ -34,35 +34,36 @@ fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
             var a = transactionTable.insertRow(transactionTable.size);
             var b = a.insertCell(0);
 
-            //creates a form for each row
-            var x = document.createElement("FORM");             //form
-            x.setAttribute("id", "myForm");
-            x.setAttribute("method", "POST");
-            x.setAttribute("action", "ViewEmployeeRequests");    //Connects to the servlet
-            document.body.appendChild(x);
+            // //creates a form for each row
+            // var x = document.createElement("FORM");             //form
+            // x.setAttribute("id", "myForm");
+            // x.setAttribute("method", "POST");
+            // x.setAttribute("action", "ViewEmployeeRequests");    //Connects to the servlet
+            // document.body.appendChild(x);
 
-            //creates a button to select the employee
-            var y = document.createElement("INPUT");            //input 1: button
-            y.setAttribute("type", "submit");
-            y.setAttribute("value", "Select");
-            b.appendChild(y);
+            // //creates a button to select the employee
+            // var y = document.createElement("INPUT");            //input 1: button
+            // y.setAttribute("type", "submit");
+            // y.setAttribute("value", "Select");
+            // b.appendChild(y);
 
-            // creates a hidden field to store the employee data
-            var z = document.createElement("INPUT");            //input 2: hidden field
-            z.setAttribute("type", "hidden");                   
-            z.setAttribute("value", 'testing');        //stores employeeid
-            z.setAttribute("name", "id");                       //field is named "id"
-            b.appendChild(z);
+            // // creates a hidden field to store the employee data
+            // var z = document.createElement("INPUT");            //input 2: hidden field
+            // z.setAttribute("type", "hidden");                   
+            // z.setAttribute("value", 'testing');        //stores employeeid
+            // z.setAttribute("name", "id");                       //field is named "id"
+            // b.appendChild(z);
 
-            // var z = document.createElement("INPUT");
-            // z.setAttribute("type", "hidden");
-            // z.setAttribute("value", e.innerHTML);
-            // console.log(z.getAttribute("value"));
+            // // var z = document.createElement("INPUT");
+            // // z.setAttribute("type", "hidden");
+            // // z.setAttribute("value", e.innerHTML);
+            // // console.log(z.getAttribute("value"));
 
             var c = a.insertCell(1);
             var d = a.insertCell(2);
             var e = a.insertCell(3);
             var f = a.insertCell(4);
+            b.innerHTML = json[i].employeeid;
             c.innerHTML = json[i].employeelastname;
             d.innerHTML = json[i].employeefirstname;
             e.innerHTML = json[i].employeeposition;

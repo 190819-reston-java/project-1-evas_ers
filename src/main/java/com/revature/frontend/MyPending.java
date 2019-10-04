@@ -21,21 +21,35 @@ import com.revature.repository.EvasJDBC;
 public class MyPending extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("1***employee of interest is: " + BasicLogin.employeeOfInterest);
+
 
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
 		int employeerequest = employeeService.getEmployeeid(); // employee id
+
+		System.out.println("2***employee of interest is: " + BasicLogin.employeeOfInterest);
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getMyPending(employeerequest));
 		
-		System.out.println("Getting requests for employee #"+ employeerequest);
-		System.out.println("ArrayList: " + evasDao.getMyPending(employeerequest));
+		System.out.println("Investigating #" + BasicLogin.loggedAccount + ", employee of interest is: " + BasicLogin.employeeOfInterest);
+
+
+		String transactionString = om.writeValueAsString(evasDao.getMyPending(BasicLogin.employeeOfInterest));
+		System.out.println("Getting requests for employee #"+ BasicLogin.employeeOfInterest);
+		System.out.println("ArrayList: " + evasDao.getMyPending(BasicLogin.employeeOfInterest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+
+//		String transactionString = om.writeValueAsString(evasDao.getMyPending(employeerequest));
+//		System.out.println("Getting requests for employee #"+ employeerequest);
+//		System.out.println("ArrayList: " + evasDao.getMyPending(employeerequest));
+//		System.out.println("String being sent to JS: " + transactionString);
+//		pw.write(transactionString);
 		
 
 		System.out.println("Getting requests for employee #1");

@@ -25,12 +25,21 @@ public class ViewRequests extends HttpServlet {
 
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
+		
+		System.out.println("employee of interest is: " + BasicLogin.employeeOfInterest);
 
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.viewEmpReq(employeeService.getEmployeeid()));
-		System.out.println("ArrayList: " + evasDao.viewEmpReq(employeeService.getEmployeeid()));
+//		String transactionString = om.writeValueAsString(evasDao.viewEmpReq(employeeService.getEmployeeid()));
+//		System.out.println("ArrayList: " + evasDao.viewEmpReq(employeeService.getEmployeeid()));
+//		System.out.println("String being sent to JS: " + transactionString);
+//		pw.write(transactionString);
+		
+		System.out.println("Investigating #" + BasicLogin.loggedAccount + ", employee of interest is: " + BasicLogin.employeeOfInterest);
+		
+		String transactionString = om.writeValueAsString(evasDao.viewEmpReq(BasicLogin.employeeOfInterest));
+		System.out.println("ArrayList: " + evasDao.viewEmpReq(BasicLogin.employeeOfInterest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
 		
