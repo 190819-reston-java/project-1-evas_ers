@@ -35,6 +35,7 @@ public class ViewAll extends HttpServlet {
 		System.out.println("ArrayList: " + evasDao.getRequestViewManager(rm));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+		pw.close();
 		
 	}
 

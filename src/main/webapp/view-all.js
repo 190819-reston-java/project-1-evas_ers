@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 10:56");
+console.log("version 2.27");
 
 let id = null;
 let firstName = null;
@@ -30,6 +30,7 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
     })
     .then((json) => {
         console.log(json);
+        let p = 0;
         for(var i=0;i<json.length;i++){
             var a = transactionTable.insertRow(transactionTable.size);
             var b = a.insertCell(0);
@@ -42,6 +43,8 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
             d.innerHTML = '$' + json[i].requestvalue;
             e.innerHTML = json[i].requeststatus;
 
+            p = json[i].transaction;
+
             var f = a.insertCell(4);
 
             if(json[i].requeststatus === "pending"){
@@ -49,6 +52,7 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
             var x = document.createElement("FORM");             //form
             x.setAttribute("id", "myForm");
             x.setAttribute("action", "ApprovalServlet");        //Connects to the servlet
+            x.setAttribute("method", "POST");
             document.body.appendChild(x);
 
             //creates a button to select the employee
@@ -60,7 +64,7 @@ fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
             // creates a hidden field to store the employee data
             var z = document.createElement("INPUT");            //input 2: hidden field
             z.setAttribute("type", "hidden");
-            z.setAttribute("value", json[i].requestinformation);    //stores the requestinformation
+            z.setAttribute("value", p);    //stores the request number
             console.log(z.getAttribute("value"));
             }
         }

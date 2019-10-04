@@ -56,6 +56,15 @@
 		<servlet-class>com.revature.frontend.ViewRequests</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>MyResolved</servlet-name>
+		<servlet-class>com.revature.frontend.MyResolved</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MyPending</servlet-name>
+		<servlet-class>com.revature.frontend.MyPending</servlet-class>
+	</servlet>
+
+	<servlet>
 		<servlet-name>ViewAll</servlet-name>
 		<display-name>ViewAll</display-name>
 		<description></description>
@@ -138,6 +147,17 @@
 		<servlet-name>ViewRequests</servlet-name>
 		<url-pattern>/ViewRequests</url-pattern>
 	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>MyPending</servlet-name>
+		<url-pattern>/MyPending</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>MyResolved</servlet-name>
+		<url-pattern>/MyResolved</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<servlet-mapping>
 		<servlet-name>ViewAll</servlet-name>
 		<url-pattern>/ViewAll</url-pattern>

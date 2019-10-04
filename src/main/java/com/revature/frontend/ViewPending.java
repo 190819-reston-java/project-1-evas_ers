@@ -16,9 +16,6 @@ import com.revature.repository.EvasJDBC;
  */
 public class ViewPending extends HttpServlet {
     
-    
-    
-        
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EvasDAO evasDao = new EvasJDBC();
         Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
@@ -31,6 +28,7 @@ public class ViewPending extends HttpServlet {
         System.out.println("ArrayList: " + evasDao.getViewPending(vp));
         System.out.println("String being sent to JS: " + transactionString);
         pw.write(transactionString);
+		pw.close();
         
     }
 }

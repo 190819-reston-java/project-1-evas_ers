@@ -10,8 +10,15 @@ public class MultiModelMode {
 	private String requestinformation;
 	private String requeststatus;
 	private String manager;
+	private int transaction;
 	
-	public MultiModelMode(int employeerequest, String employeename, Double requestvalue, String requestcatagory,
+	public int getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(int transaction) {
+		this.transaction = transaction;
+	}
+	public MultiModelMode(int transaction, int employeerequest, String employeename, Double requestvalue, String requestcatagory,
 			String requestdescription, String requestinformation, String requeststatus, String manager) {
 		super();
 		this.employeerequest = employeerequest;
@@ -22,6 +29,7 @@ public class MultiModelMode {
 		this.requestinformation = requestinformation;
 		this.requeststatus = requeststatus;
 		this.manager = manager;
+		this.transaction = transaction;
 	}
 	public MultiModelMode() {
 		super();
@@ -79,7 +87,7 @@ public class MultiModelMode {
 		return "MultiModelMode [employeerequest=" + employeerequest + ", employeename=" + employeename
 				+ ", requestvalue=" + requestvalue + ", requestcatagory=" + requestcatagory + ", requestdescription="
 				+ requestdescription + ", requestinformation=" + requestinformation + ", requeststatus=" + requeststatus
-				+ ", manager=" + manager + "]";
+				+ ", manager=" + manager + ", transaction=" + transaction + "]";
 	}
 	
 	

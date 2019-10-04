@@ -26,6 +26,7 @@ public class MyResolved extends HttpServlet {
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
 		int employeerequest = employeeService.getEmployeeid(); // employee id
+		System.out.println("Getting requests for employee #"+ employeerequest);
 		
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
@@ -34,6 +35,7 @@ public class MyResolved extends HttpServlet {
 		System.out.println("ArrayList: " + evasDao.getMyResolved(employeerequest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+		pw.close();
 		
 	}
 

@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 11:25");
+console.log("version 12.57");
 
 let id = null;
 let firstName = null;
@@ -25,23 +25,46 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     
     /* Edit this block of code: */
 fetch("http://localhost:8080/evas_online/ViewPending", { method: "POST" })
-    .then((response) => {
-        return response.json();
-    })
-    .then((json) => {
-        console.log(json);
-        for(var i=0;i<json.length;i++){
-            var a = transactionTable.insertRow(transactionTable.size);
-            var b = a.insertCell(0);
-            var c = a.insertCell(1);
-            var d = a.insertCell(2);
-            var e = a.insertCell(3);
-            b.innerHTML = json[i].reimbursementdate;
-            c.innerHTML = "Travel/Overnight";
-            d.innerHTML = '$' + json[i].reimbursementamount;
-            e.innerHTML = json[i].reimbursementstatus;
+.then((response) => {
+    return response.json();
+})
+.then((json) => {
+    console.log(json);
+    for(var i=0;i<json.length;i++){
+        var a = transactionTable.insertRow(transactionTable.size);
+        var b = a.insertCell(0);
+        var c = a.insertCell(1);
+        var d = a.insertCell(2);
+        var e = a.insertCell(3);
+
+        b.innerHTML = json[i].employeename;
+        c.innerHTML = json[i].requestcatagory;
+        d.innerHTML = '$' + json[i].requestvalue;
+        e.innerHTML = json[i].requeststatus;
+
+        var f = a.insertCell(4);
+
+        if(json[i].requeststatus === "pending"){
+        //creates a form for each row
+        var x = document.createElement("FORM");             //form
+        x.setAttribute("id", "myForm");
+        x.setAttribute("action", "ApprovalServlet");        //Connects to the servlet
+        document.body.appendChild(x);
+
+        //creates a button to select the employee
+        var y = document.createElement("INPUT");            //input 1: button
+        y.setAttribute("type", "submit");
+        y.setAttribute("value", "Approve");
+        f.appendChild(y);
+
+        // creates a hidden field to store the employee data
+        var z = document.createElement("INPUT");            //input 2: hidden field
+        z.setAttribute("type", "hidden");
+        z.setAttribute("value", json[i].transaction);    //stores the request number
+        console.log(z.getAttribute("value"));
         }
-    });
+    }
+});
 
 
 let logoutPanel = document.getElementById("logout-panel");

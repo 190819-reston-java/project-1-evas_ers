@@ -102,6 +102,7 @@ public class BasicLogin extends HttpServlet {
 //			System.out.println(aea+apw);
 			
 			resp.sendRedirect("index.html");
+			pw.close();
 		}
 	}
 }

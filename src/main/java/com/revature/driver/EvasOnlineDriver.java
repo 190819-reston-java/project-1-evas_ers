@@ -75,6 +75,9 @@ public class EvasOnlineDriver {
 //		
 //		evasDao.createRequest(rc);
 		
+		System.out.println("%%%%%%%%%%%%%%%");
+		System.out.println(evasDao.getMyResolved(9));
+		
 	}
 
 }

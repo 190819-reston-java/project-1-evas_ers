@@ -29,6 +29,9 @@ public class LiveUserServlet extends HttpServlet {
 
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
+		
+		BasicLogin.employeeOfInterest = BasicLogin.loggedAccount;
+		
 //		System.out.println(BasicLogin.aea+BasicLogin.apw);
 		System.out.println("  *Selected Employee: " + employeeService);
 		ObjectMapper om = new ObjectMapper();
@@ -39,6 +42,7 @@ public class LiveUserServlet extends HttpServlet {
 		String employeeInfo=om.writeValueAsString(employeeService);
 		System.out.println(employeeInfo);
 		pw.write(employeeInfo);
+		pw.close();
 
 	}
 //	@Override

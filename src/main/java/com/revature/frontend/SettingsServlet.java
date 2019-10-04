@@ -16,16 +16,13 @@ import com.revature.repository.EvasJDBC;
 public class SettingsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		EvasDAO evasDao = new EvasJDBC();
 //		new Employee
 		Employee editEmployee = evasDao.getEmployeeById(BasicLogin.loggedAccount);
 		
 		//checking if the fields have changed
-		if(req.getParameter("enterEmail").length()>0) {
-		editEmployee.setEmployeeemail(req.getParameter("enterEmail"));
-		}
-		
+
 		if(req.getParameter("enterFirstName").length()>0) {
 		editEmployee.setEmployeefirstname(req.getParameter("enterFirstName"));
 		}
@@ -36,6 +33,9 @@ public class SettingsServlet extends HttpServlet {
 		
 		if(req.getParameter("enterNewPassword").length()>0) {
 		editEmployee.setEmployeepassword(req.getParameter("enterNewPassword"));
+		}
+		if(req.getParameter("enterEmail").length()>0) {
+		editEmployee.setEmployeeemail(req.getParameter("enterEmail"));
 		}
 		
 		System.out.println("Updating: " + editEmployee);

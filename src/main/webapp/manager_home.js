@@ -1,13 +1,18 @@
 'use strict';
 
-console.log("version 3.10");
+// let logoutPanel = document.getElementById("logout-panel");
+// logoutPanel.style.display = "none";
+console.log("Version 12.39");
 
 let id = null;
 let firstName = null;
 let lastName = null;
+let email = null;
+let password = null;
+let position = null;
+
 let accountMenu = document.getElementById("account-button");
 let transactionTable = document.getElementById("transaction-table");
-// transactionTable.insertRow(3).
 
 fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     .then((response) => {
@@ -15,35 +20,29 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     })
     .then((json) => {
         console.log(json);
+        id = json.employeeid;
         firstName = json.employeefirstname;
         lastName = json.employeelastname;
-        accountMenu.innerHTML = firstName + " " + lastName;
-        // transactionTable.innerHTML = firstName + " " + lastName;
-    });
-
-
-    
-    /* Edit this block of code: */
-    fetch("http://localhost:8080/evas_online/ViewResolved", { method: "POST" })
-    .then((response) => {
-        return response.json();
-    })
-    .then((json) => {
-        console.log(json);
-        for(var i=0;i<json.length;i++){
-            var a = transactionTable.insertRow(transactionTable.size);
-            var b = a.insertCell(0);
-            var c = a.insertCell(1);
-            var d = a.insertCell(2);
-            var e = a.insertCell(3);
-
-            b.innerHTML = json[i].employeename;
-            c.innerHTML = json[i].requestcatagory;
-            d.innerHTML = '$' + json[i].requestvalue;
-            e.innerHTML = json[i].manager;
-            
+        email = json.employeeemail;
+        password = json.employeepassword;
+        position = json.employeeposition;
+        console.log(json.employeeposition);
+        console.log(window.location);
+        if(id==null){
+            window.location.replace("http://localhost:8080/evas_online/login.html");
         }
+        accountMenu.innerHTML = firstName + " " + lastName;
+
     });
+
+
+  
+// fetch("http://localhost:8080/evas_online/ViewRequests", { method: "POST" })
+//     .then((response) => {
+//         return response.json();
+//     })
+// transactionTable.insertRow("piggy");
+// transactionTable.innerHTML = "piggy";
 
 
 let logoutPanel = document.getElementById("logout-panel");

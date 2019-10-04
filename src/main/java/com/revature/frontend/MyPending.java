@@ -31,9 +31,16 @@ public class MyPending extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 
 		String transactionString = om.writeValueAsString(evasDao.getMyPending(employeerequest));
+		
+		System.out.println("Getting requests for employee #"+ employeerequest);
 		System.out.println("ArrayList: " + evasDao.getMyPending(employeerequest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+		
+
+		System.out.println("Getting requests for employee #1");
+		System.out.println("ArrayList: " + evasDao.getMyPending(1));
+		pw.close();
 		
 	}
 

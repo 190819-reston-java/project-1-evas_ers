@@ -34,6 +34,7 @@ public class MyDenied extends HttpServlet {
 		System.out.println("ArrayList: " + evasDao.getMyDenied(employeerequest));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+		pw.close();
 		
 	}
 

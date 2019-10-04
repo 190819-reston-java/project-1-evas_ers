@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 11:18");
+console.log("version 2.34");
 
 let id = null;
 let firstName = null;
@@ -42,14 +42,14 @@ fetch("http://localhost:8080/evas_online/ViewRequests", { method: "POST" })
             var c = a.insertCell(1);
             var d = a.insertCell(2);
             var e = a.insertCell(3);
-            b.innerHTML = json[i].reimbursementdate;
-            c.innerHTML = "Travel/Overnight";
-            d.innerHTML = '$' + json[i].reimbursementamount;
-            e.innerHTML = json[i].reimbursementstatus;
+            b.innerHTML = json[i].requestcatagory;
+            c.innerHTML = json[i].requestinformation;
+            d.innerHTML = '$' + json[i].requestvalue;
+            e.innerHTML = json[i].requeststatus;
         }
     });
 
-addRow(transactionTable);
+// addRow(transactionTable);
 
 
 

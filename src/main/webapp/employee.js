@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 11:35");
+console.log("version 3.07");
 
 let id = null;
 let firstName = null;
@@ -37,6 +37,7 @@ fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
             //creates a form for each row
             var x = document.createElement("FORM");             //form
             x.setAttribute("id", "myForm");
+            x.setAttribute("method", "POST");
             x.setAttribute("action", "ViewEmployeeRequests");    //Connects to the servlet
             document.body.appendChild(x);
 
@@ -44,13 +45,14 @@ fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
             var y = document.createElement("INPUT");            //input 1: button
             y.setAttribute("type", "submit");
             y.setAttribute("value", "Select");
+            b.appendChild(y);
 
             // creates a hidden field to store the employee data
             var z = document.createElement("INPUT");            //input 2: hidden field
             z.setAttribute("type", "hidden");                   
-            z.setAttribute("value", json[i].employeeid);        //stores employeeid
+            z.setAttribute("value", 'testing');        //stores employeeid
             z.setAttribute("name", "id");                       //field is named "id"
-            b.appendChild(y);
+            b.appendChild(z);
 
             // var z = document.createElement("INPUT");
             // z.setAttribute("type", "hidden");
@@ -68,29 +70,6 @@ fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
         }
     });
     
-
-    // fetch("http://localhost:8080/evas_online/EmployeeList", { method: "POST" })
-    // .then((response) => {
-    //     return response.json();
-    // })
-    // .then((json) => {
-    //     console.log(json);
-    //     for(var i=0;i<json.length;i++){
-    //         var a = transactionTable.insertRow(transactionTable.size);
-    //         var b = a.insertCell(0);
-    //         var c = a.insertCell(1);
-    //         var d = a.insertCell(2);
-    //         var e = a.insertCell(3);
-    //         var f = a.insertCell(4);
-    //         b.innerHTML = json[i].employeelastname;
-    //         c.innerHTML = json[i].employeefirstname;
-    //         d.innerHTML = json[i].employeeposition;
-    //         e.innerHTML = json[i].employeeemail;
-    //         a.createElement("FORM");
-            
-            
-    //     }
-    // });
 
 
 let logoutPanel = document.getElementById("logout-panel");

@@ -28,6 +28,7 @@ public class ViewResolved extends HttpServlet {
         System.out.println("ArrayList: " + evasDao.getViewResolved(vr));
         System.out.println("String being sent to JS: " + transactionString);
         pw.write(transactionString);
+		pw.close();
         
     }
 }

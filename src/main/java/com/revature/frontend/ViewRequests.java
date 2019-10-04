@@ -20,6 +20,8 @@ public class ViewRequests extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("%%%%%%%%%%%%%%% + %%%%%%%%");
 
 		EvasDAO evasDao = new EvasJDBC();
 		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
@@ -27,10 +29,12 @@ public class ViewRequests extends HttpServlet {
 		ObjectMapper om = new ObjectMapper();
 		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getEmployeeReimbursements(3));
-		System.out.println("ArrayList: " + evasDao.getEmployeeReimbursements(3));
+		String transactionString = om.writeValueAsString(evasDao.viewEmpReq(employeeService.getEmployeeid()));
+		System.out.println("ArrayList: " + evasDao.viewEmpReq(employeeService.getEmployeeid()));
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
+		
+		pw.close();
 	}
 
 //	@Override

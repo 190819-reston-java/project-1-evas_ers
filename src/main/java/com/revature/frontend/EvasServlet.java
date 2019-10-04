@@ -16,7 +16,8 @@ public class EvasServlet extends HttpServlet {
 		PrintWriter pw = resp.getWriter();
 		pw.println("hi there");
 //		resp.setContentType("text/html");
-		
+
+		pw.close();
 
 
 	}
