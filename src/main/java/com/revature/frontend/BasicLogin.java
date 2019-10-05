@@ -29,6 +29,8 @@ public class BasicLogin extends HttpServlet {
 	public static int loggedAccount = 0;
 	
 	public static int employeeOfInterest = 0;
+//	public static boolean manager = false;
+//	public static int prevEOI = 0;
 	
 	
 	@Override
@@ -70,6 +72,8 @@ public class BasicLogin extends HttpServlet {
 			employeeService.setSelectedEmployee(evasDao.getEmailandPass(email, password));
 //			System.out.println("   *Our selected employee: " + employeeService.getSelectedEmployee());
 			
+//			prevEOI = employeeOfInterest;
+			
 			loggedAccount = evasDao.getEmailandPass(email, password).getEmployeeid();
 			employeeOfInterest = loggedAccount;
 			System.out.println("Logging in account #"+loggedAccount + ", employee of interest is: " + employeeOfInterest);
@@ -79,6 +83,7 @@ public class BasicLogin extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("activeAccount", email);
 			System.out.println("Initiating Session for: " + session);
+//			manager = true;
 			
 			resp.sendRedirect("manager_home.html");
 			}

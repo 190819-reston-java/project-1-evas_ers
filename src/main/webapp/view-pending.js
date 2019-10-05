@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 5.31");
+console.log("version 11.48");
 
 let id = null;
 let firstName = null;
@@ -36,11 +36,13 @@ fetch("http://localhost:8080/evas_online/ViewPending", { method: "POST" })
         var c = a.insertCell(1);
         var d = a.insertCell(2);
         var e = a.insertCell(3);
+        var f = a.insertCell(4);
 
-        b.innerHTML = json[i].employeename;
-        c.innerHTML = json[i].requestcatagory;
-        d.innerHTML = '$' + json[i].requestvalue;
-        e.innerHTML = json[i].requeststatus;
+        b.innerHTML = json[i].transaction;
+        c.innerHTML = json[i].employeename;
+        d.innerHTML = json[i].requestcatagory;
+        e.innerHTML = '$' + json[i].requestvalue;
+        f.innerHTML = json[i].requeststatus;
     }
 });
 

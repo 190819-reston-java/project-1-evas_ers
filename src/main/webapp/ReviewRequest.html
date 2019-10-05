@@ -76,32 +76,55 @@
         <div class="row">
 
             <!-- Settings Panel -->
-            <div id="profileInfo" class="col-md-6 m-3 p-4 mx-auto">
-                <form id="account-settings" action="UpdateSettings" method="POST">
-                    <table id="settingsTable" class="mx-auto">
-                        <tr>
-                            <td><b>Employee:</b></td>
-                            <td id="nameandposition">/first_name</td>
-                        </tr>
-                        <tr>
-                            <td><b>Category:</b></td>
-                            <td id="categoryanddesc">/last_name</td>
-                        </tr>
-                        <tr>
-                            <td><b>Additional Info:</b></td>
-                            <td id="description">/email_address</td>
-                        </tr>
-                        <tr>
-                            <td><b>Value:</b></td>
-                            <td id="value">/password</td>
-                        </tr>
+            <div id="profileInfo" class="col-md-4 m-3 p-4 mx-auto">
+                <table id="settingsTable">
+                    <tr>
+                        <td><b>Employee:</b></td>
+                        <td id="name">/John Doe</td>
+                    </tr>
+                    <!-- <tr>
+                            <td><b>Position:</b></td>
+                            <td id="position">/Janitor</td>
+                        </tr> -->
+                    <tr>
+                        <td><b>Value:</b></td>
+                        <td id="value">/$100</td>
+                    </tr>
+                    <tr>
+                        <td><b>Category:</b></td>
+                        <td id="category">/Supplies</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="information" style="max-width: 350px"><b>Additional Info: </b>N/A</td>
+                    </tr>
 
-                        <tr>
-                            <td colspan="3"><input type="submit" class="btn btn-warning mx-auto" value="Update Settings"
-                                    style="width: 100%"></td>
-                        </tr>
-                    </table>
-                </form>
+
+                    <tr>
+                        <td>
+                            <form id="approve-request" action="Approve" method="POST">
+                                <input id="approve-button" type="submit" class="btn btn-success mx-center"
+                                    value="Approve" style="width: 80px">
+                            </form>
+                        </td>
+                        <td>
+                            <form id="deny-request" action="Deny" method="POST">
+                                <input id="deny-button" type="submit" class="btn btn-danger mx-center" value="Deny"
+                                    style="width: 80px">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="backButton" onclick="goBack()" class="btn btn-secondary mx-center"
+                                style="visibility: hidden; width: 80px">Back</button>
+                        </td>
+                        <td>
+                            <button id="homeButton" onclick="window.location.href = 'index.html';" class="btn btn-light"
+                                style="visibility: hidden; width: 80px">Home</button>
+                        </td>
+
+                    </tr>
+                </table>
 
             </div>
 

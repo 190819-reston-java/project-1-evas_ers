@@ -45,11 +45,19 @@ public class MyPending extends HttpServlet {
 		System.out.println("String being sent to JS: " + transactionString);
 		pw.write(transactionString);
 
-//		String transactionString = om.writeValueAsString(evasDao.getMyPending(employeerequest));
-//		System.out.println("Getting requests for employee #"+ employeerequest);
-//		System.out.println("ArrayList: " + evasDao.getMyPending(employeerequest));
+//		if(BasicLogin.manager==false) {
+//		String transactionString = om.writeValueAsString(evasDao.getMyPending(BasicLogin.employeeOfInterest));
+//		System.out.println("ArrayList: " + evasDao.getMyPending(BasicLogin.employeeOfInterest));
 //		System.out.println("String being sent to JS: " + transactionString);
 //		pw.write(transactionString);
+//		pw.close();
+//		} else {
+//			String transactionString = om.writeValueAsString(evasDao.getMyPending(BasicLogin.prevEOI));
+//			System.out.println("ArrayList: " + evasDao.getMyPending(BasicLogin.prevEOI));
+//			System.out.println("String being sent to JS: " + transactionString);
+//			pw.write(transactionString);
+//			pw.close();
+//		}
 		
 
 		System.out.println("Getting requests for employee #1");

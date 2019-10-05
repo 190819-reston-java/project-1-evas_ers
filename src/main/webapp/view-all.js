@@ -1,6 +1,6 @@
 'use strict';
 
-console.log("version 5.31");
+console.log("version 11.48");
 
 let id = null;
 let firstName = null;
@@ -24,26 +24,72 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
 
     
     /* Edit this block of code: */
-fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
-    .then((response) => {
-        return response.json();
-    })
-    .then((json) => {
-        console.log(json);
-        let p = 0;
-        for(var i=0;i<json.length;i++){
-            var a = transactionTable.insertRow(transactionTable.size);
-            var b = a.insertCell(0);
-            var c = a.insertCell(1);
-            var d = a.insertCell(2);
-            var e = a.insertCell(3);
+// fetch("http://localhost:8080/evas_online/ViewAll", { method: "POST" })
+//     .then((response) => {
+//         return response.json();
+//     })
+//     .then((json) => {
+//         console.log(json);
+//         let p = 0;
+//         for(var i=0;i<json.length;i++){
+//             var a = transactionTable.insertRow(transactionTable.size);
+//             var b = a.insertCell(0);
+//             var c = a.insertCell(1);
+//             var d = a.insertCell(2);
+//             var e = a.insertCell(3);
 
-            b.innerHTML = json[i].employeename;
-            c.innerHTML = json[i].requestcatagory;
-            d.innerHTML = '$' + json[i].requestvalue;
-            e.innerHTML = json[i].requeststatus;
-        }
-    });
+//             b.innerHTML = json[i].employeename;
+//             c.innerHTML = json[i].requestcatagory;
+//             d.innerHTML = '$' + json[i].requestvalue;
+//             e.innerHTML = json[i].requeststatus;
+//         }
+//     });
+
+
+//HOPE THIS WORKS
+fetch("http://localhost:8080/evas_online/ViewPending", { method: "POST" })
+.then((response) => {
+    return response.json();
+})
+.then((json) => {
+    console.log(json);
+    for(var i=0;i<json.length;i++){
+        var a = transactionTable.insertRow(transactionTable.size);
+        var b = a.insertCell(0);
+        var c = a.insertCell(1);
+        var d = a.insertCell(2);
+        var e = a.insertCell(3);
+        var f = a.insertCell(4);
+
+        b.innerHTML = json[i].transaction;
+        c.innerHTML = json[i].employeename;
+        d.innerHTML = json[i].requestcatagory;
+        e.innerHTML = '$' + json[i].requestvalue;
+        f.innerHTML = json[i].requeststatus;
+    }
+});
+fetch("http://localhost:8080/evas_online/ViewResolved", { method: "POST" })
+.then((response) => {
+    return response.json();
+})
+.then((json) => {
+    console.log(json);
+    for(var i=0;i<json.length;i++){
+        var a = transactionTable.insertRow(transactionTable.size);
+        var b = a.insertCell(0);
+        var c = a.insertCell(1);
+        var d = a.insertCell(2);
+        var e = a.insertCell(3);
+        var f = a.insertCell(4);
+
+        b.innerHTML = json[i].transaction;
+        c.innerHTML = json[i].employeename;
+        d.innerHTML = json[i].requestcatagory;
+        e.innerHTML = '$' + json[i].requestvalue;
+        f.innerHTML = json[i].requeststatus;
+    }
+});
+
 
 
 let logoutPanel = document.getElementById("logout-panel");

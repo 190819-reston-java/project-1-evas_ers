@@ -10,18 +10,18 @@ import com.revature.repository.EvasDAO;
 import com.revature.repository.EvasJDBC;
 
 /**
- * Servlet implementation class ApprovalServlet
+ * Servlet implementation class DenialServlet
  */
-public class ApprovalServlet extends HttpServlet {
+public class DenialServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		EvasDAO evasDao = new EvasJDBC();
 
 		evasDao.updateRequestStatus(SelectRequest.requestOfInterest, "resolved");
-		System.out.println("Accepted request #" + SelectRequest.requestOfInterest);
-
+		System.out.println("Denied request #" + SelectRequest.requestOfInterest);
+		
 		resp.sendRedirect("index.html");
 	}
 

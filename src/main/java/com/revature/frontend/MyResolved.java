@@ -37,11 +37,19 @@ public class MyResolved extends HttpServlet {
 		pw.write(transactionString);
 		pw.close();
 		
-//		String transactionString = om.writeValueAsString(evasDao.getMyResolved(employeerequest));
-//		System.out.println("ArrayList: " + evasDao.getMyResolved(employeerequest));
+//		if(BasicLogin.manager==false) {
+//		String transactionString = om.writeValueAsString(evasDao.getMyResolved(BasicLogin.employeeOfInterest));
+//		System.out.println("ArrayList: " + evasDao.getMyResolved(BasicLogin.employeeOfInterest));
 //		System.out.println("String being sent to JS: " + transactionString);
 //		pw.write(transactionString);
 //		pw.close();
+//		} else {
+//			String transactionString = om.writeValueAsString(evasDao.getMyResolved(BasicLogin.prevEOI));
+//			System.out.println("ArrayList: " + evasDao.getMyResolved(BasicLogin.prevEOI));
+//			System.out.println("String being sent to JS: " + transactionString);
+//			pw.write(transactionString);
+//			pw.close();
+//		}
 		
 	}
 
