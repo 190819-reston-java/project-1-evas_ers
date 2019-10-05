@@ -1,10 +1,13 @@
 package com.revature.driver;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.frontend.BasicLogin;
+import com.revature.frontend.SelectRequest;
 import com.revature.model.Employee;
 import com.revature.model.MultiModelMode;
 import com.revature.model.Reimbursement;
@@ -84,6 +87,15 @@ public class EvasOnlineDriver {
 //		
 //		evasDao.updateRequest(ru)
 		
+//		System.out.println(evasDao.updateRequestStatus(14, "approved"));
+//		evasDao.updateRequestStatus(27, "pending");
+//		evasDao.updateRequestStatus(2, "pending");
+//		evasDao.updateRequestStatus(7, "pending");
+//		evasDao.updateRequestStatus(9, "pending");
+
+//        MultiModelMode vp = new MultiModelMode();
+//        
+//        System.out.println(evasDao.getViewPending(vp));
 		
 	}
 

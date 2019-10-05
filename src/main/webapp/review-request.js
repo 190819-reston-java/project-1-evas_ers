@@ -2,7 +2,7 @@
 
 // let logoutPanel = document.getElementById("logout-panel");
 // logoutPanel.style.display = "none";
-console.log("1.34");
+console.log("12.01");
 
 let id = null;
 let firstName = null;
@@ -10,17 +10,14 @@ let lastName = null;
 let email = null;
 let password = null;
 let position = null;
+// let accountMenu = document.getElementById("account-button");
 
 let accountMenu = document.getElementById("account-button");
 let currentFirstName = document.getElementById("currentFirstName");
 let currentLastName = document.getElementById("currentLastName");
-let currentEmail = document.getElementById("currentEmail");
-let currentPassword = document.getElementById("currentPassword");
+// let currentEmail = document.getElementById("currentEmail");
+// let currentPassword = document.getElementById("currentPassword");
 
-// currentFirstName.innerText = "NULL";
-// currentLastName.innerText = "NULL";
-// currentEmail.innerText = "NULL";
-// currentPassword.innerText = "****";
 
 
 fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
@@ -44,15 +41,48 @@ fetch("http://localhost:8080/evas_online/LiveUser?", { method: "GET" })
     });
 
 
-function censor(text) {
-    let output = "";
-    for (let i = 0; i < text.length; i++) {
-        output = output + '*';
-    }
-    return output;
-}
+// console.log("testing");
+// name.innerText = "bob";    
+// var info = "Additional Info:"
+// information.innerText="additional text goes here";
+let name = document.getElementById("name");
+// let emp_position = document.getElementById("position");
+let value = document.getElementById("value");
+let category = document.getElementById("category");
+let information = document.getElementById("information");
+let approve = document.getElementById("approve-button");
+let deny = document.getElementById("deny-button");
+let back = document.getElementById("backButton");
+let home = document.getElementById("homeButton");
 
-console.log("testing: " + censor("sdf"));
+
+fetch("http://localhost:8080/evas_online/SelectRequest", { method: "POST" })
+    .then((response) => {
+        return response.json();
+    })
+    .then((json) => {
+        console.log("Getting request")
+        console.log(json);
+
+        name.innerHTML = json.employeename;
+        value.innerHTML = '$' + json.requestvalue;
+        category.innerHTML = json.requestcategory;
+        information.innerHTML = json.requestinformation;
+
+        if (json.requeststatus != 'pending' || json.requeststatus != 'Pending') {
+            approve.disabled = true;
+            deny.disabled = true;
+            alert("The selected item has been resolved by "+ json.manager);
+            back.style.visibility = "visible";
+            home.style.visibility = "visible";
+        }
+
+    });
+    
+    // deny.remove();
+function goBack(){
+    window.history.back();
+}
 
 
 let logoutPanel = document.getElementById("logout-panel");

@@ -21,21 +21,36 @@ import com.revature.repository.EvasJDBC;
 public class ViewAll extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		EvasDAO evasDao = new EvasJDBC();
-		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
-		
+//
+//		EvasDAO evasDao = new EvasJDBC();
+//		Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
+//		
 //		Reimbursement ar = new Reimbursement();
-		MultiModelMode rm = new MultiModelMode();
+//		
+//		ObjectMapper om = new ObjectMapper();
+//		PrintWriter pw = resp.getWriter();
+//
+//		String transactionString = om.writeValueAsString(evasDao.getReimbursement(ar));
+//		System.out.println("ArrayList: " + evasDao.getReimbursement(ar));
+//		System.out.println("String being sent to JS: " + transactionString);
+//		pw.write(transactionString);
 		
-		ObjectMapper om = new ObjectMapper();
-		PrintWriter pw = resp.getWriter();
 
-		String transactionString = om.writeValueAsString(evasDao.getRequestViewManager(rm));
-		System.out.println("ArrayList: " + evasDao.getRequestViewManager(rm));
-		System.out.println("String being sent to JS: " + transactionString);
-		pw.write(transactionString);
-		pw.close();
+        EvasDAO evasDao = new EvasJDBC();
+        Employee employeeService = evasDao.getEmployeeById(BasicLogin.loggedAccount);
+        
+        MultiModelMode vp = new MultiModelMode();
+        MultiModelMode vr = new MultiModelMode();
+        
+        ObjectMapper om = new ObjectMapper();
+        PrintWriter pw = resp.getWriter();
+        
+//        String str = evasDao.getViewPending(vp) + evasDao.getViewResolved(vr));
+//        String transactionString = om.writeValueAsString(str);
+//        System.out.println("ArrayList: " + evasDao.getViewPending(vp));
+//        System.out.println("String being sent to JS: " + transactionString);
+//        pw.write(transactionString);
+//		pw.close();
 		
 	}
 

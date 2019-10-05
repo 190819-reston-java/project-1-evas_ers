@@ -198,6 +198,31 @@ public class EvasJDBC implements EvasDAO {
 		}
 		return true;
 	}
+	
+	// updates requeststatus
+		@Override
+		public boolean updateRequestStatus(int requestid, String requeststatus) {
+			Connection conn = null;
+			PreparedStatement stmt = null;
+
+			final String query = "UPDATE request SET requeststatus = ? WHERE requestid =?;";
+
+			try {
+				conn = ConnectionUtil.getConnection();
+				stmt = conn.prepareStatement(query);
+				stmt.setString(1, requeststatus);
+				stmt.setInt(2, requestid);
+
+				stmt.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			} finally {
+				StreamCloser.close(stmt);
+				StreamCloser.close(conn);
+			}
+			return true;
+		}
 
 
 	// gets request by id

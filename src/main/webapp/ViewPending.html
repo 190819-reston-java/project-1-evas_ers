@@ -60,7 +60,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="index.html">Account Home</a>
                         <a class="dropdown-item" href="settings.html">Account settings</a>
-                        <a class="dropdown-item" href="#" onclick="confirmLogout()" >Log out</a>
+                        <a class="dropdown-item" href="#" onclick="confirmLogout()">Log out</a>
                     </div>
                 </div>
             </div>
@@ -80,9 +80,10 @@
                     </li>
                 </ul>
                 <table id="transaction-table" class="table table-striped" align="center" style="width: 100%">
-                        <thead class="thead-dark">
+                    <thead class="thead-dark">
                         <tr>
-                            <th>Name</th>
+                            <th>Request Number</th>
+                            <th>Employee</th>
                             <th>Category</th>
                             <th>Amount</th>
                             <th>Status</th>
@@ -108,7 +109,10 @@
                         </tr> -->
                     </tbody>
                 </table>
-                
+                <form action="SelectRequest" method="get">
+                    <input type="number" name="id" step="1" min="1">
+                    <input type="submit" value="Select Request By ID">
+                </form>
             </div>
         </div>
     </div>

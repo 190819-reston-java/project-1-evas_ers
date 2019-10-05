@@ -100,7 +100,7 @@ td{
 	padding: 6px;
 }
 #profileInfo{
-	min-width:500px;
+	max-width:360px;
 }
 
 #NLactive{
